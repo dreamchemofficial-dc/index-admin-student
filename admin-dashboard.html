@@ -384,32 +384,34 @@
         .notice-stat-val{font-size:22px;font-weight:800;color:var(--primary);}
         .notice-stat-lbl{font-size:11px;color:var(--text3);margin-top:3px;}
 
-        /* ── ID CARD ── */
+        /* ── ID CARD — Light Professional ── */
         .id-card-wrap{display:flex;flex-direction:column;align-items:center;gap:20px;}
-        .id-card{width:340px;background:linear-gradient(135deg,#0f0c29,#302b63);border:2px solid var(--border);border-radius:18px;overflow:hidden;font-family:'Segoe UI',sans-serif;box-shadow:0 8px 32px rgba(0,0,0,0.4);position:relative;}
-        .id-card-header{background:linear-gradient(90deg,var(--primary),var(--secondary));padding:14px 18px;display:flex;align-items:center;gap:12px;}
-        .id-card-header-logo{width:42px;height:42px;border-radius:8px;background:rgba(255,255,255,0.15);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;}
+        .id-card{width:360px;background:#fff;border-radius:16px;overflow:hidden;font-family:'Segoe UI',sans-serif;box-shadow:0 4px 24px rgba(0,0,0,0.18);position:relative;border:1px solid #e0e0e0;}
+        .id-card-header{padding:0;position:relative;height:90px;background:linear-gradient(135deg,var(--primary),var(--secondary));overflow:hidden;}
+        .id-card-header-wave{position:absolute;bottom:-1px;left:0;width:100%;line-height:0;}
+        .id-card-header-inner{padding:14px 18px 0;display:flex;align-items:center;gap:12px;position:relative;z-index:1;}
+        .id-card-header-logo{width:44px;height:44px;border-radius:10px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;border:2px solid rgba(255,255,255,0.4);}
         .id-card-header-logo img{width:100%;height:100%;object-fit:contain;}
-        .id-card-header-title{color:#fff;}
-        .id-card-header-title .inst-name{font-size:15px;font-weight:800;letter-spacing:0.5px;}
-        .id-card-header-title .inst-sub{font-size:10px;opacity:0.85;margin-top:1px;}
-        .id-card-body{padding:18px;display:flex;gap:16px;align-items:flex-start;}
-        .id-card-photo{width:80px;height:95px;border-radius:10px;border:2px solid var(--border);object-fit:cover;flex-shrink:0;background:var(--card);display:flex;align-items:center;justify-content:center;font-size:28px;color:var(--text3);overflow:hidden;}
-        .id-card-photo img{width:100%;height:100%;object-fit:cover;}
-        .id-card-info{flex:1;min-width:0;}
-        .id-card-name{font-size:16px;font-weight:800;color:#fff;margin-bottom:4px;line-height:1.2;}
-        .id-card-id-badge{display:inline-block;background:linear-gradient(90deg,var(--primary),var(--secondary));color:#fff;font-size:11px;font-weight:800;padding:3px 10px;border-radius:6px;margin-bottom:8px;letter-spacing:1px;}
-        .id-card-row{display:flex;flex-direction:column;margin-bottom:5px;}
-        .id-card-row label{font-size:9px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:1px;font-weight:700;}
-        .id-card-row span{font-size:12px;color:rgba(255,255,255,0.85);font-weight:600;}
-        .id-card-footer{background:rgba(0,0,0,0.3);padding:10px 18px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,0.08);}
-        .id-card-footer .valid{font-size:10px;color:rgba(255,255,255,0.4);}
-        .id-card-footer .batch-badge{font-size:10px;background:rgba(0,210,255,0.15);color:var(--primary);padding:3px 10px;border-radius:5px;font-weight:700;}
+        .id-card-header-title .inst-name{font-size:15px;font-weight:800;color:#fff;letter-spacing:0.5px;}
+        .id-card-header-title .inst-sub{font-size:10px;color:rgba(255,255,255,0.8);margin-top:2px;letter-spacing:0.3px;}
+        .id-card-body{padding:12px 18px 16px;display:flex;gap:16px;align-items:flex-start;background:#fff;}
+        .id-card-photo{width:82px;height:100px;border-radius:10px;border:3px solid #fff;box-shadow:0 2px 12px rgba(0,0,0,0.15);object-fit:cover;flex-shrink:0;background:#f0f4ff;display:flex;align-items:center;justify-content:center;font-size:28px;overflow:hidden;margin-top:-30px;position:relative;z-index:2;}
+        .id-card-photo img{width:100%;height:100%;object-fit:cover;border-radius:7px;}
+        .id-card-info{flex:1;min-width:0;padding-top:4px;}
+        .id-card-name{font-size:16px;font-weight:800;color:#1a1a2e;margin-bottom:3px;line-height:1.2;}
+        .id-card-id-badge{display:inline-block;background:linear-gradient(90deg,var(--primary),var(--secondary));color:#fff;font-size:10px;font-weight:800;padding:3px 10px;border-radius:20px;margin-bottom:9px;letter-spacing:1px;}
+        .id-card-row{display:flex;align-items:baseline;gap:6px;margin-bottom:4px;}
+        .id-card-row label{font-size:9px;color:#999;text-transform:uppercase;letter-spacing:0.8px;font-weight:700;min-width:48px;flex-shrink:0;}
+        .id-card-row span{font-size:12px;color:#333;font-weight:600;}
+        .id-card-divider{height:1px;background:linear-gradient(90deg,transparent,#e0e0e0,transparent);margin:8px 18px;}
+        .id-card-footer{background:linear-gradient(135deg,#f8f9ff,#f0f4ff);padding:10px 18px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid #eaecf8;}
+        .id-card-footer .valid{font-size:10px;color:#999;font-weight:500;}
+        .id-card-footer .batch-badge{font-size:10px;background:linear-gradient(90deg,var(--primary),var(--secondary));color:#fff;padding:4px 12px;border-radius:20px;font-weight:700;letter-spacing:0.5px;}
         .id-card-actions{display:flex;gap:10px;}
         @media print{
             body *{visibility:hidden !important;}
             #printableCard,#printableCard *{visibility:visible !important;}
-            #printableCard{position:fixed !important;top:20mm;left:50%;transform:translateX(-50%);box-shadow:none !important;}
+            #printableCard{position:fixed !important;top:10mm;left:50%;transform:translateX(-50%);box-shadow:0 2px 8px rgba(0,0,0,0.1) !important;}
         }
 
         /* ── BATCH TRANSFER ── */
@@ -427,6 +429,62 @@
         .export-card .ex-icon{font-size:28px;margin-bottom:8px;}
         .export-card .ex-title{font-size:13px;font-weight:700;margin-bottom:3px;}
         .export-card .ex-desc{font-size:11px;color:var(--text3);}
+
+        /* ── ATTENDANCE ── */
+        .att-batch-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;cursor:pointer;transition:all 0.3s;}
+        .att-batch-card:hover{border-color:var(--primary);transform:translateY(-2px);}
+        .att-batch-title{font-size:15px;font-weight:700;margin-bottom:4px;}
+        .att-batch-meta{font-size:12px;color:var(--text3);}
+        .att-batch-days{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px;}
+        .day-chip{padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;background:rgba(0,210,255,0.12);color:var(--primary);border:1px solid rgba(0,210,255,0.25);}
+        .day-chip.off{background:rgba(255,255,255,0.04);color:var(--text3);border-color:var(--border);}
+        .day-toggle{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px;}
+        .day-toggle-btn{padding:6px 12px;border-radius:20px;font-size:12px;font-weight:700;border:2px solid var(--border);background:transparent;color:var(--text2);cursor:pointer;transition:all 0.2s;}
+        .day-toggle-btn.active{background:var(--primary);border-color:var(--primary);color:#000;}
+        .att-table{width:100%;border-collapse:collapse;font-size:13px;}
+        .att-table th{background:rgba(0,210,255,0.08);padding:10px 12px;text-align:left;font-weight:700;color:var(--text2);border-bottom:1px solid var(--border);}
+        .att-table td{padding:9px 12px;border-bottom:1px solid rgba(255,255,255,0.04);}
+        .att-table tr:last-child td{border:none;}
+        .att-btn{width:32px;height:32px;border-radius:8px;border:none;cursor:pointer;font-size:14px;transition:all 0.2s;font-weight:700;}
+        .att-btn.P{background:rgba(46,213,115,0.2);color:var(--success);}
+        .att-btn.A{background:rgba(255,71,87,0.2);color:var(--danger);}
+        .att-btn.L{background:rgba(255,165,2,0.2);color:var(--warning);}
+        .att-btn.none{background:var(--card);color:var(--text3);border:1px solid var(--border);}
+        .att-pct{font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px;}
+        .att-pct.high{background:rgba(46,213,115,0.15);color:var(--success);}
+        .att-pct.mid{background:rgba(255,165,2,0.15);color:var(--warning);}
+        .att-pct.low{background:rgba(255,71,87,0.15);color:var(--danger);}
+        .att-legend{display:flex;gap:12px;align-items:center;font-size:12px;color:var(--text2);}
+        .att-legend span{display:inline-flex;align-items:center;gap:5px;}
+        .att-stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:20px;}
+
+        /* ── EXAM ── */
+        .exam-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;transition:all 0.3s;}
+        .exam-card:hover{border-color:rgba(108,92,231,0.4);}
+        .exam-card-title{font-size:15px;font-weight:700;margin-bottom:4px;color:var(--text);}
+        .exam-card-meta{font-size:12px;color:var(--text3);margin-bottom:10px;}
+        .exam-badge{font-size:10px;padding:2px 9px;border-radius:10px;font-weight:700;background:rgba(108,92,231,0.15);color:#a29bfe;}
+        .exam-marks-table{width:100%;border-collapse:collapse;font-size:13px;}
+        .exam-marks-table th{padding:9px 12px;text-align:left;font-weight:700;color:var(--text2);border-bottom:1px solid var(--border);background:rgba(108,92,231,0.06);}
+        .exam-marks-table td{padding:8px 12px;border-bottom:1px solid rgba(255,255,255,0.04);}
+        .exam-marks-table tr:last-child td{border:none;}
+        .marks-input{width:70px;padding:5px 8px;background:var(--card);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:13px;font-weight:700;text-align:center;outline:none;transition:border 0.2s;}
+        .marks-input:focus{border-color:#6c5ce7;}
+        .remarks-input-sm{width:100%;padding:5px 8px;background:var(--card);border:1px solid var(--border);border-radius:6px;color:var(--text);font-size:12px;outline:none;}
+        .grade-badge{font-size:11px;font-weight:800;padding:2px 8px;border-radius:6px;}
+        .grade-A{background:rgba(46,213,115,0.15);color:var(--success);}
+        .grade-B{background:rgba(0,210,255,0.15);color:var(--primary);}
+        .grade-C{background:rgba(255,165,2,0.15);color:var(--warning);}
+        .grade-D{background:rgba(255,71,87,0.15);color:var(--danger);}
+        .grade-F{background:rgba(255,71,87,0.25);color:var(--danger);}
+        .exam-step{background:rgba(108,92,231,0.06);border:1px solid rgba(108,92,231,0.2);border-radius:12px;padding:18px;margin-bottom:16px;}
+        .exam-step-title{font-size:12px;font-weight:800;color:#a29bfe;letter-spacing:1px;text-transform:uppercase;margin-bottom:12px;}
+        .batch-select-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;}
+        .batch-select-item{padding:10px 12px;border:2px solid var(--border);border-radius:10px;cursor:pointer;transition:all 0.2s;font-size:12px;}
+        .batch-select-item:hover{border-color:rgba(108,92,231,0.4);}
+        .batch-select-item.selected{border-color:#6c5ce7;background:rgba(108,92,231,0.1);}
+        .batch-select-item .bi-name{font-weight:700;color:var(--text);}
+        .batch-select-item .bi-course{font-size:10px;color:var(--text3);margin-top:2px;}
 .empty-state{text-align:center;padding:60px 20px;color:var(--text3);}
         .empty-state .empty-icon{font-size:48px;margin-bottom:15px;opacity:0.5;}
         .empty-state p{font-size:14px;margin-bottom:15px;}
@@ -608,12 +666,24 @@
 <!-- ADD BATCH -->
 <div class="modal-overlay" id="addBatchModal">
     <div class="modal">
-        <div class="modal-header"><h3>📚 Add Batch</h3><button class="modal-close" onclick="closeModal('addBatchModal')">✕</button></div>
+        <div class="modal-header"><h3>&#128218; Add Batch</h3><button class="modal-close" onclick="closeModal('addBatchModal')">&#10005;</button></div>
         <div class="modal-body">
             <div class="form-group"><label>For Course</label><input type="text" id="batchForClass" readonly class="auto-id"></div>
             <div class="form-group"><label>Batch Name</label><input type="text" id="batchName" placeholder="e.g. Morning, Evening"></div>
             <div class="form-group"><label>Batch Code (1-2 letters)</label><input type="text" id="batchCode" placeholder="e.g. M, E" maxlength="2" style="text-transform:uppercase"><div class="form-hint">Used in ID: DC11<b>M</b>001</div></div>
             <div class="form-group"><label>Timing</label><input type="text" id="batchTiming" placeholder="e.g. 8:00 AM - 10:00 AM"></div>
+            <div class="form-group">
+                <label>Class Days <span style="font-size:11px;color:var(--text3);font-weight:400">(select days you take class)</span></label>
+                <div class="day-toggle" id="batchDayToggle">
+                    <button type="button" class="day-toggle-btn" data-day="Mon" onclick="toggleDay(this)">Mon</button>
+                    <button type="button" class="day-toggle-btn" data-day="Tue" onclick="toggleDay(this)">Tue</button>
+                    <button type="button" class="day-toggle-btn" data-day="Wed" onclick="toggleDay(this)">Wed</button>
+                    <button type="button" class="day-toggle-btn" data-day="Thu" onclick="toggleDay(this)">Thu</button>
+                    <button type="button" class="day-toggle-btn" data-day="Fri" onclick="toggleDay(this)">Fri</button>
+                    <button type="button" class="day-toggle-btn" data-day="Sat" onclick="toggleDay(this)">Sat</button>
+                    <button type="button" class="day-toggle-btn" data-day="Sun" onclick="toggleDay(this)">Sun</button>
+                </div>
+            </div>
         </div>
         <div class="modal-footer">
             <button class="btn btn-outline" onclick="closeModal('addBatchModal')">Cancel</button>
@@ -1009,14 +1079,19 @@
             <div class="id-card-wrap">
                 <div class="id-card" id="printableCard">
                     <div class="id-card-header">
-                        <div class="id-card-header-logo" id="cardLogoBox"><span style="font-size:20px;opacity:0.6">&#127979;</span></div>
-                        <div class="id-card-header-title">
-                            <div class="inst-name" id="cardInstName">Dream Chem</div>
-                            <div class="inst-sub">Student Identity Card</div>
+                        <div class="id-card-header-inner">
+                            <div class="id-card-header-logo" id="cardLogoBox"><span style="font-size:20px;opacity:0.8">&#127979;</span></div>
+                            <div class="id-card-header-title">
+                                <div class="inst-name" id="cardInstName">Dream Chem</div>
+                                <div class="inst-sub">Student Identity Card</div>
+                            </div>
+                        </div>
+                        <div class="id-card-header-wave">
+                            <svg viewBox="0 0 360 24" xmlns="http://www.w3.org/2000/svg"><path d="M0,12 C60,24 120,0 180,12 C240,24 300,0 360,12 L360,24 L0,24 Z" fill="#ffffff"/></svg>
                         </div>
                     </div>
                     <div class="id-card-body">
-                        <div class="id-card-photo" id="cardPhoto"><span>&#128100;</span></div>
+                        <div class="id-card-photo" id="cardPhoto"><span style="font-size:32px;color:#aaa">&#128100;</span></div>
                         <div class="id-card-info">
                             <div class="id-card-name" id="cardName">Student Name</div>
                             <div class="id-card-id-badge" id="cardId">DC000</div>
@@ -1024,8 +1099,10 @@
                             <div class="id-card-row"><label>Father</label><span id="cardFather">—</span></div>
                             <div class="id-card-row"><label>Mobile</label><span id="cardMobile">—</span></div>
                             <div class="id-card-row"><label>DOB</label><span id="cardDob">—</span></div>
+                            <div class="id-card-row"><label>Blood</label><span id="cardBlood">—</span></div>
                         </div>
                     </div>
+                    <div class="id-card-divider"></div>
                     <div class="id-card-footer">
                         <div class="valid" id="cardValid">Issued: —</div>
                         <div class="batch-badge" id="cardBatch">—</div>
@@ -1109,6 +1186,139 @@
 </div>
 
 
+
+<!-- ─── TAKE ATTENDANCE MODAL ─────────────────────────────────────────── -->
+<div class="modal-overlay" id="takeAttendanceModal">
+    <div class="modal" style="max-width:680px">
+        <div class="modal-header"><h3>&#9997; Take Attendance</h3><button class="modal-close" onclick="closeModal('takeAttendanceModal')">&#10005;</button></div>
+        <div class="modal-body">
+            <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px">
+                <div>
+                    <div style="font-size:10px;color:var(--text3);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px">Course</div>
+                    <select id="attCourse" onchange="onAttCourseChange()" class="dark-select" style="padding:9px 12px;font-size:13px">
+                        <option value="">Select Course</option>
+                    </select>
+                </div>
+                <div>
+                    <div style="font-size:10px;color:var(--text3);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px">Batch</div>
+                    <select id="attBatch" onchange="onAttBatchChange()" class="dark-select" style="padding:9px 12px;font-size:13px">
+                        <option value="">Select Batch</option>
+                    </select>
+                </div>
+                <div>
+                    <div style="font-size:10px;color:var(--text3);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px">Date</div>
+                    <input type="date" id="attDate" style="width:100%;padding:9px 12px;background:var(--card);border:1px solid var(--border);border-radius:8px;color:var(--text);font-size:13px;outline:none">
+                </div>
+            </div>
+            <div id="attTypeRow" style="display:none;margin-bottom:12px">
+                <div style="font-size:10px;color:var(--text3);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px">Class Type</div>
+                <div style="display:flex;gap:8px">
+                    <button type="button" id="attTypeRegular" onclick="setAttType('regular')" class="btn btn-sm" style="background:rgba(0,210,255,0.15);border:1px solid rgba(0,210,255,0.3);color:var(--primary)">Regular Class</button>
+                    <button type="button" id="attTypeExtra" onclick="setAttType('extra')" class="btn btn-sm" style="background:var(--card);border:1px solid var(--border);color:var(--text2)">Extra Class</button>
+                </div>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px" id="attActionsRow" style="display:none">
+                <div class="att-legend">
+                    <span><span style="color:var(--success);font-weight:700">P</span> Present</span>
+                    <span><span style="color:var(--danger);font-weight:700">A</span> Absent</span>
+                    <span><span style="color:var(--warning);font-weight:700">L</span> Late</span>
+                </div>
+                <div style="display:flex;gap:6px">
+                    <button class="btn btn-sm" style="background:rgba(46,213,115,0.15);color:var(--success);border:1px solid rgba(46,213,115,0.3)" onclick="markAllAtt('P')">All Present</button>
+                    <button class="btn btn-sm" style="background:rgba(255,71,87,0.1);color:var(--danger);border:1px solid rgba(255,71,87,0.3)" onclick="markAllAtt('A')">All Absent</button>
+                </div>
+            </div>
+            <div id="attStudentList"></div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-outline" onclick="closeModal('takeAttendanceModal')">Cancel</button>
+            <button class="btn btn-primary" id="saveAttBtn" onclick="saveAttendance()" style="display:none">&#10003; Save Attendance</button>
+        </div>
+    </div>
+</div>
+
+<!-- ─── CREATE EXAM MODAL ──────────────────────────────────────────────── -->
+<div class="modal-overlay" id="createExamModal">
+    <div class="modal" style="max-width:600px">
+        <div class="modal-header"><h3>&#128221; Create Exam</h3><button class="modal-close" onclick="closeModal('createExamModal')">&#10005;</button></div>
+        <div class="modal-body">
+            <!-- Step 1: Select Batches -->
+            <div class="exam-step">
+                <div class="exam-step-title">Step 1 — Select Batch(es)</div>
+                <div class="batch-select-grid" id="examBatchGrid"></div>
+            </div>
+            <!-- Step 2: Exam Details -->
+            <div class="exam-step">
+                <div class="exam-step-title">Step 2 — Exam Details</div>
+                <div class="form-row">
+                    <div class="form-group"><label>Exam Name *</label><input type="text" id="examName" placeholder="e.g. Unit Test 1, Mid Term, Final Exam"></div>
+                    <div class="form-group"><label>Subject</label><input type="text" id="examSubject" placeholder="e.g. Physics, All Subjects"></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label>Exam Date *</label><input type="date" id="examDate"></div>
+                    <div class="form-group"><label>Total Marks *</label><input type="number" id="examTotalMarks" placeholder="e.g. 100" min="1"></div>
+                </div>
+                <div class="form-group"><label>Passing Marks</label><input type="number" id="examPassMarks" placeholder="e.g. 40"></div>
+                <div class="form-group"><label>General Remarks (optional)</label><textarea id="examRemarks" placeholder="e.g. Syllabus covered: Chapter 1-5. Overall good performance." style="min-height:70px"></textarea></div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-outline" onclick="closeModal('createExamModal')">Cancel</button>
+            <button class="btn btn-primary" onclick="createExamAndEnterMarks()">&#128221; Next: Enter Marks</button>
+        </div>
+    </div>
+</div>
+
+<!-- ─── ENTER MARKS MODAL ─────────────────────────────────────────────── -->
+<div class="modal-overlay" id="enterMarksModal">
+    <div class="modal" style="max-width:680px">
+        <div class="modal-header">
+            <div>
+                <h3>&#9999; Enter Marks</h3>
+                <div style="font-size:12px;color:var(--text3);margin-top:2px" id="enterMarksSubtitle"></div>
+            </div>
+            <button class="modal-close" onclick="closeModal('enterMarksModal')">&#10005;</button>
+        </div>
+        <div class="modal-body">
+            <div id="enterMarksTable"></div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-outline" onclick="closeModal('enterMarksModal')">Cancel</button>
+            <button class="btn btn-primary" onclick="saveMarks()">&#10003; Save All Marks</button>
+        </div>
+    </div>
+</div>
+
+<!-- ─── REOPEN COURSE MODAL ───────────────────────────────────────────── -->
+<div class="modal-overlay" id="reopenCourseModal">
+    <div class="modal" style="max-width:440px">
+        <div class="modal-header">
+            <h3>&#128274; Reopen Course</h3>
+            <button class="modal-close" onclick="closeModal('reopenCourseModal')">&#10005;</button>
+        </div>
+        <div class="modal-body">
+            <input type="hidden" id="rcStudentId">
+            <div style="background:rgba(46,213,115,0.06);border:1px solid rgba(46,213,115,0.2);border-radius:10px;padding:14px;margin-bottom:16px">
+                <div style="font-size:11px;color:var(--text3);font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">Student</div>
+                <div style="font-size:15px;font-weight:700" id="rcStudentName">—</div>
+                <div style="font-size:12px;color:var(--text3);margin-top:3px" id="rcCurrentInfo">—</div>
+            </div>
+            <div style="background:rgba(255,165,2,0.07);border:1px solid rgba(255,165,2,0.25);border-radius:10px;padding:12px 14px;margin-bottom:16px;font-size:12px;color:var(--warning)">
+                &#9888; Reopening will remove the finish date and restore the course to <strong>open-ended</strong> monthly fee. Payments already recorded will remain unchanged.
+            </div>
+            <div class="form-group">
+                <label>Reason for Reopening <span style="color:var(--text3);font-weight:400">(optional)</span></label>
+                <input type="text" id="rcReason" placeholder="e.g. Course extended, re-enrollment, error correction...">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-outline" onclick="closeModal('reopenCourseModal')">Cancel</button>
+            <button class="btn btn-reopen" onclick="confirmReopenCourse()">&#128274; Confirm Reopen</button>
+        </div>
+    </div>
+</div>
+
+
 <!-- APP -->
 <div class="app">
     <aside class="sidebar" id="sidebar">
@@ -1125,6 +1335,8 @@
             <div class="nav-item" onclick="nav('students',this)" data-s="students"><span class="nav-icon">👨‍🎓</span>Students</div>
             <div class="nav-item" onclick="nav('fees',this)"><span class="nav-icon">💰</span>Fees & Payments</div>
             <div class="nav-item" onclick="nav('notices',this)"><span class="nav-icon">📢</span>Notices</div>
+            <div class="nav-item" onclick="nav('attendance',this)"><span class="nav-icon">✅</span>Attendance</div>
+            <div class="nav-item" onclick="nav('exam',this)"><span class="nav-icon">📝</span>Exams</div>
         </nav>
         <div class="sb-footer">
             <div class="admin-info">
@@ -1220,6 +1432,33 @@
                 <div class="suggestions-panel" id="smartSuggestions"></div>
                 <div id="noticesList"><div class="no-data">No notices posted yet</div></div>
             </section>
+
+            <!-- ATTENDANCE SECTION -->
+            <section class="content-section" id="attendanceSection">
+                <div class="section-header">
+                    <h2>&#9989; Attendance</h2>
+                    <div style="display:flex;gap:10px">
+                        <button class="btn btn-outline" onclick="openTakeAttendance('extra')" id="extraClassBtn">+ Extra Class</button>
+                        <button class="btn btn-primary" onclick="openTakeAttendance('regular')" id="takeAttBtn">&#9997; Take Attendance</button>
+                    </div>
+                </div>
+                <div class="att-stats-row">
+                    <div class="notice-stat"><div class="notice-stat-val" id="attTotalClasses" style="color:var(--primary)">0</div><div class="notice-stat-lbl">Classes Taken</div></div>
+                    <div class="notice-stat"><div class="notice-stat-val" id="attAvgPct" style="color:var(--success)">0%</div><div class="notice-stat-lbl">Avg Attendance</div></div>
+                    <div class="notice-stat"><div class="notice-stat-val" id="attLow" style="color:var(--danger)">0</div><div class="notice-stat-lbl">Below 75%</div></div>
+                    <div class="notice-stat"><div class="notice-stat-val" id="attBatches">0</div><div class="notice-stat-lbl">Active Batches</div></div>
+                </div>
+                <div id="attendanceContent"><div class="no-data">Select a batch to view attendance</div></div>
+            </section>
+
+            <!-- EXAM SECTION -->
+            <section class="content-section" id="examSection">
+                <div class="section-header">
+                    <h2>&#128221; Exams</h2>
+                    <button class="btn btn-primary" onclick="openCreateExam()">+ Create Exam</button>
+                </div>
+                <div id="examContent"><div class="no-data">No exams created yet</div></div>
+            </section>
         </main>
 
         <footer class="bottom-footer">
@@ -1248,7 +1487,7 @@ function init(){
     if(!adminSession||adminSession.role!=='admin'){window.location.href='index.html';return;}
     document.getElementById('adminName').textContent=adminSession.name||'Admin';
     document.getElementById('adminAvatar').textContent=(adminSession.name||'A').charAt(0).toUpperCase();
-    initAdminCreds();loadLogo();loadCust();listenClasses();listenStudents();listenNotices();
+    initAdminCreds();loadLogo();loadCust();listenClasses();listenStudents();listenNotices();listenAttendance();listenExams();
 }
 function initAdminCreds(){
     db.ref('credentials/admins').once('value').then(s=>{
@@ -1262,7 +1501,7 @@ function initAdminCreds(){
 function logout(){if(confirm('Logout?')){sessionStorage.removeItem('dreamchem_session');window.location.href='index.html';}}
 
 // ─── NAV ──────────────────────────────────────────────────────────────────────
-const titles={dashboard:'📊 Dashboard',classes:'📖 Courses & Batches',students:'👨‍🎓 Students',fees:'💰 Fees & Payments',notices:'📢 Notices'};
+const titles={dashboard:'📊 Dashboard',classes:'📖 Courses & Batches',students:'👨‍🎓 Students',fees:'💰 Fees & Payments',notices:'📢 Notices',attendance:'✅ Attendance',exam:'📝 Exams'};
 function nav(sec,el){
     document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
     document.querySelectorAll('.content-section').forEach(s=>s.classList.remove('active'));
@@ -1273,6 +1512,8 @@ function nav(sec,el){
     if(sec==='fees'){renderFeeSummary();}
     if(sec==='notices'){renderNotices();}
     if(sec==='classes'){classNavState={level:'classes',classKey:null,batchKey:null};renderClasses();}
+    if(sec==='attendance'){renderAttendanceSection();}
+    if(sec==='exam'){renderExamSection();}
 }
 function toggleSidebar(){document.getElementById('sidebar').classList.toggle('open');document.getElementById('mobileOverlay').classList.toggle('active');}
 function openModal(id){document.getElementById(id).classList.add('active');}
@@ -1988,7 +2229,13 @@ function openDetail(id){
 
     const isOpenEnded=s.feeType==='monthly'&&!(s.months&&s.months>0)&&!s.finishMonth;
     const finishCourseBtn=isOpenEnded?`<div class="finish-course-box"><p>📌 Open-ended fee — student still active. Set finish date when course ends.</p><button class="btn btn-warning btn-sm" onclick="openFinishCourse('${id}')">🎓 Finish Course</button></div>`:'';
-    const finishedTag=s.finishMonth?`<div style="background:rgba(46,213,115,0.08);border:1px solid rgba(46,213,115,0.2);border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:13px;color:var(--success)">✅ Course finished: ${s.finishMonth} • ${s.months} months total</div>`:'';
+    const finishedTag=s.finishMonth?`<div style="background:rgba(46,213,115,0.06);border:1px solid rgba(46,213,115,0.2);border-radius:10px;padding:12px 16px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
+        <div>
+            <div style="font-size:13px;color:var(--success);font-weight:700">&#10003; Course Finished</div>
+            <div style="font-size:12px;color:var(--text3);margin-top:2px">${s.finishMonth} &bull; ${s.months} month${s.months!==1?'s':''} &bull; &#8377;${(s.netFee||0).toLocaleString()} net fee</div>
+        </div>
+        <button class="btn btn-sm btn-reopen" onclick="openReopenCourse('${id}')">&#128274; Reopen Course</button>
+    </div>`:'';
     const feeTypeLabel=s.feeType==='monthly'?'<span class="fee-type-tag monthly" style="font-size:12px">📅 Monthly Fee</span>':'<span class="fee-type-tag total" style="font-size:12px">💵 Total Fee</span>';
     const reTag=s.isReEnroll?`<span class="fee-type-tag" style="background:rgba(46,213,115,0.1);color:var(--success);font-size:12px">🔄 Re-enrolled${s.previousId?' from '+s.previousId:''}</span>`:'';
     const netDisplay=s.feeType==='monthly'&&!(s.months&&s.months>0)&&!s.finishMonth?'Open-ended':'₹'+(s.netFee||0).toLocaleString();
@@ -2595,6 +2842,7 @@ function openIdCard(id){
     document.getElementById('cardMobile').textContent = s.mobile || '—';
     document.getElementById('cardDob').textContent = s.dob || '—';
     document.getElementById('cardBatch').textContent = (s.batchName || '—') + (s.batchTiming ? '  •  ' + s.batchTiming : '');
+    document.getElementById('cardBlood').textContent = s.bloodGroup || '—';
     document.getElementById('cardValid').textContent = 'Issued: ' + new Date().toLocaleDateString('en-IN', {day:'numeric',month:'short',year:'numeric'});
 
     // Photo
@@ -2626,20 +2874,207 @@ function printIdCard(){
     window.print();
 }
 
+// ── Fully canvas-drawn ID card — no CSS variable dependency ──
 function downloadIdCard(){
-    // Use html2canvas if available, else fallback to print
-    const card = document.getElementById('printableCard');
-    if(window.html2canvas){
-        html2canvas(card, {scale:2, backgroundColor:null}).then(canvas=>{
-            const a = document.createElement('a');
-            a.download = (document.getElementById('cardId').textContent || 'student') + '_IDCard.png';
-            a.href = canvas.toDataURL('image/png');
-            a.click();
-        });
-    } else {
-        toast('Opening print dialog — save as PDF to download', 'success');
-        setTimeout(()=>window.print(), 400);
+    const studentName  = document.getElementById('cardName').textContent;
+    const studentId    = document.getElementById('cardId').textContent;
+    const course       = document.getElementById('cardCourse').textContent;
+    const father       = document.getElementById('cardFather').textContent;
+    const mobile       = document.getElementById('cardMobile').textContent;
+    const dob          = document.getElementById('cardDob').textContent;
+    const blood        = document.getElementById('cardBlood').textContent;
+    const batch        = document.getElementById('cardBatch').textContent;
+    const issued       = document.getElementById('cardValid').textContent;
+    const instName     = document.getElementById('cardInstName').textContent;
+    const photoEl      = document.getElementById('cardPhoto').querySelector('img');
+    const logoEl       = document.getElementById('cardLogoBox').querySelector('img');
+
+    const W=720, H=440;
+    const canvas=document.createElement('canvas');
+    canvas.width=W; canvas.height=H;
+    const ctx=canvas.getContext('2d');
+
+    // ── helpers ──
+    function roundRect(x,y,w,h,r){
+        ctx.beginPath();
+        ctx.moveTo(x+r,y);
+        ctx.lineTo(x+w-r,y);ctx.quadraticCurveTo(x+w,y,x+w,y+r);
+        ctx.lineTo(x+w,y+h-r);ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
+        ctx.lineTo(x+r,y+h);ctx.quadraticCurveTo(x,y+h,x,y+h-r);
+        ctx.lineTo(x,y+r);ctx.quadraticCurveTo(x,y,x+r,y);
+        ctx.closePath();
     }
+
+    // ── card background ──
+    roundRect(0,0,W,H,28);
+    ctx.fillStyle='#ffffff'; ctx.fill();
+    // subtle border
+    ctx.strokeStyle='#d0d0e0'; ctx.lineWidth=2; ctx.stroke();
+
+    // ── gradient header ──
+    const hGrad=ctx.createLinearGradient(0,0,W,170);
+    hGrad.addColorStop(0,'#00d2ff'); hGrad.addColorStop(1,'#3a7bd5');
+    roundRect(0,0,W,170,28);
+    ctx.fillStyle=hGrad; ctx.fill();
+    // cover bottom corners of header
+    ctx.fillStyle=hGrad;
+    ctx.fillRect(0,142,W,28);
+
+    // ── wave at bottom of header ──
+    ctx.beginPath();
+    ctx.moveTo(0,160);
+    ctx.bezierCurveTo(W*0.15,185,W*0.3,140,W*0.5,162);
+    ctx.bezierCurveTo(W*0.7,184,W*0.85,140,W,158);
+    ctx.lineTo(W,185); ctx.lineTo(0,185); ctx.closePath();
+    ctx.fillStyle='#ffffff'; ctx.fill();
+
+    // ── institute logo box ──
+    roundRect(28,22,72,72,12);
+    ctx.fillStyle='rgba(255,255,255,0.2)'; ctx.fill();
+    ctx.strokeStyle='rgba(255,255,255,0.45)'; ctx.lineWidth=2; ctx.stroke();
+
+    function drawCard(){
+        // ── institute name ──
+        ctx.fillStyle='#ffffff';
+        ctx.font='bold 26px "Segoe UI", Arial, sans-serif';
+        ctx.fillText(instName, 118, 62);
+        ctx.font='15px "Segoe UI", Arial, sans-serif';
+        ctx.fillStyle='rgba(255,255,255,0.82)';
+        ctx.fillText('Student Identity Card', 118, 85);
+
+        // ── photo box (overlapping header) ──
+        const ph={x:28,y:130,w:130,h:155};
+        // white border shadow
+        ctx.shadowColor='rgba(0,0,0,0.18)'; ctx.shadowBlur=12;
+        roundRect(ph.x,ph.y,ph.w,ph.h,12);
+        ctx.fillStyle='#f0f4ff'; ctx.fill();
+        ctx.shadowBlur=0;
+        // stroke
+        ctx.strokeStyle='#ffffff'; ctx.lineWidth=3; ctx.stroke();
+
+        if(photoEl && photoEl.complete && photoEl.naturalWidth>0){
+            ctx.save();
+            roundRect(ph.x+3,ph.y+3,ph.w-6,ph.h-6,10);
+            ctx.clip();
+            ctx.drawImage(photoEl,ph.x+3,ph.y+3,ph.w-6,ph.h-6);
+            ctx.restore();
+        } else {
+            // initials
+            const ini=studentName.split(' ').map(w=>w[0]||'').join('').substring(0,2).toUpperCase();
+            ctx.fillStyle='#00d2ff';
+            ctx.font=`bold 44px "Segoe UI",Arial`;
+            ctx.textAlign='center';
+            ctx.fillText(ini, ph.x+ph.w/2, ph.y+ph.h/2+16);
+            ctx.textAlign='left';
+        }
+
+        // ── info area ──
+        const ix=182, iy=200;
+
+        // name
+        ctx.fillStyle='#1a1a2e';
+        ctx.font='bold 24px "Segoe UI",Arial';
+        ctx.fillText(studentName, ix, iy);
+
+        // ID badge pill
+        const idText=studentId;
+        ctx.font='bold 14px "Segoe UI",Arial';
+        const idW=ctx.measureText(idText).width+24;
+        const grad2=ctx.createLinearGradient(ix,0,ix+idW,0);
+        grad2.addColorStop(0,'#00d2ff'); grad2.addColorStop(1,'#3a7bd5');
+        roundRect(ix,iy+8,idW,26,13);
+        ctx.fillStyle=grad2; ctx.fill();
+        ctx.fillStyle='#ffffff';
+        ctx.font='bold 13px "Segoe UI",Arial';
+        ctx.fillText(idText, ix+12, iy+26);
+
+        // info rows
+        const rows=[
+            ['Course',course],['Father',father],
+            ['Mobile',mobile],['DOB',dob],['Blood Group',blood]
+        ];
+        const labelColor='#999999', valueColor='#222222';
+        rows.forEach(([label,val],i)=>{
+            const ry=iy+52+(i*38);
+            ctx.fillStyle=labelColor;
+            ctx.font='11px "Segoe UI",Arial';
+            ctx.fillText(label.toUpperCase(), ix, ry);
+            ctx.fillStyle=valueColor;
+            ctx.font='bold 14px "Segoe UI",Arial';
+            ctx.fillText(val||'—', ix, ry+17);
+            // thin underline
+            ctx.strokeStyle='#eeeeee'; ctx.lineWidth=1;
+            ctx.beginPath(); ctx.moveTo(ix,ry+23); ctx.lineTo(W-28,ry+23); ctx.stroke();
+        });
+
+        // ── footer bar ──
+        const footerGrad=ctx.createLinearGradient(0,H-54,0,H);
+        footerGrad.addColorStop(0,'#f8f9ff'); footerGrad.addColorStop(1,'#edf0ff');
+        roundRect(0,H-54,W,54,0);
+        ctx.fillStyle=footerGrad; ctx.fill();
+        // top border
+        ctx.strokeStyle='#e0e3f0'; ctx.lineWidth=1;
+        ctx.beginPath(); ctx.moveTo(0,H-54); ctx.lineTo(W,H-54); ctx.stroke();
+        // cover top-corners of footer (make bottom corners round only)
+        roundRect(0,H-28,W,28,28);
+        ctx.fillStyle=footerGrad; ctx.fill();
+
+        // issued text
+        ctx.fillStyle='#aaaaaa';
+        ctx.font='13px "Segoe UI",Arial';
+        ctx.fillText(issued, 28, H-22);
+
+        // batch pill
+        const batchText=batch;
+        ctx.font='bold 12px "Segoe UI",Arial';
+        const bW=ctx.measureText(batchText).width+24;
+        const bGrad=ctx.createLinearGradient(W-28-bW,0,W-28,0);
+        bGrad.addColorStop(0,'#00d2ff'); bGrad.addColorStop(1,'#3a7bd5');
+        roundRect(W-28-bW, H-46, bW, 26, 13);
+        ctx.fillStyle=bGrad; ctx.fill();
+        ctx.fillStyle='#ffffff';
+        ctx.fillText(batchText, W-28-bW+12, H-28);
+
+        // ── logo inside box ──
+        if(logoEl && logoEl.complete && logoEl.naturalWidth>0){
+            ctx.save();
+            roundRect(30,24,68,68,10);
+            ctx.clip();
+            ctx.drawImage(logoEl,32,26,64,64);
+            ctx.restore();
+        } else {
+            ctx.fillStyle='#ffffff';
+            ctx.font='bold 22px "Segoe UI",Arial';
+            ctx.textAlign='center';
+            ctx.fillText(instName.substring(0,2).toUpperCase(),64,68);
+            ctx.textAlign='left';
+        }
+
+        // ── download ──
+        const a=document.createElement('a');
+        a.download=(studentId||'student')+'_IDCard.png';
+        a.href=canvas.toDataURL('image/png',1.0);
+        a.click();
+        toast('ID Card downloaded!');
+    }
+
+    // Load images if needed
+    let pending=0;
+    function tryDraw(){ if(pending===0) drawCard(); }
+
+    if(photoEl && (!photoEl.complete || photoEl.naturalWidth===0)){
+        pending++;
+        const tmp=new Image(); tmp.crossOrigin='anonymous'; tmp.src=photoEl.src;
+        tmp.onload=()=>{ photoEl.src=tmp.src; pending--; tryDraw(); };
+        tmp.onerror=()=>{ pending--; tryDraw(); };
+    }
+    if(logoEl && (!logoEl.complete || logoEl.naturalWidth===0)){
+        pending++;
+        const tmp=new Image(); tmp.crossOrigin='anonymous'; tmp.src=logoEl.src;
+        tmp.onload=()=>{ logoEl.src=tmp.src; pending--; tryDraw(); };
+        tmp.onerror=()=>{ pending--; tryDraw(); };
+    }
+    tryDraw();
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
@@ -2897,6 +3332,618 @@ function exportAllPrint(){
     <div class="footer">Generated by ${instName} Admin Portal</div>
     </body></html>`);
     w.document.close();
+}
+
+
+// ═══════════════════════════════════════════════════════════════════════════
+// ─── BATCH DAY TOGGLE (Add Batch modal) ────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════════════════
+function toggleDay(btn){ btn.classList.toggle('active'); }
+function getSelectedDays(containerId){
+    return [...document.querySelectorAll(`#${containerId} .day-toggle-btn.active`)].map(b=>b.dataset.day);
+}
+// Patch addBatch to save days
+const _origAddBatch = typeof addBatch === 'function' ? addBatch : null;
+function addBatch(){
+    const n=document.getElementById('batchName').value.trim();
+    const c=document.getElementById('batchCode').value.trim().toUpperCase();
+    if(!n||!c){toast('Fill fields','error');return;}
+    const cls=allClasses[currentClassKeyForBatch],bs=cls.batches||{};
+    if(Object.values(bs).some(b=>b.code===c)){toast('Code exists','error');return;}
+    const days=getSelectedDays('batchDayToggle');
+    db.ref('classes/'+currentClassKeyForBatch+'/batches').push({
+        name:n, code:c,
+        timing:document.getElementById('batchTiming').value.trim(),
+        days:days,
+        status:'running'
+    }).then(()=>{
+        toast('Batch added!');
+        closeModal('addBatchModal');
+        document.querySelectorAll('#batchDayToggle .day-toggle-btn').forEach(b=>b.classList.remove('active'));
+    });
+}
+// Also patch openBatchModal to reset day toggles
+const _origOpenBatchModal = typeof openBatchModal === 'function' ? openBatchModal : null;
+function openBatchModal(k,n){
+    currentClassKeyForBatch=k;
+    document.getElementById('batchForClass').value=n;
+    ['batchName','batchCode','batchTiming'].forEach(id=>document.getElementById(id).value='');
+    document.querySelectorAll('#batchDayToggle .day-toggle-btn').forEach(b=>b.classList.remove('active'));
+    openModal('addBatchModal');
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// ─── ATTENDANCE ────────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════════════════
+let allAttendance = {}; // loaded from Firebase
+let currentAttType = 'regular';
+let currentAttBatchKey = null;
+let currentAttCourseKey = null;
+let attStudentStatus = {}; // {studentId: 'P'|'A'|'L'}
+
+function listenAttendance(){
+    db.ref('attendance').on('value', s=>{ allAttendance = s.val()||{}; updateAttStats(); });
+}
+
+function updateAttStats(){
+    const batches = [];
+    Object.values(allClasses).forEach(cls=>Object.values(cls.batches||{}).forEach(b=>{ if(b.status==='running') batches.push(b); }));
+    document.getElementById('attBatches').textContent = batches.length;
+
+    let totalClasses=0, totalPct=0, batchCount=0, lowCount=0;
+    Object.values(allAttendance).forEach(batchAtt=>{
+        Object.values(batchAtt).forEach(dateRec=>{
+            if(dateRec && typeof dateRec === 'object' && dateRec.records) totalClasses++;
+        });
+    });
+    document.getElementById('attTotalClasses').textContent = totalClasses;
+
+    // Avg attendance across all students
+    let sumPct=0, stuCount=0;
+    Object.entries(allStudents).forEach(([sid, s])=>{
+        const bAttKey = s.classCode+'_'+s.batchCode;
+        const bAtt = allAttendance[bAttKey];
+        if(!bAtt) return;
+        let p=0,total=0;
+        Object.values(bAtt).forEach(rec=>{ if(rec&&rec.records&&rec.records[sid]){total++;if(rec.records[sid]==='P'||rec.records[sid]==='L')p++; }});
+        if(total>0){sumPct+=Math.round((p/total)*100);stuCount++;}
+        if(total>0&&Math.round((p/total)*100)<75) lowCount++;
+    });
+    document.getElementById('attAvgPct').textContent = stuCount>0?Math.round(sumPct/stuCount)+'%':'0%';
+    document.getElementById('attLow').textContent = lowCount;
+}
+
+function renderAttendanceSection(){
+    const div = document.getElementById('attendanceContent');
+    // Show batch cards with attendance summary
+    const entries = Object.entries(allClasses);
+    if(!entries.length){div.innerHTML='<div class="no-data">No courses yet</div>';return;}
+
+    let html = '<div class="class-grid">';
+    entries.forEach(([ck, cls])=>{
+        Object.entries(cls.batches||{}).forEach(([bk, b])=>{
+            if(b.status!=='running') return;
+            const bAttKey = cls.code+'_'+b.code;
+            const bAtt = allAttendance[bAttKey]||{};
+            const classCount = Object.values(bAtt).filter(r=>r&&r.records).length;
+            const stuCount = cntBatch(cls.code, b.code);
+            const days = (b.days||[]).map(d=>`<span class="day-chip">${d}</span>`).join('');
+            html += `<div class="att-batch-card" onclick="openAttBatchDetail('${ck}','${bk}')">
+                <div class="att-batch-title">${cls.name} — ${b.name}</div>
+                <div class="att-batch-meta">${stuCount} students &bull; ${classCount} classes taken</div>
+                ${b.timing?`<div class="att-batch-meta" style="margin-top:3px">&#128336; ${b.timing}</div>`:''}
+                <div class="att-batch-days" style="margin-top:8px">${days||'<span style="font-size:11px;color:var(--text3)">No days set</span>'}</div>
+            </div>`;
+        });
+    });
+    html += '</div>';
+    div.innerHTML = html;
+    updateAttStats();
+}
+
+function openAttBatchDetail(ck, bk){
+    const cls = allClasses[ck]; if(!cls) return;
+    const b = cls.batches[bk]; if(!b) return;
+    const bAttKey = cls.code+'_'+b.code;
+    const bAtt = allAttendance[bAttKey]||{};
+    const students = getStudentsInBatch(cls.code, b.code);
+
+    const dates = Object.keys(bAtt).sort().reverse();
+
+    let html = `<div style="margin-bottom:20px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+            <div>
+                <h3 style="font-size:18px;font-weight:700">${cls.name} — ${b.name}</h3>
+                <div style="font-size:12px;color:var(--text3)">${students.length} students &bull; ${dates.length} classes recorded</div>
+            </div>
+            <button class="btn btn-outline btn-sm" onclick="renderAttendanceSection()">&#8592; Back</button>
+        </div>`;
+
+    if(!students.length){ html+='<div class="no-data">No students in this batch</div></div>'; document.getElementById('attendanceContent').innerHTML=html; return; }
+
+    // Summary table
+    html += `<table class="att-table"><thead><tr>
+        <th>Student</th><th>Present</th><th>Absent</th><th>Late</th><th>Total</th><th>%</th>
+    </tr></thead><tbody>`;
+    students.forEach(([sid,s])=>{
+        let p=0,a=0,l=0;
+        dates.forEach(d=>{ const r=bAtt[d]?.records?.[sid]; if(r==='P')p++; else if(r==='A')a++; else if(r==='L')l++; });
+        const total=p+a+l;
+        const pct=total>0?Math.round((p+l)/total*100):0;
+        const pctClass=pct>=75?'high':pct>=50?'mid':'low';
+        html+=`<tr>
+            <td><strong>${s.name}</strong><br><small style="color:var(--text3)">${s.id}</small></td>
+            <td style="color:var(--success);font-weight:600">${p}</td>
+            <td style="color:var(--danger);font-weight:600">${a}</td>
+            <td style="color:var(--warning);font-weight:600">${l}</td>
+            <td>${total}</td>
+            <td><span class="att-pct ${pctClass}">${pct}%</span></td>
+        </tr>`;
+    });
+    html += '</tbody></table>';
+
+    // Date-wise records
+    if(dates.length){
+        html += `<div style="margin-top:24px"><div style="font-size:13px;font-weight:700;margin-bottom:12px;color:var(--text2)">Date-wise Records</div>`;
+        dates.slice(0,10).forEach(d=>{
+            const rec = bAtt[d];
+            const typeTag = rec.type==='extra'?'<span style="font-size:10px;background:rgba(255,165,2,0.15);color:var(--warning);padding:1px 7px;border-radius:5px;font-weight:700">Extra</span>':'';
+            let p=0,a=0,l=0;
+            Object.values(rec.records||{}).forEach(v=>{ if(v==='P')p++; else if(v==='A')a++; else if(v==='L')l++; });
+            // Format date key YYYYMMDD → DD/MM/YYYY
+            const fmtDate = d.length===8 ? d.slice(6)+'/'+d.slice(4,6)+'/'+d.slice(0,4) : (rec.date ? new Date(rec.date).toLocaleDateString('en-IN',{day:'2-digit',month:'2-digit',year:'numeric'}) : d);
+            html+=`<div style="display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--card);border:1px solid var(--border);border-radius:8px;margin-bottom:6px;font-size:13px">
+                <span style="font-weight:600">${fmtDate} ${typeTag}</span>
+                <span style="color:var(--success)">P:${p}</span>
+                <span style="color:var(--danger)">A:${a}</span>
+                <span style="color:var(--warning)">L:${l}</span>
+            </div>`;
+        });
+        html += '</div>';
+    }
+    html += '</div>';
+    document.getElementById('attendanceContent').innerHTML = html;
+}
+
+function openTakeAttendance(type){
+    currentAttType = type||'regular';
+    attStudentStatus = {};
+    document.getElementById('attStudentList').innerHTML = '';
+    document.getElementById('saveAttBtn').style.display = 'none';
+    document.getElementById('attActionsRow').style.display = 'none';
+
+    // Populate courses
+    const sel = document.getElementById('attCourse');
+    sel.innerHTML = '<option value="">Select Course</option>';
+    Object.entries(allClasses).forEach(([ck,cls])=>{ sel.innerHTML+=`<option value="${ck}">${cls.name}</option>`; });
+    document.getElementById('attBatch').innerHTML = '<option value="">Select Batch</option>';
+    document.getElementById('attDate').value = new Date().toISOString().split('T')[0];
+
+    // Pre-set type
+    setAttType(type);
+    document.getElementById('attTypeRow').style.display = 'none'; // shown after batch selected
+    openModal('takeAttendanceModal');
+}
+
+function setAttType(t){
+    currentAttType = t;
+    ['regular','extra'].forEach(x=>{
+        const btn = document.getElementById('attType'+x.charAt(0).toUpperCase()+x.slice(1));
+        if(btn) btn.style.background = x===t?'rgba(0,210,255,0.2)':'var(--card)';
+        if(btn) btn.style.borderColor = x===t?'var(--primary)':'var(--border)';
+        if(btn) btn.style.color = x===t?'var(--primary)':'var(--text2)';
+    });
+}
+
+function onAttCourseChange(){
+    currentAttCourseKey = document.getElementById('attCourse').value;
+    const bb = document.getElementById('attBatch');
+    bb.innerHTML = '<option value="">Select Batch</option>';
+    if(currentAttCourseKey && allClasses[currentAttCourseKey]){
+        Object.entries(allClasses[currentAttCourseKey].batches||{}).forEach(([bk,b])=>{
+            if(b.status==='running') bb.innerHTML+=`<option value="${bk}">${b.name}${b.timing?' ('+b.timing+')':''}</option>`;
+        });
+    }
+    document.getElementById('attStudentList').innerHTML='';
+    document.getElementById('saveAttBtn').style.display='none';
+}
+
+function onAttBatchChange(){
+    currentAttBatchKey = document.getElementById('attBatch').value;
+    if(!currentAttCourseKey||!currentAttBatchKey){return;}
+    const cls = allClasses[currentAttCourseKey];
+    const b = cls.batches[currentAttBatchKey];
+    document.getElementById('attTypeRow').style.display='block';
+    renderAttStudents(cls, b);
+}
+
+function renderAttStudents(cls, b){
+    const students = getStudentsInBatch(cls.code, b.code);
+    document.getElementById('attActionsRow').style.display='flex';
+    document.getElementById('saveAttBtn').style.display='block';
+    attStudentStatus = {};
+    students.forEach(([sid])=>{ attStudentStatus[sid]='P'; }); // default Present
+
+    if(!students.length){ document.getElementById('attStudentList').innerHTML='<div class="no-data">No students in this batch</div>'; return; }
+
+    let html = `<table class="att-table"><thead><tr>
+        <th>#</th><th>Student</th><th style="text-align:center">P</th><th style="text-align:center">A</th><th style="text-align:center">L</th>
+    </tr></thead><tbody>`;
+    students.forEach(([sid,s],i)=>{
+        html+=`<tr id="attRow_${sid}">
+            <td style="color:var(--text3)">${i+1}</td>
+            <td><strong>${s.name}</strong><br><small style="color:var(--text3)">${s.id}</small></td>
+            <td style="text-align:center"><button class="att-btn P" onclick="setStudentAtt('${sid}','P')" id="attP_${sid}">P</button></td>
+            <td style="text-align:center"><button class="att-btn none" onclick="setStudentAtt('${sid}','A')" id="attA_${sid}">A</button></td>
+            <td style="text-align:center"><button class="att-btn none" onclick="setStudentAtt('${sid}','L')" id="attL_${sid}">L</button></td>
+        </tr>`;
+    });
+    html+='</tbody></table>';
+    document.getElementById('attStudentList').innerHTML=html;
+    // Highlight defaults
+    students.forEach(([sid])=>highlightAttBtn(sid,'P'));
+}
+
+function setStudentAtt(sid, status){
+    attStudentStatus[sid]=status;
+    highlightAttBtn(sid,status);
+}
+function highlightAttBtn(sid, status){
+    ['P','A','L'].forEach(s=>{
+        const btn=document.getElementById('att'+s+'_'+sid);
+        if(btn) btn.className='att-btn '+(s===status?s:'none');
+    });
+}
+function markAllAtt(status){
+    Object.keys(attStudentStatus).forEach(sid=>{ attStudentStatus[sid]=status; highlightAttBtn(sid,status); });
+}
+
+function saveAttendance(){
+    if(!currentAttCourseKey||!currentAttBatchKey){toast('Select course and batch','error');return;}
+    const date = document.getElementById('attDate').value;
+    if(!date){toast('Select a date','error');return;}
+    if(!Object.keys(attStudentStatus).length){toast('No students to save','error');return;}
+    const cls = allClasses[currentAttCourseKey];
+    const b = cls.batches[currentAttBatchKey];
+    const bAttKey = cls.code+'_'+b.code;
+    const record = { date, type:currentAttType, takenBy:adminSession?.name||'Admin', takenAt:new Date().toISOString(), records:{...attStudentStatus} };
+    const dateKey = date.replace(/-/g,'');
+    db.ref(`attendance/${bAttKey}/${dateKey}`).set(record)
+        .then(()=>{ toast('Attendance saved!'); closeModal('takeAttendanceModal'); renderAttendanceSection(); })
+        .catch(()=>toast('Failed','error'));
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// ─── EXAMS ──────────────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════════════════
+let allExams = {};
+let currentExamBatches = []; // [{courseKey,batchKey,cls,batch}]
+let currentExamKey = null;
+
+function listenExams(){ db.ref('exams').on('value',s=>{allExams=s.val()||{};if(document.getElementById('examSection').classList.contains('active'))renderExamSection();}); }
+
+function openCreateExam(){
+    currentExamBatches=[];
+    document.getElementById('examName').value='';
+    document.getElementById('examSubject').value='';
+    document.getElementById('examDate').value=new Date().toISOString().split('T')[0];
+    document.getElementById('examTotalMarks').value='';
+    document.getElementById('examPassMarks').value='';
+    document.getElementById('examRemarks').value='';
+    renderExamBatchGrid();
+    openModal('createExamModal');
+}
+
+function renderExamBatchGrid(){
+    let html='';
+    Object.entries(allClasses).forEach(([ck,cls])=>{
+        const batches=Object.entries(cls.batches||{}).filter(([,b])=>b.status==='running');
+        if(!batches.length) return;
+        html+=`<div style="margin-bottom:14px">
+            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:7px">
+                <div style="font-size:12px;font-weight:800;color:#a29bfe;text-transform:uppercase;letter-spacing:1px">${cls.name}</div>
+                <button type="button" class="btn btn-sm" id="selCourse_${ck}"
+                    style="font-size:11px;padding:3px 10px;background:rgba(108,92,231,0.1);border:1px solid rgba(108,92,231,0.3);color:#a29bfe"
+                    onclick="toggleWholeCourse('${ck}')">Select All</button>
+            </div>
+            <div style="display:flex;flex-wrap:wrap;gap:8px">`;
+        batches.forEach(([bk,b])=>{
+            html+=`<div class="batch-select-item" id="examBatch_${ck}_${bk}" onclick="toggleExamBatch('${ck}','${bk}')">
+                <div class="bi-name" style="font-size:13px">${b.name}</div>
+                <div class="bi-course">${b.timing||'—'}</div>
+            </div>`;
+        });
+        html+=`</div></div>`;
+    });
+    document.getElementById('examBatchGrid').innerHTML=html||'<div style="color:var(--text3);font-size:13px">No running batches found</div>';
+}
+
+function toggleExamBatch(ck,bk){
+    const el=document.getElementById(`examBatch_${ck}_${bk}`);
+    const idx=currentExamBatches.findIndex(e=>e.courseKey===ck&&e.batchKey===bk);
+    if(idx>=0){ currentExamBatches.splice(idx,1); el.classList.remove('selected'); }
+    else { currentExamBatches.push({courseKey:ck,batchKey:bk,cls:allClasses[ck],batch:allClasses[ck].batches[bk]}); el.classList.add('selected'); }
+    updateCourseSelectBtn(ck);
+}
+
+function toggleWholeCourse(ck){
+    const cls=allClasses[ck]; if(!cls) return;
+    const batches=Object.entries(cls.batches||{}).filter(([,b])=>b.status==='running');
+    const allSelected=batches.every(([bk])=>currentExamBatches.some(e=>e.courseKey===ck&&e.batchKey===bk));
+    batches.forEach(([bk,b])=>{
+        const el=document.getElementById(`examBatch_${ck}_${bk}`);
+        const idx=currentExamBatches.findIndex(e=>e.courseKey===ck&&e.batchKey===bk);
+        if(allSelected){ if(idx>=0){currentExamBatches.splice(idx,1);} el&&el.classList.remove('selected'); }
+        else { if(idx<0){currentExamBatches.push({courseKey:ck,batchKey:bk,cls,batch:b});} el&&el.classList.add('selected'); }
+    });
+    updateCourseSelectBtn(ck);
+}
+
+function updateCourseSelectBtn(ck){
+    const cls=allClasses[ck]; if(!cls) return;
+    const batches=Object.entries(cls.batches||{}).filter(([,b])=>b.status==='running');
+    const allSel=batches.every(([bk])=>currentExamBatches.some(e=>e.courseKey===ck&&e.batchKey===bk));
+    const btn=document.getElementById(`selCourse_${ck}`);
+    if(btn){ btn.textContent=allSel?'Deselect All':'Select All'; btn.style.background=allSel?'rgba(108,92,231,0.25)':'rgba(108,92,231,0.1)'; }
+}
+
+function createExamAndEnterMarks(){
+    if(!currentExamBatches.length){toast('Select at least one batch','error');return;}
+    const name=document.getElementById('examName').value.trim();
+    const date=document.getElementById('examDate').value;
+    const total=parseInt(document.getElementById('examTotalMarks').value);
+    if(!name){toast('Enter exam name','error');return;}
+    if(!date){toast('Select exam date','error');return;}
+    if(!total||total<1){toast('Enter total marks','error');return;}
+
+    const examData={
+        name, date, subject:document.getElementById('examSubject').value.trim(),
+        totalMarks:total, passMarks:parseInt(document.getElementById('examPassMarks').value)||0,
+        remarks:document.getElementById('examRemarks').value.trim(),
+        batches:currentExamBatches.map(e=>({courseKey:e.courseKey,batchKey:e.batchKey,courseName:e.cls.name,batchName:e.batch.name,classCode:e.cls.code,batchCode:e.batch.code})),
+        createdAt:new Date().toISOString(), createdBy:adminSession?.name||'Admin',
+        marks:{}
+    };
+
+    // Pre-populate marks structure with students
+    currentExamBatches.forEach(e=>{
+        const stus=getStudentsInBatch(e.cls.code,e.batch.code);
+        stus.forEach(([sid])=>{ examData.marks[sid]={obtained:null,remarks:''}; });
+    });
+
+    db.ref('exams').push(examData).then(ref=>{
+        currentExamKey=ref.key;
+        closeModal('createExamModal');
+        openEnterMarks(currentExamKey, examData);
+    }).catch(()=>toast('Failed','error'));
+}
+
+function openEnterMarks(examKey, examData){
+    currentExamKey=examKey;
+    const data=examData||allExams[examKey];
+    if(!data) return;
+
+    document.getElementById('enterMarksSubtitle').textContent=`${data.name} | ${data.date} | Total: ${data.totalMarks} marks${data.passMarks?' | Pass: '+data.passMarks:''}`;
+
+    // Group students by batch
+    let html='';
+    (data.batches||[]).forEach(b=>{
+        const stus=getStudentsInBatch(b.classCode,b.batchCode);
+        if(!stus.length) return;
+        html+=`<div style="font-size:12px;font-weight:800;color:#a29bfe;text-transform:uppercase;letter-spacing:1px;margin:14px 0 8px">${b.courseName} — ${b.batchName}</div>`;
+        html+=`<table class="exam-marks-table"><thead><tr>
+            <th style="width:40px">#</th><th>Student</th>
+            <th style="width:100px">Marks /${data.totalMarks}</th>
+            <th>Remarks</th><th style="width:60px">Grade</th>
+        </tr></thead><tbody>`;
+        stus.forEach(([sid,s],i)=>{
+            const existing=data.marks?.[sid]||{};
+            const val=existing.obtained!=null?existing.obtained:'';
+            html+=`<tr>
+                <td style="color:var(--text3)">${i+1}</td>
+                <td><strong>${s.name}</strong><br><small style="color:var(--text3)">${s.id}</small></td>
+                <td><input class="marks-input" type="number" id="mark_${examKey}_${sid}" value="${val}" min="0" max="${data.totalMarks}" placeholder="—" oninput="updateGrade('${examKey}','${sid}',${data.totalMarks},${data.passMarks||0})"></td>
+                <td><input class="remarks-input-sm" type="text" id="rem_${examKey}_${sid}" value="${existing.remarks||''}" placeholder="e.g. Good effort, Needs improvement..."></td>
+                <td id="grade_${examKey}_${sid}">${existing.obtained!=null?getGradeBadge(existing.obtained,data.totalMarks,data.passMarks):''}</td>
+            </tr>`;
+        });
+        html+='</tbody></table>';
+    });
+
+    document.getElementById('enterMarksTable').innerHTML=html||'<div class="no-data">No students found</div>';
+    openModal('enterMarksModal');
+}
+
+function updateGrade(examKey,sid,total,pass){
+    const val=parseInt(document.getElementById(`mark_${examKey}_${sid}`)?.value);
+    const el=document.getElementById(`grade_${examKey}_${sid}`);
+    if(el&&!isNaN(val)) el.innerHTML=getGradeBadge(val,total,pass);
+}
+
+function getGradeBadge(obtained,total,pass){
+    const pct=total>0?(obtained/total)*100:0;
+    if(obtained<(pass||0)&&pass>0) return '<span class="grade-badge grade-F">F</span>';
+    if(pct>=90) return '<span class="grade-badge grade-A">A+</span>';
+    if(pct>=80) return '<span class="grade-badge grade-A">A</span>';
+    if(pct>=70) return '<span class="grade-badge grade-B">B</span>';
+    if(pct>=60) return '<span class="grade-badge grade-C">C</span>';
+    if(pct>=50) return '<span class="grade-badge grade-C">D</span>';
+    return '<span class="grade-badge grade-F">F</span>';
+}
+
+function saveMarks(){
+    const examKey=currentExamKey;
+    if(!examKey||!allExams[examKey]){toast('Exam not found','error');return;}
+    const data=allExams[examKey];
+    const updates={};
+    Object.keys(data.marks||{}).forEach(sid=>{
+        const markEl=document.getElementById(`mark_${examKey}_${sid}`);
+        const remEl=document.getElementById(`rem_${examKey}_${sid}`);
+        if(markEl){
+            const val=markEl.value.trim();
+            updates[`exams/${examKey}/marks/${sid}/obtained`]=val!==''?parseInt(val):null;
+        }
+        if(remEl) updates[`exams/${examKey}/marks/${sid}/remarks`]=remEl.value.trim();
+    });
+    db.ref().update(updates).then(()=>{
+        toast('Marks saved!');closeModal('enterMarksModal');renderExamSection();
+    }).catch(()=>toast('Failed','error'));
+}
+
+let examFilterCourse = 'all';
+
+function renderExamSection(filterCourse){
+    if(filterCourse!==undefined) examFilterCourse=filterCourse;
+    const div=document.getElementById('examContent');
+    const allExamEntries=Object.entries(allExams).sort((a,b)=>(b[1].date||'').localeCompare(a[1].date||''));
+    if(!allExamEntries.length){div.innerHTML='<div class="no-data">No exams yet. Click "+ Create Exam" to get started.</div>';return;}
+
+    // Build course filter tabs
+    const courseSet=new Set(['all']);
+    allExamEntries.forEach(([,e])=>{ (e.batches||[]).forEach(b=>{ if(b.courseName) courseSet.add(b.courseName); }); });
+    let tabsHtml='<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px">';
+    courseSet.forEach(c=>{
+        const active=examFilterCourse===c;
+        tabsHtml+=`<button onclick="renderExamSection('${c}')" style="padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;border:2px solid ${active?'#6c5ce7':'var(--border)'};background:${active?'rgba(108,92,231,0.15)':'transparent'};color:${active?'#a29bfe':'var(--text2)'}">
+            ${c==='all'?'All Courses':c}
+        </button>`;
+    });
+    tabsHtml+='</div>';
+
+    // Filter exams
+    let filtered=allExamEntries;
+    if(examFilterCourse!=='all'){
+        filtered=allExamEntries.filter(([,e])=>(e.batches||[]).some(b=>b.courseName===examFilterCourse));
+    }
+
+    if(!filtered.length){
+        div.innerHTML=tabsHtml+'<div class="no-data">No exams for this course yet.</div>';return;
+    }
+
+    let html=tabsHtml+'<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:16px">';
+    filtered.forEach(([ek,e])=>{
+        const total=Object.keys(e.marks||{}).length;
+        const filled=Object.values(e.marks||{}).filter(m=>m.obtained!=null).length;
+
+        // Group batch tags by course — highlight current filter course
+        const courseGroups={};
+        (e.batches||[]).forEach(b=>{
+            if(!courseGroups[b.courseName]) courseGroups[b.courseName]=[];
+            courseGroups[b.courseName].push(b.batchName);
+        });
+        const multiCourse=Object.keys(courseGroups).length>1;
+        let batchTags='';
+        Object.entries(courseGroups).forEach(([cn,bnames])=>{
+            const isActive=cn===examFilterCourse;
+            const courseColor=isActive?'#6c5ce7':'rgba(108,92,231,0.5)';
+            const bgColor=isActive?'rgba(108,92,231,0.18)':'rgba(108,92,231,0.07)';
+            const borderColor=isActive?'rgba(108,92,231,0.6)':'rgba(108,92,231,0.2)';
+            batchTags+=`<div style="margin-bottom:5px">
+                <span style="font-size:10px;font-weight:800;color:${courseColor};text-transform:uppercase;letter-spacing:0.5px">${cn}${multiCourse?' &#128279;':''}</span>
+                <div style="display:flex;flex-wrap:wrap;gap:4px;margin-top:3px">
+                    ${bnames.map(bn=>`<span style="font-size:11px;padding:2px 9px;border-radius:8px;font-weight:700;background:${bgColor};color:${courseColor};border:1px solid ${borderColor}">${bn}</span>`).join('')}
+                </div>
+            </div>`;
+        });
+
+        const examDateFmt = e.date ? e.date.split('-').reverse().join('/') : '—';
+        html+=`<div class="exam-card" style="${e.batches&&e.batches.some(b=>b.courseName===examFilterCourse)&&examFilterCourse!=='all'?'border-color:rgba(108,92,231,0.4)':''}">
+            <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
+                <div class="exam-card-title">${e.name}</div>
+                <button class="btn btn-sm" style="background:rgba(108,92,231,0.15);border:1px solid rgba(108,92,231,0.3);color:#a29bfe;font-size:11px" onclick="openEnterMarks('${ek}')">&#9999; Edit</button>
+            </div>
+            <div class="exam-card-meta">${examDateFmt}${e.subject?' &bull; '+e.subject:''} &bull; ${e.totalMarks} marks${e.passMarks?' (pass: '+e.passMarks+')':''}</div>
+            <div style="margin-bottom:10px">${batchTags}</div>
+            <div style="display:flex;gap:16px;font-size:12px;color:var(--text2);margin-bottom:8px">
+                <span>&#128100; ${total} students</span>
+                <span style="color:${filled===total&&total>0?'var(--success)':'var(--warning)'}">&#9998; ${filled}/${total} marks entered</span>
+            </div>
+            ${e.remarks?`<div style="font-size:12px;color:var(--text3);border-top:1px solid var(--border);padding-top:8px;margin-top:4px">${e.remarks}</div>`:''}
+            <div style="display:flex;gap:8px;margin-top:10px">
+                <button class="btn btn-sm btn-outline" onclick="viewExamResults('${ek}')">&#128202; Results</button>
+                <button class="btn btn-sm" style="background:rgba(255,71,87,0.1);border:1px solid rgba(255,71,87,0.25);color:var(--danger)" onclick="deleteExam('${ek}','${e.name}')">&#128465;</button>
+            </div>
+        </div>`;
+    });
+    html+='</div>';
+    div.innerHTML=html;
+}
+
+function viewExamResults(examKey){
+    const data=allExams[examKey]; if(!data) return;
+    const marks=Object.entries(data.marks||{});
+    let html=`<div style="margin-bottom:20px">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px">
+            <div><h3 style="font-size:18px;font-weight:700">${data.name}</h3>
+            <div style="font-size:12px;color:var(--text3)">${data.date}${data.subject?' &bull; '+data.subject:''} &bull; Total: ${data.totalMarks}</div></div>
+            <button class="btn btn-outline btn-sm" onclick="renderExamSection()">&#8592; Back</button>
+        </div>`;
+    if(data.remarks) html+=`<div style="background:rgba(108,92,231,0.06);border:1px solid rgba(108,92,231,0.2);border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:13px;color:var(--text2)">${data.remarks}</div>`;
+
+    html+=`<table class="exam-marks-table"><thead><tr><th>#</th><th>Student</th><th>Marks</th><th>%</th><th>Grade</th><th>Remarks</th></tr></thead><tbody>`;
+    const sorted=[...marks].sort((a,b)=>(b[1].obtained||0)-(a[1].obtained||0));
+    sorted.forEach(([sid,m],i)=>{
+        const s=allStudents[sid]; if(!s) return;
+        const pct=m.obtained!=null&&data.totalMarks>0?Math.round((m.obtained/data.totalMarks)*100):null;
+        html+=`<tr>
+            <td style="color:var(--text3)">${i+1}</td>
+            <td><strong>${s.name}</strong><br><small style="color:var(--text3)">${s.id}</small></td>
+            <td style="font-weight:700;color:var(--primary)">${m.obtained!=null?m.obtained:'—'}</td>
+            <td>${pct!=null?pct+'%':'—'}</td>
+            <td>${m.obtained!=null?getGradeBadge(m.obtained,data.totalMarks,data.passMarks):''}</td>
+            <td style="font-size:12px;color:var(--text3)">${m.remarks||'—'}</td>
+        </tr>`;
+    });
+    html+='</tbody></table></div>';
+    document.getElementById('examContent').innerHTML=html;
+}
+
+function deleteExam(ek,name){ if(!confirm(`Delete exam "${name}"?`)) return; db.ref('exams/'+ek).remove().then(()=>toast('Deleted')); }
+
+// ─── REOPEN COURSE (open-ended monthly fee) ───────────────────────────────
+function openReopenCourse(id){
+    const s = allStudents[id]; if(!s) return;
+    document.getElementById('rcStudentId').value = id;
+    document.getElementById('rcStudentName').textContent = s.name + ' (' + s.id + ')';
+    document.getElementById('rcCurrentInfo').textContent =
+        'Finished: ' + (s.finishMonth||'—') + '  •  ' + (s.months||0) + ' months  •  ₹' + (s.monthlyFee||0).toLocaleString() + '/month';
+    document.getElementById('rcReason').value = '';
+    closeModal('studentDetailModal');
+    openModal('reopenCourseModal');
+}
+
+function confirmReopenCourse(){
+    const id = document.getElementById('rcStudentId').value;
+    const s = allStudents[id]; if(!s) return;
+    const reason = document.getElementById('rcReason').value.trim();
+
+    // Recalculate: remove finishMonth, months, reset netFee to open-ended (just monthly × paid so far context)
+    // We keep paidAmount intact. netFee becomes null/0 (open-ended). dueAmount reset to 0 (open-ended).
+    const updates = {
+        finishMonth: null,
+        months: 0,
+        totalFee: 0,
+        netFee: 0,
+        dueAmount: 0,
+    };
+
+    // Log the reopen in a history node
+    const histEntry = {
+        action: 'reopen',
+        previousFinishMonth: s.finishMonth || '',
+        previousMonths: s.months || 0,
+        reason: reason || 'No reason given',
+        date: new Date().toISOString(),
+        by: (typeof adminSession !== 'undefined' && adminSession?.name) ? adminSession.name : 'Admin'
+    };
+
+    db.ref('students/' + id).update(updates)
+        .then(() => db.ref('students/' + id + '/courseHistory').push(histEntry))
+        .then(() => {
+            toast('✅ Course reopened — back to open-ended fee');
+            closeModal('reopenCourseModal');
+        })
+        .catch(() => toast('Failed to reopen course', 'error'));
 }
 
 
