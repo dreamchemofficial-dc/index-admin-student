@@ -408,6 +408,29 @@
         .id-card-footer .valid{font-size:10px;color:#999;font-weight:500;}
         .id-card-footer .batch-badge{font-size:10px;background:linear-gradient(90deg,var(--primary),var(--secondary));color:#fff;padding:4px 12px;border-radius:20px;font-weight:700;letter-spacing:0.5px;}
         .id-card-actions{display:flex;gap:10px;}
+
+        /* ── CUSTOM CONFIRM DIALOG ── */
+        .confirm-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.65);backdrop-filter:blur(6px);z-index:9999;display:none;align-items:center;justify-content:center;}
+        .confirm-overlay.open{display:flex;}
+        .confirm-box{background:#1a1f2e;border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:28px 28px 22px;width:100%;max-width:360px;box-shadow:0 24px 64px rgba(0,0,0,0.5);animation:confirmPop .18s cubic-bezier(.34,1.56,.64,1);}
+        @keyframes confirmPop{from{transform:scale(.88);opacity:0}to{transform:scale(1);opacity:1}}
+        .confirm-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:14px;}
+        .confirm-icon.danger{background:rgba(255,71,87,0.15);}
+        .confirm-icon.warning{background:rgba(255,165,2,0.15);}
+        .confirm-icon.info{background:rgba(0,210,255,0.12);}
+        .confirm-title{font-size:16px;font-weight:700;color:#e6edf3;margin-bottom:6px;}
+        .confirm-msg{font-size:13.5px;color:#8b949e;line-height:1.5;margin-bottom:22px;}
+        .confirm-actions{display:flex;gap:10px;justify-content:flex-end;}
+        .confirm-cancel{padding:9px 20px;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:9px;color:#8b949e;font-size:13px;font-weight:600;cursor:pointer;transition:.15s;}
+        .confirm-cancel:hover{background:rgba(255,255,255,0.1);color:#e6edf3;}
+        .confirm-ok{padding:9px 22px;border:none;border-radius:9px;font-size:13px;font-weight:700;cursor:pointer;transition:.15s;}
+        .confirm-ok.danger{background:linear-gradient(135deg,#ff4757,#c0392b);color:#fff;}
+        .confirm-ok.danger:hover{opacity:.88;}
+        .confirm-ok.warning{background:linear-gradient(135deg,#ffa502,#e67e22);color:#fff;}
+        .confirm-ok.warning:hover{opacity:.88;}
+        .confirm-ok.info{background:linear-gradient(135deg,#00d2ff,#3a7bd5);color:#fff;}
+        .confirm-ok.info:hover{opacity:.88;}
+
         @media print{
             body *{visibility:hidden !important;}
             #printableCard,#printableCard *{visibility:visible !important;}
@@ -527,6 +550,20 @@
         <div class="pw-btns">
             <button class="pw-btn pw-cancel" onclick="closePwModal()">Cancel</button>
             <button class="pw-btn pw-confirm" onclick="verifyPw()">Unlock</button>
+        </div>
+    </div>
+</div>
+
+
+<!-- ── CUSTOM CONFIRM DIALOG ────────────────────────────────────────────── -->
+<div class="confirm-overlay" id="confirmOverlay">
+    <div class="confirm-box">
+        <div class="confirm-icon" id="confirmIcon">⚠️</div>
+        <div class="confirm-title" id="confirmTitle">Are you sure?</div>
+        <div class="confirm-msg" id="confirmMsg">This action cannot be undone.</div>
+        <div class="confirm-actions">
+            <button class="confirm-cancel" onclick="confirmResolve(false)">Cancel</button>
+            <button class="confirm-ok danger" id="confirmOkBtn" onclick="confirmResolve(true)">Confirm</button>
         </div>
     </div>
 </div>
@@ -1073,44 +1110,33 @@
 
 <!-- ─── ID CARD MODAL ─────────────────────────────────────────────────── -->
 <div class="modal-overlay" id="idCardModal">
-    <div class="modal" style="max-width:480px">
+    <div class="modal" style="max-width:380px">
         <div class="modal-header"><h3>&#127891; Student ID Card</h3><button class="modal-close" onclick="closeModal('idCardModal')">&#10005;</button></div>
-        <div class="modal-body">
+        <div class="modal-body" style="padding:16px">
             <div class="id-card-wrap">
-                <div class="id-card" id="printableCard">
-                    <div class="id-card-header">
-                        <div class="id-card-header-inner">
-                            <div class="id-card-header-logo" id="cardLogoBox"><span style="font-size:20px;opacity:0.8">&#127979;</span></div>
-                            <div class="id-card-header-title">
-                                <div class="inst-name" id="cardInstName">Dream Chem</div>
-                                <div class="inst-sub">Student Identity Card</div>
-                            </div>
-                        </div>
-                        <div class="id-card-header-wave">
-                            <svg viewBox="0 0 360 24" xmlns="http://www.w3.org/2000/svg"><path d="M0,12 C60,24 120,0 180,12 C240,24 300,0 360,12 L360,24 L0,24 Z" fill="#ffffff"/></svg>
-                        </div>
-                    </div>
-                    <div class="id-card-body">
-                        <div class="id-card-photo" id="cardPhoto"><span style="font-size:32px;color:#aaa">&#128100;</span></div>
-                        <div class="id-card-info">
-                            <div class="id-card-name" id="cardName">Student Name</div>
-                            <div class="id-card-id-badge" id="cardId">DC000</div>
-                            <div class="id-card-row"><label>Course</label><span id="cardCourse">—</span></div>
-                            <div class="id-card-row"><label>Father</label><span id="cardFather">—</span></div>
-                            <div class="id-card-row"><label>Mobile</label><span id="cardMobile">—</span></div>
-                            <div class="id-card-row"><label>DOB</label><span id="cardDob">—</span></div>
-                            <div class="id-card-row"><label>Blood</label><span id="cardBlood">—</span></div>
-                        </div>
-                    </div>
-                    <div class="id-card-divider"></div>
-                    <div class="id-card-footer">
-                        <div class="valid" id="cardValid">Issued: —</div>
-                        <div class="batch-badge" id="cardBatch">—</div>
-                    </div>
+                <!-- Live canvas preview -->
+                <canvas id="idCardPreviewCanvas" style="border-radius:12px;box-shadow:0 6px 24px rgba(0,0,0,0.18);display:block;margin:0 auto"></canvas>
+                <!-- Hidden data holders -->
+                <div style="display:none">
+                    <span id="cardInstName">Dream Chem</span>
+                    <span id="cardName"></span>
+                    <span id="cardId"></span>
+                    <span id="cardCourse"></span>
+                    <span id="cardBatch"></span>
+                    <span id="cardFather"></span>
+                    <span id="cardMobile"></span>
+                    <span id="cardDob"></span>
+                    <span id="cardBlood"></span>
+                    <span id="cardValid"></span>
+                    <div id="cardPhoto"></div>
+                    <div id="cardLogoBox"></div>
                 </div>
-                <div class="id-card-actions">
-                    <button class="btn btn-primary" onclick="printIdCard()">&#128424; Print Card</button>
-                    <button class="btn btn-outline" onclick="downloadIdCard()">&#11015; Download</button>
+                <div class="id-card-actions" style="margin-top:4px">
+                    <button class="btn btn-primary" onclick="printIdCard()">&#128424; Print Card (8.04&#215;5.03 cm)</button>
+                    <button class="btn btn-outline" onclick="downloadIdCard()">&#11015; Download PNG</button>
+                </div>
+                <div style="font-size:11px;color:var(--text3);text-align:center;margin-top:2px">
+                    300dpi quality &bull; exact ID card size &bull; ready to print or laminate
                 </div>
             </div>
         </div>
@@ -1481,6 +1507,34 @@ let currentCourseTab='running';
 let stuMode='new', selectedOldStudent=null;
 let noticeTarget='all';
 
+
+// ── CUSTOM CONFIRM DIALOG ─────────────────────────────────────────────────
+let _confirmResolve = null;
+function dcConfirm(msg, {title='Are you sure?', type='danger', icon='🗑️', okText='Delete'}={}){
+    return new Promise(resolve=>{
+        _confirmResolve = resolve;
+        document.getElementById('confirmTitle').textContent = title;
+        document.getElementById('confirmMsg').textContent   = msg;
+        document.getElementById('confirmIcon').textContent  = icon;
+        document.getElementById('confirmIcon').className    = 'confirm-icon ' + type;
+        const btn = document.getElementById('confirmOkBtn');
+        btn.textContent  = okText;
+        btn.className    = 'confirm-ok ' + type;
+        document.getElementById('confirmOverlay').classList.add('open');
+    });
+}
+function confirmResolve(val){
+    document.getElementById('confirmOverlay').classList.remove('open');
+    if(_confirmResolve){ _confirmResolve(val); _confirmResolve=null; }
+}
+// close on overlay click
+document.addEventListener('DOMContentLoaded',()=>{
+    document.getElementById('confirmOverlay').addEventListener('click',function(e){
+        if(e.target===this) confirmResolve(false);
+    });
+    document.addEventListener('keydown',e=>{ if(e.key==='Escape') confirmResolve(false); });
+});
+
 // ─── INIT ─────────────────────────────────────────────────────────────────────
 function init(){
     adminSession=JSON.parse(sessionStorage.getItem('dreamchem_session')||'null');
@@ -1498,7 +1552,7 @@ function initAdminCreds(){
     });
     db.ref('credentials/admin').remove();
 }
-function logout(){if(confirm('Logout?')){sessionStorage.removeItem('dreamchem_session');window.location.href='index.html';}}
+function logout(){dcConfirm('You will be signed out of the admin panel.',{title:'Logout?',type:'warning',icon:'🚪',okText:'Logout'}).then(ok=>{if(ok){sessionStorage.removeItem('dreamchem_session');window.location.href='index.html';}});}
 
 // ─── NAV ──────────────────────────────────────────────────────────────────────
 const titles={dashboard:'📊 Dashboard',classes:'📖 Courses & Batches',students:'👨‍🎓 Students',fees:'💰 Fees & Payments',notices:'📢 Notices',attendance:'✅ Attendance',exam:'📝 Exams'};
@@ -1535,7 +1589,7 @@ function loadLogo(){db.ref('customization/logo').on('value',s=>{
     else{cImg.classList.remove('active');cImg.src='';if(cPh)cPh.classList.remove('hidden');}
 });}
 function handleLogo(e){const f=e.target.files[0];if(!f)return;if(f.size>2*1024*1024){toast('Max 2MB','error');return;}const st=document.getElementById('cLogoStatus');st.textContent='⏳ Uploading...';st.classList.add('show');const r=new FileReader();r.onload=ev=>{compressImg(ev.target.result,200,0.7,c=>{db.ref('customization/logo').set(c).then(()=>{st.textContent='✅ Saved!';setTimeout(()=>st.classList.remove('show'),2000);}).catch(()=>{st.textContent='❌ Failed';});});};r.readAsDataURL(f);e.target.value='';}
-function removeLogo(){if(!confirm('Remove logo?'))return;db.ref('customization/logo').remove().then(()=>toast('Logo removed'));}
+function removeLogo(){dcConfirm('The institute logo will be removed.',{title:'Remove Logo?',type:'danger',icon:'🖼️',okText:'Remove'}).then(ok=>{if(ok)db.ref('customization/logo').remove().then(()=>toast('Logo removed'));});}
 function compressImg(b,mx,q,cb){const i=new Image();i.onload=function(){const c=document.createElement('canvas');let w=i.width,h=i.height;if(w>h){if(w>mx){h=Math.round(h*mx/w);w=mx;}}else{if(h>mx){w=Math.round(w*mx/h);h=mx;}}c.width=w;c.height=h;c.getContext('2d').drawImage(i,0,0,w,h);cb(c.toDataURL('image/jpeg',q));};i.src=b;}
 
 // ─── CUSTOMIZE ────────────────────────────────────────────────────────────────
@@ -1564,7 +1618,7 @@ function applyCust(){
     db.ref('customization/settings').set(d).then(()=>toast('✅ Saved to cloud!')).catch(()=>toast('Failed','error'));
     closeCPanel();
 }
-function resetCust(){if(!confirm('Reset all customizations?'))return;db.ref('customization/settings').remove().then(()=>location.reload());}
+function resetCust(){dcConfirm('All colors, fonts and branding settings will be reset to default.',{title:'Reset Customizations?',type:'danger',icon:'🔄',okText:'Reset'}).then(ok=>{if(ok)db.ref('customization/settings').remove().then(()=>location.reload())});}
 function loadCust(){db.ref('customization/settings').on('value',s=>{const d=s.val();if(d){
     document.getElementById('cName').value=d.name||'Dream Chem';
     document.getElementById('cTagline').value=d.tagline||'';
@@ -1947,10 +2001,10 @@ function addClass(){
     if(Object.values(allClasses).some(x=>x.code===c)){toast('Code exists','error');return;}
     db.ref('classes').push({name:n,code:c,createdAt:new Date().toISOString()}).then(()=>{toast('Course added!');closeModal('addClassModal');document.getElementById('className').value='';document.getElementById('classCode').value='';});
 }
-function delClass(k,n){if(cntClass(allClasses[k].code)>0){toast('Has students!','error');return;}if(!confirm(`Delete "${n}"?`))return;db.ref('classes/'+k).remove().then(()=>toast('Deleted'));}
+function delClass(k,n){if(cntClass(allClasses[k].code)>0){toast('Has students!','error');return;}dcConfirm(`"${n}" will be permanently deleted.`,{title:'Delete Course?',type:'danger',icon:'📚',okText:'Delete'}).then(ok=>{if(ok)db.ref('classes/'+k).remove().then(()=>toast('Deleted'));});}
 function openBatchModal(k,n){currentClassKeyForBatch=k;document.getElementById('batchForClass').value=n;['batchName','batchCode','batchTiming'].forEach(id=>document.getElementById(id).value='');openModal('addBatchModal');}
 function addBatch(){const n=document.getElementById('batchName').value.trim(),c=document.getElementById('batchCode').value.trim().toUpperCase();if(!n||!c){toast('Fill fields','error');return;}const cls=allClasses[currentClassKeyForBatch],bs=cls.batches||{};if(Object.values(bs).some(b=>b.code===c)){toast('Code exists','error');return;}db.ref('classes/'+currentClassKeyForBatch+'/batches').push({name:n,code:c,timing:document.getElementById('batchTiming').value.trim(),status:'running'}).then(()=>{toast('Batch added!');closeModal('addBatchModal');});}
-function delBatch(ck,bk,bn){const cls=allClasses[ck],b=cls.batches[bk];if(cntBatch(cls.code,b.code)>0){toast('Has students!','error');return;}if(!confirm(`Delete "${bn}"?`))return;db.ref('classes/'+ck+'/batches/'+bk).remove().then(()=>toast('Deleted'));}
+function delBatch(ck,bk,bn){const cls=allClasses[ck],b=cls.batches[bk];if(cntBatch(cls.code,b.code)>0){toast('Has students!','error');return;}dcConfirm(`Batch "${bn}" will be permanently deleted.`,{title:'Delete Batch?',type:'danger',icon:'🗂️',okText:'Delete'}).then(ok=>{if(ok)db.ref('classes/'+ck+'/batches/'+bk).remove().then(()=>toast('Deleted'));});}
 function populateDropdowns(){
     const k=Object.keys(allClasses);
     let o='<option value="">Select Course</option>',f='<option value="">All Courses</option>',nc='<option value="">Select Course</option>';
@@ -2303,10 +2357,10 @@ function openDetail(id){
 
 // ─── PHOTO UPLOAD ─────────────────────────────────────────────────────────────
 function uploadStudentPhoto(e,id){const f=e.target.files[0];if(!f)return;if(f.size>1*1024*1024){toast('Max 1MB image!','error');e.target.value='';return;}toast('Uploading photo...','info');const r=new FileReader();r.onload=ev=>{compressImg(ev.target.result,300,0.8,c=>{db.ref('students/'+id+'/photo').set(c).then(()=>{toast('Photo saved!');openDetail(id);}).catch(()=>toast('Upload failed','error'));});};r.readAsDataURL(f);e.target.value='';}
-function removeStudentPhoto(id){if(!confirm('Remove photo?'))return;db.ref('students/'+id+'/photo').remove().then(()=>{toast('Photo removed');openDetail(id);});}
+function removeStudentPhoto(id){dcConfirm('The student photo will be removed.',{title:'Remove Photo?',type:'warning',icon:'📷',okText:'Remove'}).then(ok=>{if(ok)db.ref('students/'+id+'/photo').remove().then(()=>{toast('Photo removed');openDetail(id);});});}
 
 // ─── DELETE / EDIT ────────────────────────────────────────────────────────────
-function delStudent(id,n){if(!confirm(`Delete "${n}"?`))return;Promise.all([db.ref('students/'+id).remove(),db.ref('credentials/students/'+id).remove()]).then(()=>{toast('Deleted');closeModal('studentDetailModal');});}
+function delStudent(id,n){dcConfirm(`All data for "${n}" will be permanently deleted, including fees and attendance.`,{title:'Delete Student?',type:'danger',icon:'👤',okText:'Delete'}).then(ok=>{if(ok)Promise.all([db.ref('students/'+id).remove(),db.ref('credentials/students/'+id).remove()]).then(()=>{toast('Deleted');closeModal('studentDetailModal');});});}
 
 function openEdit(id){
     const s=allStudents[id];if(!s)return;
@@ -2718,7 +2772,7 @@ function renderNotices(){
 }
 
 
-function deleteNotice(k){if(!confirm('Delete this notice?'))return;db.ref('notices/'+k).remove().then(()=>{toast('Notice deleted');renderNotices();});}
+function deleteNotice(k){dcConfirm('This notice will be permanently deleted.',{title:'Delete Notice?',type:'danger',icon:'📢',okText:'Delete'}).then(ok=>{if(ok)db.ref('notices/'+k).remove().then(()=>{toast('Notice deleted');renderNotices();});});}
 
 function renderSuggestions(){
     const panel=document.getElementById('smartSuggestions');
@@ -2834,252 +2888,334 @@ function openIdCard(id){
     const s = allStudents[id]; if(!s) return;
     closeModal('studentDetailModal');
 
-    // Fill card fields
-    document.getElementById('cardName').textContent = s.name;
-    document.getElementById('cardId').textContent = s.id;
-    document.getElementById('cardCourse').textContent = s.className || '—';
-    document.getElementById('cardFather').textContent = s.fatherName || '—';
-    document.getElementById('cardMobile').textContent = s.mobile || '—';
-    document.getElementById('cardDob').textContent = s.dob || '—';
-    document.getElementById('cardBatch').textContent = (s.batchName || '—') + (s.batchTiming ? '  •  ' + s.batchTiming : '');
-    document.getElementById('cardBlood').textContent = s.bloodGroup || '—';
-    document.getElementById('cardValid').textContent = 'Issued: ' + new Date().toLocaleDateString('en-IN', {day:'numeric',month:'short',year:'numeric'});
-
-    // Photo
-    const photoBox = document.getElementById('cardPhoto');
-    if(s.photo){
-        photoBox.innerHTML = `<img src="${s.photo}" style="width:100%;height:100%;object-fit:cover;border-radius:8px">`;
-    } else {
-        const ini = s.name.split(' ').map(w=>w[0]).join('').substring(0,2).toUpperCase();
-        photoBox.innerHTML = `<div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;color:var(--primary);background:rgba(0,210,255,0.08)">${ini}</div>`;
-    }
-
-    // Institute logo
-    const logoBox = document.getElementById('cardLogoBox');
-    const logoImg = document.getElementById('sidebarLogo');
-    if(logoImg && logoImg.src && logoImg.classList.contains('active')){
-        logoBox.innerHTML = `<img src="${logoImg.src}" style="width:100%;height:100%;object-fit:contain;padding:3px">`;
-    } else {
-        const instName = document.getElementById('sbBrand')?.textContent || 'DC';
-        logoBox.innerHTML = `<div style="font-size:13px;font-weight:800;color:#fff;text-align:center">${instName.substring(0,2)}</div>`;
-    }
-
-    // Institute name
+    // Populate hidden data holders
+    document.getElementById('cardName').textContent    = s.name;
+    document.getElementById('cardId').textContent      = s.id;
+    document.getElementById('cardCourse').textContent  = s.className || '—';
+    document.getElementById('cardBatch').textContent   = (s.batchName||'—') + (s.batchTiming?' • '+s.batchTiming:'');
+    document.getElementById('cardFather').textContent  = s.fatherName || '—';
+    document.getElementById('cardMobile').textContent  = s.mobile || '—';
+    document.getElementById('cardDob').textContent     = s.dob || '—';
+    document.getElementById('cardBlood').textContent   = s.bloodGroup || '—';
+    document.getElementById('cardValid').textContent   = 'Issued: ' + new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'});
     document.getElementById('cardInstName').textContent = document.getElementById('sbBrand')?.textContent?.trim() || 'Dream Chem';
 
+    // Put photo img inside hidden div
+    const photoBox = document.getElementById('cardPhoto');
+    if(s.photo){ photoBox.innerHTML=`<img src="${s.photo}" crossorigin="anonymous">`; }
+    else { photoBox.innerHTML=''; }
+
+    // Put logo img inside hidden div
+    const logoBox  = document.getElementById('cardLogoBox');
+    const logoImg  = document.getElementById('sidebarLogo');
+    if(logoImg && logoImg.src && logoImg.classList.contains('active')){
+        logoBox.innerHTML=`<img src="${logoImg.src}" crossorigin="anonymous">`;
+    } else { logoBox.innerHTML=''; }
+
     openModal('idCardModal');
+
+    // Render portrait preview — at 1× resolution for preview
+    setTimeout(()=>{
+        const data = _getCardData();
+        const pc = document.getElementById('idCardPreviewCanvas');
+        pc.width  = CARD_W;   // 594
+        pc.height = CARD_H;   // 950
+        pc.style.width  = '270px';
+        pc.style.height = 'auto';
+        _drawCard(pc, data, CARD_W, CARD_H);
+    }, 120);
 }
 
-function printIdCard(){
-    window.print();
+// ── ID Card: canvas renderer — exact 8.04×5.03cm, 300dpi quality ──────────
+// ══════════════════════════════════════════════════════════════════
+// ID CARD — Portrait 5.03cm W × 8.04cm H
+// Render at 2× (600dpi equivalent) for crisp download
+// Physical px base: W=594 H=950  →  render 2×: W=1188 H=1900
+// ══════════════════════════════════════════════════════════════════
+const CARD_W  = 594,  CARD_H  = 950;    // logical (print) size
+const CARD_W2 = 1188, CARD_H2 = 1900;   // 2× for high-res render
+
+const INST_PHONE = '7047534251';
+const INST_WP    = '9735922400';
+const INST_EMAIL = 'dreamchemofficial1@gmail.com';
+const INST_ADDR  = 'Dream Chem Coaching Institute';
+
+// ── contact details
+const C1 = '\u260E\uFE0F ' + INST_PHONE;
+const C3 = '\u2709\uFE0F  ' + INST_EMAIL;
+
+function _getCardData(){
+    return {
+        studentName: document.getElementById('cardName').textContent.trim(),
+        studentId:   document.getElementById('cardId').textContent.trim(),
+        course:      document.getElementById('cardCourse').textContent.trim(),
+        batch:       document.getElementById('cardBatch').textContent.trim(),
+        father:      document.getElementById('cardFather').textContent.trim(),
+        mobile:      document.getElementById('cardMobile').textContent.trim(),
+        dob:         document.getElementById('cardDob').textContent.trim(),
+        blood:       document.getElementById('cardBlood').textContent.trim(),
+        issued:      document.getElementById('cardValid').textContent.trim(),
+        instName:    document.getElementById('cardInstName').textContent.trim(),
+        photoEl:     document.getElementById('cardPhoto').querySelector('img'),
+        logoEl:      document.getElementById('cardLogoBox').querySelector('img'),
+    };
 }
 
-// ── Fully canvas-drawn ID card — no CSS variable dependency ──
-function downloadIdCard(){
-    const studentName  = document.getElementById('cardName').textContent;
-    const studentId    = document.getElementById('cardId').textContent;
-    const course       = document.getElementById('cardCourse').textContent;
-    const father       = document.getElementById('cardFather').textContent;
-    const mobile       = document.getElementById('cardMobile').textContent;
-    const dob          = document.getElementById('cardDob').textContent;
-    const blood        = document.getElementById('cardBlood').textContent;
-    const batch        = document.getElementById('cardBatch').textContent;
-    const issued       = document.getElementById('cardValid').textContent;
-    const instName     = document.getElementById('cardInstName').textContent;
-    const photoEl      = document.getElementById('cardPhoto').querySelector('img');
-    const logoEl       = document.getElementById('cardLogoBox').querySelector('img');
+// ── Draw card onto any canvas at given pixel dimensions ──────────────────
+function _drawCard(canvas, data, CW, CH){
+    const {studentName,studentId,course,batch,father,mobile,dob,blood,issued,instName,photoEl,logoEl} = data;
+    // SC: scale factor so all design coords are specified in "1×" units (594×950 space)
+    const SC = CW / 594;
+    const ctx = canvas.getContext('2d');
+    ctx.clearRect(0,0,CW,CH);
 
-    const W=720, H=440;
-    const canvas=document.createElement('canvas');
-    canvas.width=W; canvas.height=H;
-    const ctx=canvas.getContext('2d');
-
-    // ── helpers ──
-    function roundRect(x,y,w,h,r){
+    // ── helpers ─────────────────────────────────────────────────────────
+    function p(v){ return v * SC; }          // scale a value
+    function rr(x,y,w,h,r,fill,stroke,sw){
         ctx.beginPath();
-        ctx.moveTo(x+r,y);
-        ctx.lineTo(x+w-r,y);ctx.quadraticCurveTo(x+w,y,x+w,y+r);
-        ctx.lineTo(x+w,y+h-r);ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);
-        ctx.lineTo(x+r,y+h);ctx.quadraticCurveTo(x,y+h,x,y+h-r);
-        ctx.lineTo(x,y+r);ctx.quadraticCurveTo(x,y,x+r,y);
+        ctx.moveTo(p(x+r),p(y));
+        ctx.lineTo(p(x+w-r),p(y)); ctx.quadraticCurveTo(p(x+w),p(y),p(x+w),p(y+r));
+        ctx.lineTo(p(x+w),p(y+h-r)); ctx.quadraticCurveTo(p(x+w),p(y+h),p(x+w-r),p(y+h));
+        ctx.lineTo(p(x+r),p(y+h)); ctx.quadraticCurveTo(p(x),p(y+h),p(x),p(y+h-r));
+        ctx.lineTo(p(x),p(y+r)); ctx.quadraticCurveTo(p(x),p(y),p(x+r),p(y));
         ctx.closePath();
+        if(fill){ctx.fillStyle=fill;ctx.fill();}
+        if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=p(sw||1);ctx.stroke();}
+    }
+    function setFont(wt,sz,fam){
+        ctx.font = wt+' '+Math.round(p(sz))+'px '+(fam||'"Segoe UI",Arial,sans-serif');
+    }
+    function txt(t,x,y){ ctx.fillText(t,p(x),p(y)); }
+    function cTxt(t,y){ ctx.textAlign='center'; ctx.fillText(t,CW/2,p(y)); ctx.textAlign='left'; }
+    function trunc(t,max){ return t.length>max?t.substring(0,max-1)+'\u2026':t; }
+
+    // ── COLOUR PALETTE ───────────────────────────────────────────────────
+    const C_DARK  = '#0d1b3e';
+    const C_MID   = '#1e3a6e';
+    const C_GRAD1 = '#007ec6';
+    const C_GRAD2 = '#00c8aa';
+    const C_LIGHT = '#f0f5ff';
+    const C_WHITE = '#ffffff';
+    const C_TEXT  = '#1a2340';
+    const C_LABEL = '#8896b3';
+    const C_LINE  = '#dde3f0';
+
+    function gradient(x1,y1,x2,y2){
+        const g = ctx.createLinearGradient(p(x1),p(y1),p(x2),p(y2));
+        g.addColorStop(0, C_GRAD1); g.addColorStop(1, C_GRAD2);
+        return g;
     }
 
-    // ── card background ──
-    roundRect(0,0,W,H,28);
-    ctx.fillStyle='#ffffff'; ctx.fill();
-    // subtle border
-    ctx.strokeStyle='#d0d0e0'; ctx.lineWidth=2; ctx.stroke();
+    // ━━ 1. CARD BACKGROUND ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    rr(0,0,594,950,16,C_WHITE,'#cdd5ea',1);
 
-    // ── gradient header ──
-    const hGrad=ctx.createLinearGradient(0,0,W,170);
-    hGrad.addColorStop(0,'#00d2ff'); hGrad.addColorStop(1,'#3a7bd5');
-    roundRect(0,0,W,170,28);
-    ctx.fillStyle=hGrad; ctx.fill();
-    // cover bottom corners of header
-    ctx.fillStyle=hGrad;
-    ctx.fillRect(0,142,W,28);
+    // ━━ 2. HEADER BAND ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    const HDR = 148;
+    ctx.fillStyle = gradient(0,0,594,HDR);
+    rr(0,0,594,HDR+14,16,null);  // reuse path trick
+    ctx.fill();
+    ctx.fillRect(0,p(HDR),CW,p(14));
 
-    // ── wave at bottom of header ──
+    // wave divider
     ctx.beginPath();
-    ctx.moveTo(0,160);
-    ctx.bezierCurveTo(W*0.15,185,W*0.3,140,W*0.5,162);
-    ctx.bezierCurveTo(W*0.7,184,W*0.85,140,W,158);
-    ctx.lineTo(W,185); ctx.lineTo(0,185); ctx.closePath();
-    ctx.fillStyle='#ffffff'; ctx.fill();
+    ctx.moveTo(0,p(HDR+2));
+    ctx.bezierCurveTo(p(148),p(HDR+22),p(297),p(HDR-14),p(446),p(HDR+18));
+    ctx.bezierCurveTo(p(520),p(HDR+30),p(594),p(HDR+6),CW,p(HDR+6));
+    ctx.lineTo(CW,p(HDR+22)); ctx.lineTo(0,p(HDR+22)); ctx.closePath();
+    ctx.fillStyle=C_WHITE; ctx.fill();
 
-    // ── institute logo box ──
-    roundRect(28,22,72,72,12);
-    ctx.fillStyle='rgba(255,255,255,0.2)'; ctx.fill();
-    ctx.strokeStyle='rgba(255,255,255,0.45)'; ctx.lineWidth=2; ctx.stroke();
+    // ━━ 3. LOGO + INSTITUTE NAME (inside header) ━━━━━━━━━━━━━━━━━━━━━━━
+    const LX=14, LY=14, LS=54;
+    rr(LX,LY,LS,LS,10,'rgba(255,255,255,0.18)','rgba(255,255,255,0.45)',1.5);
+    if(logoEl && logoEl.complete && logoEl.naturalWidth>0){
+        ctx.save(); rr(LX+2,LY+2,LS-4,LS-4,8); ctx.clip();
+        ctx.drawImage(logoEl,p(LX+2),p(LY+2),p(LS-4),p(LS-4)); ctx.restore();
+    } else {
+        setFont('bold',20); ctx.fillStyle=C_WHITE; ctx.textAlign='center';
+        ctx.fillText(instName.substring(0,2).toUpperCase(),p(LX+LS/2),p(LY+LS/2+7));
+        ctx.textAlign='left';
+    }
+    // Institute name right of logo
+    setFont('800',17); ctx.fillStyle=C_WHITE;
+    txt(instName, LX+LS+10, LY+22);
+    setFont('400',11); ctx.fillStyle='rgba(255,255,255,0.8)';
+    txt('Student Identity Card', LX+LS+10, LY+38);
 
-    function drawCard(){
-        // ── institute name ──
-        ctx.fillStyle='#ffffff';
-        ctx.font='bold 26px "Segoe UI", Arial, sans-serif';
-        ctx.fillText(instName, 118, 62);
-        ctx.font='15px "Segoe UI", Arial, sans-serif';
-        ctx.fillStyle='rgba(255,255,255,0.82)';
-        ctx.fillText('Student Identity Card', 118, 85);
-
-        // ── photo box (overlapping header) ──
-        const ph={x:28,y:130,w:130,h:155};
-        // white border shadow
-        ctx.shadowColor='rgba(0,0,0,0.18)'; ctx.shadowBlur=12;
-        roundRect(ph.x,ph.y,ph.w,ph.h,12);
-        ctx.fillStyle='#f0f4ff'; ctx.fill();
-        ctx.shadowBlur=0;
-        // stroke
-        ctx.strokeStyle='#ffffff'; ctx.lineWidth=3; ctx.stroke();
-
-        if(photoEl && photoEl.complete && photoEl.naturalWidth>0){
-            ctx.save();
-            roundRect(ph.x+3,ph.y+3,ph.w-6,ph.h-6,10);
-            ctx.clip();
-            ctx.drawImage(photoEl,ph.x+3,ph.y+3,ph.w-6,ph.h-6);
-            ctx.restore();
-        } else {
-            // initials
-            const ini=studentName.split(' ').map(w=>w[0]||'').join('').substring(0,2).toUpperCase();
-            ctx.fillStyle='#00d2ff';
-            ctx.font=`bold 44px "Segoe UI",Arial`;
-            ctx.textAlign='center';
-            ctx.fillText(ini, ph.x+ph.w/2, ph.y+ph.h/2+16);
-            ctx.textAlign='left';
-        }
-
-        // ── info area ──
-        const ix=182, iy=200;
-
-        // name
-        ctx.fillStyle='#1a1a2e';
-        ctx.font='bold 24px "Segoe UI",Arial';
-        ctx.fillText(studentName, ix, iy);
-
-        // ID badge pill
-        const idText=studentId;
-        ctx.font='bold 14px "Segoe UI",Arial';
-        const idW=ctx.measureText(idText).width+24;
-        const grad2=ctx.createLinearGradient(ix,0,ix+idW,0);
-        grad2.addColorStop(0,'#00d2ff'); grad2.addColorStop(1,'#3a7bd5');
-        roundRect(ix,iy+8,idW,26,13);
-        ctx.fillStyle=grad2; ctx.fill();
-        ctx.fillStyle='#ffffff';
-        ctx.font='bold 13px "Segoe UI",Arial';
-        ctx.fillText(idText, ix+12, iy+26);
-
-        // info rows
-        const rows=[
-            ['Course',course],['Father',father],
-            ['Mobile',mobile],['DOB',dob],['Blood Group',blood]
-        ];
-        const labelColor='#999999', valueColor='#222222';
-        rows.forEach(([label,val],i)=>{
-            const ry=iy+52+(i*38);
-            ctx.fillStyle=labelColor;
-            ctx.font='11px "Segoe UI",Arial';
-            ctx.fillText(label.toUpperCase(), ix, ry);
-            ctx.fillStyle=valueColor;
-            ctx.font='bold 14px "Segoe UI",Arial';
-            ctx.fillText(val||'—', ix, ry+17);
-            // thin underline
-            ctx.strokeStyle='#eeeeee'; ctx.lineWidth=1;
-            ctx.beginPath(); ctx.moveTo(ix,ry+23); ctx.lineTo(W-28,ry+23); ctx.stroke();
-        });
-
-        // ── footer bar ──
-        const footerGrad=ctx.createLinearGradient(0,H-54,0,H);
-        footerGrad.addColorStop(0,'#f8f9ff'); footerGrad.addColorStop(1,'#edf0ff');
-        roundRect(0,H-54,W,54,0);
-        ctx.fillStyle=footerGrad; ctx.fill();
-        // top border
-        ctx.strokeStyle='#e0e3f0'; ctx.lineWidth=1;
-        ctx.beginPath(); ctx.moveTo(0,H-54); ctx.lineTo(W,H-54); ctx.stroke();
-        // cover top-corners of footer (make bottom corners round only)
-        roundRect(0,H-28,W,28,28);
-        ctx.fillStyle=footerGrad; ctx.fill();
-
-        // issued text
-        ctx.fillStyle='#aaaaaa';
-        ctx.font='13px "Segoe UI",Arial';
-        ctx.fillText(issued, 28, H-22);
-
-        // batch pill
-        const batchText=batch;
-        ctx.font='bold 12px "Segoe UI",Arial';
-        const bW=ctx.measureText(batchText).width+24;
-        const bGrad=ctx.createLinearGradient(W-28-bW,0,W-28,0);
-        bGrad.addColorStop(0,'#00d2ff'); bGrad.addColorStop(1,'#3a7bd5');
-        roundRect(W-28-bW, H-46, bW, 26, 13);
-        ctx.fillStyle=bGrad; ctx.fill();
-        ctx.fillStyle='#ffffff';
-        ctx.fillText(batchText, W-28-bW+12, H-28);
-
-        // ── logo inside box ──
-        if(logoEl && logoEl.complete && logoEl.naturalWidth>0){
-            ctx.save();
-            roundRect(30,24,68,68,10);
-            ctx.clip();
-            ctx.drawImage(logoEl,32,26,64,64);
-            ctx.restore();
-        } else {
-            ctx.fillStyle='#ffffff';
-            ctx.font='bold 22px "Segoe UI",Arial';
-            ctx.textAlign='center';
-            ctx.fillText(instName.substring(0,2).toUpperCase(),64,68);
-            ctx.textAlign='left';
-        }
-
-        // ── download ──
-        const a=document.createElement('a');
-        a.download=(studentId||'student')+'_IDCard.png';
-        a.href=canvas.toDataURL('image/png',1.0);
-        a.click();
-        toast('ID Card downloaded!');
+    // ━━ 4. PHOTO ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    // Positioned centred, straddling the header/body boundary
+    const PW=100, PT=122;
+    const PX=(594-PW)/2, PY=HDR-16;
+    ctx.shadowColor='rgba(0,0,0,0.18)'; ctx.shadowBlur=p(10); ctx.shadowOffsetY=p(3);
+    rr(PX,PY,PW,PT,8,'#dce4f5','#ffffff',3);
+    ctx.shadowBlur=0; ctx.shadowOffsetY=0;
+    if(photoEl && photoEl.complete && photoEl.naturalWidth>0){
+        ctx.save(); rr(PX+3,PY+3,PW-6,PT-6,6); ctx.clip();
+        ctx.drawImage(photoEl,p(PX+3),p(PY+3),p(PW-6),p(PT-6)); ctx.restore();
+    } else {
+        const ini=studentName.split(' ').map(w=>w[0]||'').join('').substring(0,2).toUpperCase();
+        setFont('bold',34); ctx.fillStyle=C_GRAD1; ctx.textAlign='center';
+        ctx.fillText(ini,CW/2,p(PY+PT/2+12)); ctx.textAlign='left';
     }
 
-    // Load images if needed
-    let pending=0;
-    function tryDraw(){ if(pending===0) drawCard(); }
+    // ━━ 5. NAME + ID PILL ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    const NY = PY+PT+18;
+    setFont('800',19); ctx.fillStyle=C_TEXT; ctx.textAlign='center';
+    ctx.fillText(trunc(studentName,22),CW/2,p(NY));
 
-    if(photoEl && (!photoEl.complete || photoEl.naturalWidth===0)){
-        pending++;
-        const tmp=new Image(); tmp.crossOrigin='anonymous'; tmp.src=photoEl.src;
-        tmp.onload=()=>{ photoEl.src=tmp.src; pending--; tryDraw(); };
-        tmp.onerror=()=>{ pending--; tryDraw(); };
-    }
-    if(logoEl && (!logoEl.complete || logoEl.naturalWidth===0)){
-        pending++;
-        const tmp=new Image(); tmp.crossOrigin='anonymous'; tmp.src=logoEl.src;
-        tmp.onload=()=>{ logoEl.src=tmp.src; pending--; tryDraw(); };
-        tmp.onerror=()=>{ pending--; tryDraw(); };
-    }
-    tryDraw();
+    // ID pill
+    setFont('bold',11.5); ctx.fillStyle=C_WHITE;
+    const idW=ctx.measureText(studentId).width+p(24);
+    const pX=(CW-idW)/2, pY=p(NY+6), pH=p(21);
+    rr((CW/SC-idW/SC*SC)/2, NY+6, idW/SC, 21, 10.5, gradient(0,NY+6,594,NY+27));
+    // redraw text on top
+    ctx.fillStyle=C_WHITE;
+    ctx.fillText(studentId, pX+p(12), pY+p(14.5));
+    ctx.textAlign='left';
+
+    // ━━ 6. INFO ROWS ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    const RX=18, RW=558;
+    let ry = NY + 36;
+    const rows=[
+        ['COURSE',       course],
+        ['BATCH',        batch],
+        ['FATHER',       father],
+        ['MOBILE',       mobile],
+        ['DATE OF BIRTH',dob],
+        ['BLOOD GROUP',  blood],
+    ];
+    const RH = 52;  // compact row height
+
+    rows.forEach(([lbl,val],i)=>{
+        // alternate bg
+        if(i%2===0) rr(RX-4,ry-14,RW+8,RH-2,6,C_LIGHT);
+        setFont('700',9.5); ctx.fillStyle=C_LABEL;
+        txt(lbl, RX, ry);
+        setFont('600',13.5); ctx.fillStyle=C_TEXT;
+        txt(trunc(val&&val!==''?val:'—',30), RX, ry+17);
+        // divider
+        ctx.strokeStyle=C_LINE; ctx.lineWidth=p(0.7);
+        ctx.beginPath(); ctx.moveTo(p(RX),p(ry+RH-8)); ctx.lineTo(p(RX+RW),p(ry+RH-8)); ctx.stroke();
+        ry += RH;
+    });
+
+    // ━━ 7. FOOTER CONTACT BAR ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    // Calculate footer start: just below last row with a small gap
+    const FTY = ry + 8;
+    const FTH = 950 - FTY;
+    ctx.fillStyle = gradient(0,FTY,594,950);
+    rr(0,FTY,594,FTH,16,null); ctx.fill();
+    ctx.fillRect(0,p(FTY),CW,p(16)); // cover top-radius
+
+    // Address
+    ctx.textAlign='center';
+    setFont('600',11); ctx.fillStyle='rgba(255,255,255,0.82)';
+    cTxt(INST_ADDR, FTY+17);
+
+    // thin separator
+    ctx.strokeStyle='rgba(255,255,255,0.28)'; ctx.lineWidth=p(0.6);
+    ctx.beginPath(); ctx.moveTo(p(40),p(FTY+23)); ctx.lineTo(p(554),p(FTY+23)); ctx.stroke();
+
+    // Phone
+    setFont('bold',12); ctx.fillStyle=C_WHITE;
+    cTxt(C1, FTY+37);
+
+    // WhatsApp — green badge + number
+    const waRowY = FTY+51;
+    const waNumText = INST_WP;
+    setFont('bold',12); ctx.fillStyle=C_WHITE;
+    const waNumW = ctx.measureText(waNumText).width;
+    const waCircR = p(9);
+    const waCircX = CW/2 - waNumW/2 - p(6) - waCircR;
+    const waCircY = p(waRowY-7);
+    // green circle
+    ctx.beginPath(); ctx.arc(waCircX, waCircY, waCircR, 0, Math.PI*2);
+    ctx.fillStyle='#25D366'; ctx.fill();
+    // WA letter inside
+    setFont('bold',9.5); ctx.fillStyle=C_WHITE; ctx.textAlign='center';
+    ctx.fillText('W', waCircX, waCircY+p(3.5));
+    ctx.textAlign='left';
+    // number
+    setFont('bold',12); ctx.fillStyle=C_WHITE;
+    ctx.fillText(waNumText, CW/2 - waNumW/2, p(waRowY));
+
+    // Email
+    setFont('400',10.5); ctx.fillStyle='rgba(255,255,255,0.8)';
+    cTxt(C3, FTY+65);
+
+    // Issued
+    setFont('400',9.5); ctx.fillStyle='rgba(255,255,255,0.55)';
+    cTxt(issued, FTY+78);
+    ctx.textAlign='left';
 }
 
-// ═══════════════════════════════════════════════════════════════════════════
-// ─── 2. BATCH TRANSFER ─────────────────────────────────────────────────────
-// ═══════════════════════════════════════════════════════════════════════════
+// ── DOWNLOAD — high-res 2× PNG ────────────────────────────────────────────
+function downloadIdCard(){
+    const data=_getCardData();
+    let pending=0;
+    function doRender(){
+        const c=document.createElement('canvas');
+        c.width=CARD_W2; c.height=CARD_H2;
+        _drawCard(c, data, CARD_W2, CARD_H2);
+        const a=document.createElement('a');
+        a.download=(data.studentId||'student')+'_IDCard.png';
+        a.href=c.toDataURL('image/png',1.0);
+        a.click();
+        toast('\u2705 Downloaded! High-res 600dpi (5.03\xd78.04cm)');
+    }
+    ['photoEl','logoEl'].forEach(k=>{
+        const el=data[k];
+        if(el&&(!el.complete||el.naturalWidth===0)){
+            pending++;
+            const t=new Image(); t.crossOrigin='anonymous'; t.src=el.src;
+            t.onload=()=>{data[k]=t;pending--;if(pending===0)doRender();};
+            t.onerror=()=>{pending--;if(pending===0)doRender();};
+        }
+    });
+    if(pending===0) doRender();
+}
+
+// ── PRINT — opens window sized exactly 5.03×8.04cm ───────────────────────
+function printIdCard(){
+    const data=_getCardData();
+    let pending=0;
+    function doRender(){
+        const c=document.createElement('canvas');
+        c.width=CARD_W2; c.height=CARD_H2;
+        _drawCard(c, data, CARD_W2, CARD_H2);
+        const url=c.toDataURL('image/png',1.0);
+        const pw=window.open('','_blank','width=340,height=560');
+        if(!pw){toast('Allow pop-ups to print','error');return;}
+        pw.document.write(`<!DOCTYPE html><html><head>
+        <meta charset="UTF-8"><title>ID Card</title>
+        <style>
+          @page{size:5.03cm 8.04cm;margin:0}
+          *{margin:0;padding:0;box-sizing:border-box}
+          html,body{width:5.03cm;height:8.04cm;background:#fff;overflow:hidden}
+          img{display:block;width:5.03cm;height:8.04cm}
+          .pb{position:fixed;bottom:8px;left:50%;transform:translateX(-50%);
+              padding:6px 18px;background:#007ec6;color:#fff;border:none;
+              border-radius:6px;font:13px sans-serif;cursor:pointer}
+          @media print{.pb{display:none}}
+        </style></head><body>
+        <img src="${url}">
+        <button class="pb" onclick="window.print()">\u{1F5A8} Print</button>
+        </body></html>`);
+        pw.document.close();
+        pw.onload=()=>setTimeout(()=>pw.print(),400);
+    }
+    ['photoEl','logoEl'].forEach(k=>{
+        const el=data[k];
+        if(el&&(!el.complete||el.naturalWidth===0)){
+            pending++;
+            const t=new Image(); t.crossOrigin='anonymous'; t.src=el.src;
+            t.onload=()=>{data[k]=t;pending--;if(pending===0)doRender();};
+            t.onerror=()=>{pending--;if(pending===0)doRender();};
+        }
+    });
+    if(pending===0) doRender();
+}
+
+
 function openBatchTransfer(id){
     const s = allStudents[id]; if(!s) return;
     closeModal('studentDetailModal');
@@ -3148,7 +3284,7 @@ function confirmBatchTransfer(){
         toast('Student is already in this batch', 'error'); return;
     }
 
-    if(!confirm(`Transfer ${s.name} from "${s.className} - ${s.batchName}" to "${newCls.name} - ${newBatch.name}"?`)) return;
+    // confirm handled by dcConfirm below
 
     const transferRecord = {
         fromClass: s.className, fromBatch: s.batchName,
@@ -3898,7 +4034,7 @@ function viewExamResults(examKey){
     document.getElementById('examContent').innerHTML=html;
 }
 
-function deleteExam(ek,name){ if(!confirm(`Delete exam "${name}"?`)) return; db.ref('exams/'+ek).remove().then(()=>toast('Deleted')); }
+function deleteExam(ek,name){dcConfirm(`Exam "${name}" and all marks will be permanently deleted.`,{title:'Delete Exam?',type:'danger',icon:'📝',okText:'Delete'}).then(ok=>{if(ok)db.ref('exams/'+ek).remove().then(()=>toast('Deleted'));});}
 
 // ─── REOPEN COURSE (open-ended monthly fee) ───────────────────────────────
 function openReopenCourse(id){
