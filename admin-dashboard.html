@@ -239,17 +239,49 @@
         .fee-calc-row.total{font-size:15px;font-weight:700;color:var(--text);border-top:1px solid rgba(255,255,255,0.08);padding-top:10px;margin-top:6px;}
 
         /* STUDENT DETAIL */
-        .detail-modal{max-width:700px;}
-        .detail-top{text-align:center;padding:25px 25px 0;}
-        .detail-avatar{width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--secondary));display:flex;justify-content:center;align-items:center;font-weight:700;font-size:30px;margin:0 auto 12px;border:3px solid var(--border);overflow:hidden;}
-        .detail-avatar img{width:100%;height:100%;object-fit:cover;}
-        .detail-name{font-size:22px;font-weight:700;}
-        .detail-id{font-size:13px;color:var(--primary);margin-top:4px;letter-spacing:2px;}
-        .detail-actions{display:flex;justify-content:center;gap:8px;margin-top:15px;flex-wrap:wrap;}
+        /* ── TABBED STUDENT DETAIL MODAL ── */
+        .detail-modal{max-width:760px;padding:0!important;overflow:hidden;}
+        .detail-modal .modal-header{display:none;}
+        /* Header */
+        .detail-header{display:flex;align-items:center;gap:14px;padding:16px 20px;background:var(--card2);position:relative;}
+        .detail-close-btn{position:absolute;top:14px;right:16px;width:30px;height:30px;border-radius:8px;border:1px solid var(--border);background:var(--card);color:var(--text2);font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
+        .detail-close-btn:hover{background:rgba(255,71,87,0.15);border-color:var(--danger);color:var(--danger);}
+        .detail-header-avatar{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,var(--primary),var(--secondary));display:flex;justify-content:center;align-items:center;font-weight:800;font-size:20px;border:2px solid var(--border);overflow:hidden;flex-shrink:0;}
+        .detail-header-avatar img{width:100%;height:100%;object-fit:cover;}
+        .detail-header-info{flex:1;min-width:0;margin-right:36px;}
+        .detail-header-name{font-size:18px;font-weight:800;color:var(--text);line-height:1.2;}
+        .detail-header-id{font-size:13px;color:var(--primary);font-weight:700;letter-spacing:1.5px;margin-top:3px;display:flex;align-items:center;gap:8px;}
+        .detail-header-sub{font-size:12px;color:var(--text3);margin-top:3px;}
+        /* Tab bar */
+        .detail-tabs{display:flex;background:var(--card2);border-bottom:1px solid var(--border);padding:0 20px;gap:2px;overflow-x:auto;}
+        .detail-tabs::-webkit-scrollbar{display:none;}
+        .detail-tab{padding:11px 16px;font-size:13px;font-weight:600;color:var(--text3);cursor:pointer;border-bottom:2px solid transparent;transition:all 0.18s;white-space:nowrap;display:flex;align-items:center;gap:6px;flex-shrink:0;}
+        .detail-tab:hover{color:var(--text2);}
+        .detail-tab.active{color:var(--primary);border-bottom-color:var(--primary);}
+        .detail-tab .tab-badge{background:var(--primary);color:#000;font-size:10px;font-weight:800;padding:1px 6px;border-radius:10px;min-width:18px;text-align:center;}
+        /* Tab panels */
+        .detail-panels{max-height:62vh;overflow-y:auto;padding:20px;}
+        .detail-panel{display:none;}
+        .detail-panel.active{display:block;}
+        /* Info grid — matches the screenshot style */
+        .di-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+        .di-item{padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.05);}
+        .di-item.full{grid-column:1/-1;}
+        .di-item label{font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:1px;display:block;margin-bottom:4px;}
+        .di-item p{font-size:14px;color:var(--text);margin:0;}
+        /* Panel section title */
+        .panel-section-title{font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:2px;margin:18px 0 10px;padding-bottom:6px;border-bottom:1px solid var(--border);}
+        .panel-section-title:first-child{margin-top:0;}
+        /* Enrollment fee card */
+        .enroll-fee-card{border:1px solid var(--border);border-radius:12px;margin-bottom:16px;overflow:hidden;}
+        .enroll-fee-header{padding:10px 14px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
+        .enroll-fee-title{font-size:13px;font-weight:700;}
+        .enroll-fee-body{padding:14px;}
+        /* backward compat */
         .photo-upload-area{margin-top:10px;display:flex;justify-content:center;gap:8px;align-items:center;}
         .photo-upload-label{font-size:11px;padding:5px 12px;border:1px solid var(--border);border-radius:8px;color:var(--text3);cursor:pointer;transition:all 0.3s;}
         .photo-upload-label:hover{border-color:var(--primary);color:var(--primary);}
-        .detail-section{padding:0 25px;margin-bottom:20px;}
+        .detail-section{padding:0;margin-bottom:20px;}
         .detail-section-title{font-size:12px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border);}
         .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
         .detail-item label{font-size:11px;color:var(--text3);display:block;margin-bottom:2px;}
@@ -516,6 +548,27 @@
         /* Reopen batch button */
         .btn-reopen{background:rgba(46,213,115,0.12);color:var(--success);border:1px solid rgba(46,213,115,0.25);}
         .btn-reopen:hover{background:rgba(46,213,115,0.22);}
+
+        /* ── UNPAID FLASH BADGE on student card ── */
+        .student-card{position:relative;}
+        .unpaid-flash-badge{position:absolute;top:10px;right:10px;background:linear-gradient(135deg,#ff4757,#c0392b);color:#fff;font-size:9px;font-weight:900;padding:3px 9px;border-radius:20px;letter-spacing:1.5px;text-transform:uppercase;animation:unpaidPulse 1.4s ease-in-out infinite;z-index:3;pointer-events:none;}
+        @keyframes unpaidPulse{0%,100%{box-shadow:0 0 0 0 rgba(255,71,87,0.6);}50%{box-shadow:0 0 10px 4px rgba(255,71,87,0.25);}}
+
+        /* ── PAYMENT EDIT / DELETE small inline buttons ── */
+        .pay-action-btn{width:26px;height:26px;border-radius:6px;border:none;cursor:pointer;font-size:12px;display:inline-flex;align-items:center;justify-content:center;transition:all 0.2s;vertical-align:middle;}
+        .pay-edit-btn{background:rgba(0,210,255,0.12);color:var(--primary);}
+        .pay-edit-btn:hover{background:rgba(0,210,255,0.25);}
+        .pay-del-btn{background:rgba(255,71,87,0.1);color:var(--danger);}
+        .pay-del-btn:hover{background:rgba(255,71,87,0.22);}
+
+        /* ── COPY ID button ── */
+        .copy-id-btn{background:rgba(0,210,255,0.1);border:1px solid rgba(0,210,255,0.2);color:var(--primary);border-radius:6px;padding:1px 7px;font-size:11px;cursor:pointer;transition:all 0.2s;line-height:1.6;}
+        .copy-id-btn:hover{background:rgba(0,210,255,0.22);transform:scale(1.05);}
+        .copy-id-btn.copied{background:rgba(46,213,115,0.15);border-color:rgba(46,213,115,0.3);color:var(--success);}
+
+        /* ── PRINT UNPAID button ── */
+        .btn-print-unpaid{background:rgba(255,71,87,0.12);color:var(--danger);border:1px solid rgba(255,71,87,0.3);}
+        .btn-print-unpaid:hover{background:rgba(255,71,87,0.22);}
 
         @media(max-width:768px){
             .sidebar{transform:translateX(-100%);}.sidebar.open{transform:translateX(0);}
@@ -840,16 +893,16 @@
         <div class="modal-body">
             <div class="stu-type-toggle">
                 <button class="stu-type-btn active" id="btnNewStu" onclick="setStuMode('new')">🆕 New Student</button>
-                <button class="stu-type-btn" id="btnOldStu" onclick="setStuMode('old')">🔄 Old Student (Re-enroll)</button>
+                <button class="stu-type-btn" id="btnOldStu" onclick="setStuMode('old')">🔗 Add New Batch to Existing Student</button>
             </div>
             <div id="oldStuSection" style="display:none">
                 <div class="old-stu-search">
-                    <label>🔍 Search Existing Student</label>
+                    <label>🔍 Search Existing Student (by name or ID)</label>
                     <input type="text" class="old-stu-input" id="oldStuQ" placeholder="Type name or student ID..." oninput="searchOldStu(this.value)">
                     <div class="old-stu-results" id="oldStuResults"></div>
                 </div>
                 <div id="oldStuPrefill" style="display:none" class="old-stu-prefill">
-                    ✅ Personal details auto-filled from previous record. Only enter new course/batch & fee details below.
+                    ✅ Student found. Their <strong>original ID is preserved</strong> — no new ID will be created. Just select the new course/batch &amp; fee below.
                 </div>
             </div>
             <div class="form-row">
@@ -859,7 +912,10 @@
             <div id="batchClosedWarning" style="display:none;background:rgba(255,71,87,0.1);border:1px solid rgba(255,71,87,0.3);border-radius:10px;padding:12px 14px;margin-bottom:14px;font-size:13px;color:var(--danger)">
                 ⛔ This batch is closed. Please select a running batch or reopen this batch first.
             </div>
-            <div class="form-group"><label>Auto-Generated Student ID</label><input type="text" id="stuId" readonly class="auto-id" placeholder="Select course & batch first"></div>
+            <div class="form-group">
+                <label id="stuIdLabel">Auto-Generated Student ID</label>
+                <input type="text" id="stuId" readonly class="auto-id" placeholder="Select course &amp; batch first">
+            </div>
             <div id="personalFields">
                 <div class="form-row">
                     <div class="form-group"><label>Full Name *</label><input type="text" id="stuName" placeholder="Student name"></div>
@@ -947,6 +1003,12 @@
         <div class="modal-body">
             <div class="form-group"><label>Student</label><input type="text" id="payStudent" readonly class="auto-id"></div>
             <input type="hidden" id="payStudentId">
+            <input type="hidden" id="payEnrollKey"><!-- empty=root enrollment, else sub-enrollment key -->
+            <!-- shown only when student has multiple enrollments -->
+            <div class="form-group" id="payEnrollGroup" style="display:none">
+                <label>📖 Which Course/Batch? *</label>
+                <select id="payEnrollSel" onchange="onPayEnrollChange()"></select>
+            </div>
             <div class="form-group" id="payMonthGroup" style="display:none"><label>For Month</label><input type="month" id="payMonth"></div>
             <div class="form-group"><label>Amount (₹) *</label><input type="number" id="payAmount" placeholder="Enter amount"></div>
             <div class="form-group"><label>Method *</label><select id="payMethod"><option value="">Select</option><option>Cash</option><option>UPI</option><option>Bank Transfer</option><option>Cheque</option><option>Online</option></select></div>
@@ -1207,6 +1269,59 @@
                 &#128161; <strong>CSV</strong> includes all student payment records.<br>
                 <strong>Print/PDF</strong> gives a formatted printable table.
             </div>
+        </div>
+    </div>
+</div>
+
+<!-- ─── DISCONTINUE ENROLLMENT MODAL ──────────────────────────────────────── -->
+<div class="modal-overlay" id="discontinueEnrollModal">
+    <div class="modal" style="max-width:420px">
+        <div class="modal-header"><h3>🚫 Discontinue Batch</h3><button class="modal-close" onclick="closeModal('discontinueEnrollModal')">✕</button></div>
+        <div class="modal-body">
+            <input type="hidden" id="discStudentId">
+            <input type="hidden" id="discEnrollKey">
+            <div style="background:rgba(255,71,87,0.07);border:1px solid rgba(255,71,87,0.2);border-radius:10px;padding:12px 14px;margin-bottom:16px;font-size:13px">
+                <div style="font-weight:700;color:var(--danger);margin-bottom:4px">Batch being discontinued:</div>
+                <div id="discBatchName" style="color:var(--text1);font-weight:600"></div>
+            </div>
+            <div style="background:rgba(255,165,2,0.06);border:1px solid rgba(255,165,2,0.18);border-radius:10px;padding:10px 14px;margin-bottom:16px;font-size:12px;color:var(--warning)">
+                ✅ The student's <strong>ID will NOT change</strong>. Only this batch is discontinued.<br>
+                Their other batches and full history remain intact.
+            </div>
+            <div class="form-group">
+                <label>Reason for discontinuing *</label>
+                <textarea id="discReason" placeholder="e.g. Student shifted to another city, financial issues, personal reason..." rows="3" style="width:100%;resize:vertical"></textarea>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-outline" onclick="closeModal('discontinueEnrollModal');openDetail(document.getElementById('discStudentId').value)">Cancel</button>
+            <button class="btn btn-danger" onclick="confirmDiscontinueEnroll()">🚫 Confirm Discontinue</button>
+        </div>
+    </div>
+</div>
+
+<!-- ─── EDIT PAYMENT MODAL ────────────────────────────────────────────────── -->
+<div class="modal-overlay" id="editPaymentModal">
+    <div class="modal" style="max-width:420px">
+        <div class="modal-header"><h3>&#9999;&#65039; Edit Payment</h3><button class="modal-close" onclick="closeModal('editPaymentModal')">&#10005;</button></div>
+        <div class="modal-body">
+            <input type="hidden" id="epStudentId">
+            <input type="hidden" id="epPayKey">
+            <input type="hidden" id="epOrigAmount">
+            <div style="background:rgba(255,165,2,0.07);border:1px solid rgba(255,165,2,0.2);border-radius:10px;padding:12px 14px;margin-bottom:16px;font-size:12px;color:var(--warning)">
+                &#9888; Editing this payment will automatically recalculate the student's total paid &amp; balance due.
+            </div>
+            <div class="form-group" id="epMonthGroup" style="display:none"><label>For Month</label><input type="month" id="epMonth"></div>
+            <div class="form-group"><label>Amount (&#8377;) *</label><input type="number" id="epAmount" placeholder="Enter amount"></div>
+            <div class="form-group"><label>Method *</label>
+                <select id="epMethod"><option value="">Select</option><option>Cash</option><option>UPI</option><option>Bank Transfer</option><option>Cheque</option><option>Online</option></select>
+            </div>
+            <div class="form-group"><label>Date *</label><input type="date" id="epDate"></div>
+            <div class="form-group"><label>Note</label><input type="text" id="epNote" placeholder="Optional note"></div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-outline" onclick="closeModal('editPaymentModal')">Cancel</button>
+            <button class="btn btn-primary" onclick="saveEditPayment()">&#128190; Save Changes</button>
         </div>
     </div>
 </div>
@@ -1838,21 +1953,28 @@ function renderClasses(){
         if(!batch){setClassView('batches',classNavState.classKey,null);return;}
         tabs.style.display='none';
         const bSt=batch.status||'running';
+        const isClosedUnpaid=(bSt==='closed_unpaid');
         const closedTag=isBatchClosed(cls,classNavState.batchKey)?`<span class="batch-status-tag ${bSt}" style="font-size:11px;margin-left:8px">${bSt==='closed_paid'?'✅ Paid & Closed':'⚠️ Unpaid & Closed'}</span>`:'<span class="batch-status-tag running" style="font-size:11px;margin-left:8px">▶ Running</span>';
         const addBtnDisabled=isBatchClosed(cls,classNavState.batchKey)?'style="opacity:0.4;cursor:not-allowed;pointer-events:none;" title="Batch is closed"':'';
+        // Print Unpaid button — only shown for closed_unpaid batches
+        const printUnpaidBtn=isClosedUnpaid?`<button class="btn btn-print-unpaid btn-sm" onclick="printUnpaidStudents('${classNavState.classKey}','${classNavState.batchKey}')">🖨 Print Unpaid</button>`:'';
         hdr.innerHTML=`<div class="section-header">
             <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
                 <button class="btn-back" onclick="setClassView('batches','${classNavState.classKey}',null)">← Back</button>
                 <h2>📚 ${batch.name} ${closedTag}</h2>
             </div>
-            <button class="btn btn-primary" ${addBtnDisabled} onclick="openAddStuModal()">+ Add Student</button>
+            <div style="display:flex;gap:8px;align-items:center">
+                ${printUnpaidBtn}
+                <button class="btn btn-primary" ${addBtnDisabled} onclick="openAddStuModal()">+ Add Student</button>
+            </div>
         </div>`;
         bc.style.display='flex';
         bc.innerHTML=`<span class="bc-link" onclick="setClassView('classes',null,null)">📖 Courses</span><span class="bc-sep">›</span><span class="bc-link" onclick="setClassView('batches','${classNavState.classKey}',null)">📘 ${cls.name}</span><span class="bc-sep">›</span><span>📚 ${batch.name}</span>`;
         const stuList=getStudentsInBatch(cls.code,batch.code);
         if(!stuList.length){g.className='class-grid';g.innerHTML='<div class="empty-state"><div class="empty-icon">👨‍🎓</div><p>No students in this batch</p></div>';return;}
         g.className='students-grid';
-        g.innerHTML=stuList.map(([k2,s])=>buildStudentCard(k2,s)).join('');
+        // Pass showUnpaidBadge=true for closed_unpaid batches
+        g.innerHTML=stuList.map(([k2,s])=>buildStudentCard(k2,s,isClosedUnpaid)).join('');
     }
 }
 
@@ -1874,9 +1996,63 @@ function confirmFinishBatch(){
     const stus=getStudentsInBatch(cls.code,b.code);
     const hasUnpaid=stus.some(([,s])=>getMonthlyDueByDate(s)>0);
     const newStatus=hasUnpaid?'closed_unpaid':'closed_paid';
-    db.ref('classes/'+classKey+'/batches/'+batchKey+'/status').set(newStatus)
-      .then(()=>db.ref('classes/'+classKey+'/batches/'+batchKey+'/closedAt').set(new Date().toISOString()))
-      .then(()=>{toast('Batch closed! Status: '+(hasUnpaid?'Unpaid':'Paid & Cleared'));closeModal('finishBatchModal');renderClasses();})
+
+    // Determine close month = current month (YYYY-MM)
+    const now=new Date();
+    const closeMonth=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0');
+
+    // Batch status updates
+    const batchUpdates={};
+    batchUpdates[`classes/${classKey}/batches/${batchKey}/status`]=newStatus;
+    batchUpdates[`classes/${classKey}/batches/${batchKey}/closedAt`]=now.toISOString();
+    batchUpdates[`classes/${classKey}/batches/${batchKey}/closeMonth`]=closeMonth;
+
+    // Auto-finish all open-ended monthly students in this batch
+    // Open-ended = feeType==='monthly' AND no finishMonth AND months===0
+    const autoFinishStudents=stus.filter(([,s])=>
+        s.feeType==='monthly' && !s.finishMonth && (!s.months||s.months===0) && s.startMonth
+    );
+
+    autoFinishStudents.forEach(([sid,s])=>{
+        const [sy,sm]=s.startMonth.split('-').map(Number);
+        const [ey,em]=closeMonth.split('-').map(Number);
+        // months elapsed inclusive: from startMonth to closeMonth
+        const monthCount=Math.max(1,(ey-sy)*12+(em-sm)+1);
+        const totalFee=monthCount*(s.monthlyFee||0);
+        const netFee=Math.max(0,totalFee-(s.discount||0));
+        const newDue=Math.max(0,netFee-(s.paidAmount||0));
+        batchUpdates[`students/${sid}/finishMonth`]=closeMonth;
+        batchUpdates[`students/${sid}/months`]=monthCount;
+        batchUpdates[`students/${sid}/totalFee`]=totalFee;
+        batchUpdates[`students/${sid}/netFee`]=netFee;
+        batchUpdates[`students/${sid}/dueAmount`]=newDue;
+        batchUpdates[`students/${sid}/autoFinishedByBatch`]=true;
+    });
+
+    db.ref().update(batchUpdates)
+      .then(()=>{
+          // Log courseHistory for auto-finished students separately
+          const logPromises=autoFinishStudents.map(([sid,s])=>{
+              const [sy,sm]=s.startMonth.split('-').map(Number);
+              const [ey,em]=closeMonth.split('-').map(Number);
+              const monthCount=Math.max(1,(ey-sy)*12+(em-sm)+1);
+              return db.ref(`students/${sid}/courseHistory`).push({
+                  action:'auto_finished_by_batch_close',
+                  closeMonth,
+                  monthCount,
+                  reason:`Batch "${b.name}" closed`,
+                  date:now.toISOString(),
+                  by:'System'
+              });
+          });
+          return Promise.all(logPromises);
+      })
+      .then(()=>{
+          const autoMsg=autoFinishStudents.length>0?` Auto-finished ${autoFinishStudents.length} open-ended student(s).`:'';
+          toast('Batch closed! Status: '+(hasUnpaid?'Unpaid':'Paid & Cleared')+autoMsg);
+          closeModal('finishBatchModal');
+          renderClasses();
+      })
       .catch(()=>toast('Failed','error'));
 }
 
@@ -2012,6 +2188,25 @@ function populateDropdowns(){
     document.getElementById('stuClass').innerHTML=o;
     document.getElementById('filterClass').innerHTML=f;
     document.getElementById('noticeCourse').innerHTML=nc;
+    // Also reset batch filter to "All Batches"
+    document.getElementById('filterBatch').innerHTML='<option value="">All Batches</option>';
+}
+
+// Populate filterBatch dropdown based on selected filterClass (by classCode)
+function onFilterClassChange(){
+    const classCode=document.getElementById('filterClass').value;
+    const batchSel=document.getElementById('filterBatch');
+    batchSel.innerHTML='<option value="">All Batches</option>';
+    if(classCode){
+        // Find the class entry with this code
+        const entry=Object.values(allClasses).find(c=>c.code===classCode);
+        if(entry&&entry.batches){
+            Object.values(entry.batches).forEach(b=>{
+                batchSel.innerHTML+=`<option value="${b.code}">${b.name}${b.status&&b.status!=='running'?' ('+b.status.replace('_',' ')+')':''}</option>`;
+            });
+        }
+    }
+    renderStudents();
 }
 
 // ─── FEE TYPE (add student) ───────────────────────────────────────────────────
@@ -2045,7 +2240,7 @@ function calcMonthlyFee(){
     document.getElementById('calcMonthNet').textContent=months>0?'₹'+Math.max(0,sub-disc).toLocaleString():'₹'+mf.toLocaleString()+'/mo';
 }
 
-// ─── STUDENT MODE (New / Old) ─────────────────────────────────────────────────
+// ─── STUDENT MODE (New / Add-to-existing) ────────────────────────────────────
 function setStuMode(mode){
     stuMode=mode;selectedOldStudent=null;
     document.getElementById('btnNewStu').classList.toggle('active',mode==='new');
@@ -2055,6 +2250,9 @@ function setStuMode(mode){
     document.getElementById('oldStuPrefill').style.display='none';
     document.getElementById('oldStuResults').innerHTML='';
     document.getElementById('oldStuQ').value='';
+    const idEl=document.getElementById('stuId');
+    idEl.value=''; idEl.style.color='';
+    document.getElementById('stuIdLabel').textContent='Auto-Generated Student ID';
     if(mode==='new') clearPersonalFields();
 }
 function clearPersonalFields(){
@@ -2065,16 +2263,24 @@ function searchOldStu(q){
     const res=document.getElementById('oldStuResults');
     if(!q||q.trim().length<2){res.innerHTML='';return;}
     const lower=q.toLowerCase();
-    const matches=Object.entries(allStudents).filter(([,s])=>s.name.toLowerCase().includes(lower)||s.id.toLowerCase().includes(lower)).slice(0,8);
+    const matches=Object.entries(allStudents).filter(([,s])=>
+        s.name.toLowerCase().includes(lower)||s.id.toLowerCase().includes(lower)
+    ).slice(0,8);
     if(!matches.length){res.innerHTML='<div style="padding:10px;color:var(--text3);font-size:13px">No students found</div>';return;}
-    res.innerHTML=matches.map(([k,s])=>`<div class="old-stu-item" onclick="selectOldStu('${k}')">
-        <div><div style="font-weight:600;font-size:13px">${s.name}</div><div class="old-stu-info">${s.id} • ${s.className} — ${s.batchName}</div></div>
-        <span style="font-size:11px;color:var(--primary)">${s.mobile}</span>
-    </div>`).join('');
+    res.innerHTML=matches.map(([k,s])=>{
+        const allE=getStudentAllEnrollments(s);
+        const batchInfo=allE.map(({data:e})=>`${e.className||''}–${e.batchName||''}`).join(' | ');
+        return`<div class="old-stu-item" onclick="selectOldStu('${k}')">
+            <div><div style="font-weight:600;font-size:13px">${s.name}</div>
+            <div class="old-stu-info">🪪 ${s.id} &nbsp;·&nbsp; ${batchInfo}</div></div>
+            <span style="font-size:11px;color:var(--primary)">${s.mobile}</span>
+        </div>`;
+    }).join('');
 }
-function selectOldStu(id){
-    const s=allStudents[id];if(!s)return;
-    selectedOldStudent=s;
+function selectOldStu(firebaseKey){
+    const s=allStudents[firebaseKey];if(!s)return;
+    selectedOldStudent={...s,_firebaseKey:firebaseKey};
+    // Pre-fill personal fields (hidden in 'old' mode but populated for safety)
     document.getElementById('stuName').value=s.name;
     document.getElementById('stuFather').value=s.fatherName||'';
     document.getElementById('stuMother').value=s.motherName||'';
@@ -2086,16 +2292,106 @@ function selectOldStu(id){
     document.getElementById('stuAddress').value=s.address||'';
     document.getElementById('stuSchool').value=s.school||'';
     document.getElementById('stuBlood').value=s.bloodGroup||'';
+    selectedOldStudent._photoRef=s.photo||null;
     document.getElementById('oldStuPrefill').style.display='block';
     document.getElementById('oldStuResults').querySelectorAll('.old-stu-item').forEach(el=>el.classList.remove('selected'));
     event.currentTarget.classList.add('selected');
-    selectedOldStudent._photoRef=s.photo||null;
+    // *** LOCK to existing ID — single ID rule ***
+    const idEl=document.getElementById('stuId');
+    idEl.value=s.id;
+    idEl.style.color='var(--success)';
+    document.getElementById('stuIdLabel').textContent='🔒 Student ID (Preserved — same ID, no new ID)';
+    document.getElementById('addStuConfirmBtn').style.opacity='';
+    document.getElementById('addStuConfirmBtn').style.pointerEvents='';
 }
 
 // ─── STUDENTS ─────────────────────────────────────────────────────────────────
 function listenStudents(){db.ref('students').on('value',s=>{allStudents=s.val()||{};renderStudents();updateDash();renderClasses();});}
-function cntClass(cc){return Object.values(allStudents).filter(s=>s.classCode===cc).length;}
-function cntBatch(cc,bc){return Object.values(allStudents).filter(s=>s.classCode===cc&&s.batchCode===bc).length;}
+// ─── ENROLLMENT HELPERS (single-ID model) ─────────────────────────────────────
+
+// Return ALL enrollments for a student as flat array:
+// [{data, key, isRoot}]  key=null means root, else sub-enrollment key
+function getStudentAllEnrollments(s){
+    const list=[{data:s, key:null, isRoot:true}];
+    if(s.enrollments){
+        Object.entries(s.enrollments).forEach(([k,e])=>list.push({data:e, key:k, isRoot:false}));
+    }
+    return list;
+}
+
+// Get total due across ALL enrollments of a student
+function getStudentTotalDue(s){
+    return getStudentAllEnrollments(s).reduce((sum,{data:e})=>sum+Math.max(0,getMonthlyDueByDate(e)),0);
+}
+
+// Get total paid across ALL enrollments
+function getStudentTotalPaid(s){
+    return getStudentAllEnrollments(s).reduce((sum,{data:e})=>sum+(e.paidAmount||0),0);
+}
+
+// Check if a student has any enrollment in a running batch (and not discontinued)
+function hasAnyRunningEnrollment(s){
+    return getStudentAllEnrollments(s).some(({data:e})=>{
+        if(e.status==='discontinued') return false;
+        return getBatchStatusByCode(e.classCode,e.batchCode)==='running';
+    });
+}
+
+// Get batch status given classCode + batchCode (searches allClasses)
+function getBatchStatusByCode(classCode, batchCode){
+    for(const cKey of Object.keys(allClasses)){
+        const cls=allClasses[cKey];
+        if(cls.code!==classCode) continue;
+        for(const bKey of Object.keys(cls.batches||{})){
+            const b=cls.batches[bKey];
+            if(b.code===batchCode) return b.status||'running';
+        }
+    }
+    return 'running';
+}
+
+function getStudentsInBatch(classCode, batchCode){
+    // Returns [key, enrollmentData] where enrollmentData is root or sub-enrollment
+    // merged with personal info for display
+    const result=[];
+    Object.entries(allStudents).forEach(([k,s])=>{
+        // Root enrollment
+        if(s.classCode===classCode && s.batchCode===batchCode){
+            result.push([k, s]);
+        }
+        // Sub-enrollments
+        if(s.enrollments){
+            Object.entries(s.enrollments).forEach(([ek,e])=>{
+                if(e.classCode===classCode && e.batchCode===batchCode){
+                    // Merge personal info from root, fee/batch from enrollment
+                    const merged={...s,...e,_enrollKey:ek,_parentKey:k};
+                    // Override key so openDetail uses parent key
+                    result.push([k, merged]);
+                }
+            });
+        }
+    });
+    return result;
+}
+
+function cntClass(cc){
+    // Count unique students with at least one enrollment in this class
+    const keys=new Set();
+    Object.entries(allStudents).forEach(([k,s])=>{
+        if(s.classCode===cc) keys.add(k);
+        if(s.enrollments) Object.values(s.enrollments).forEach(e=>{if(e.classCode===cc) keys.add(k);});
+    });
+    return keys.size;
+}
+
+function cntBatch(cc,bc){
+    const keys=new Set();
+    Object.entries(allStudents).forEach(([k,s])=>{
+        if(s.classCode===cc&&s.batchCode===bc) keys.add(k);
+        if(s.enrollments) Object.values(s.enrollments).forEach(e=>{if(e.classCode===cc&&e.batchCode===bc) keys.add(k);});
+    });
+    return keys.size;
+}
 
 function onStuClassChange(){
     const ck=document.getElementById('stuClass').value,bs=document.getElementById('stuBatch');
@@ -2115,12 +2411,32 @@ function generateId(){
     const ck=document.getElementById('stuClass').value,bk=document.getElementById('stuBatch').value,el=document.getElementById('stuId');
     const warn=document.getElementById('batchClosedWarning');
     warn.style.display='none';
-    if(!ck||!bk){el.value='';return;}
+
+    // *** SINGLE-ID RULE: if re-enrolling, lock to existing ID ***
+    if(stuMode==='old' && selectedOldStudent){
+        el.value=selectedOldStudent.id;
+        el.style.color='var(--success)';
+        // Still check if target batch is closed
+        if(ck&&bk){
+            const cls=allClasses[ck],batch=cls&&cls.batches[bk];
+            if(batch&&(batch.status==='closed_paid'||batch.status==='closed_unpaid')){
+                el.value=''; el.style.color='';
+                warn.style.display='block';
+                document.getElementById('addStuConfirmBtn').style.opacity='0.4';
+                document.getElementById('addStuConfirmBtn').style.pointerEvents='none';
+            } else {
+                document.getElementById('addStuConfirmBtn').style.opacity='';
+                document.getElementById('addStuConfirmBtn').style.pointerEvents='';
+            }
+        }
+        return;
+    }
+
+    if(!ck||!bk){el.value='';el.style.color='';return;}
     const cls=allClasses[ck],batch=cls.batches[bk];
     if(!cls||!batch)return;
-    // Check if batch is closed
     if(batch.status==='closed_paid'||batch.status==='closed_unpaid'){
-        el.value='';
+        el.value='';el.style.color='';
         warn.style.display='block';
         document.getElementById('addStuConfirmBtn').style.opacity='0.4';
         document.getElementById('addStuConfirmBtn').style.pointerEvents='none';
@@ -2128,6 +2444,7 @@ function generateId(){
     }
     document.getElementById('addStuConfirmBtn').style.opacity='';
     document.getElementById('addStuConfirmBtn').style.pointerEvents='';
+    el.style.color='';
     const pfx='DC'+cls.code+batch.code;
     let mx=0;
     Object.values(allStudents).forEach(s=>{if(s.id&&s.id.startsWith(pfx)){const n=parseInt(s.id.replace(pfx,''))||0;if(n>mx)mx=n;}});
@@ -2152,7 +2469,8 @@ function openAddStuModal(){
     document.getElementById('stuTotalDiscount').value='0';document.getElementById('stuMonthlyDiscount').value='0';
     document.getElementById('stuClass').value='';
     document.getElementById('stuBatch').innerHTML='<option value="">Select Batch</option>';
-    document.getElementById('stuId').value='';
+    const idEl=document.getElementById('stuId'); idEl.value=''; idEl.style.color='';
+    document.getElementById('stuIdLabel').textContent='Auto-Generated Student ID';
     document.getElementById('feeTypeTotal').classList.remove('selected');
     document.getElementById('feeTypeMonthly').classList.remove('selected');
     document.getElementById('totalFeeFields').classList.remove('show');
@@ -2170,11 +2488,12 @@ function addStudent(){
     const gender=document.getElementById('stuGender').value;
     const mobile=document.getElementById('stuMobile').value.trim();
     const pmobile=document.getElementById('stuParentMobile').value.trim();
-    if(!ck||!bk||!id||!name||!father||!dob||!gender||!mobile||!pmobile){toast('Fill all required fields','error');return;}
-    if(!/^\d{2}-\d{2}-\d{4}$/.test(dob)){toast('DOB: DD-MM-YYYY','error');return;}
+
+    if(!ck||!bk||!id){toast('Select course & batch first','error');return;}
     if(!selectedFeeType){toast('Select a Fee Type!','error');return;}
     const cls=allClasses[ck],batch=cls.batches[bk];
     if(batch.status==='closed_paid'||batch.status==='closed_unpaid'){toast('Cannot add to a closed batch!','error');return;}
+
     let totalFee=0,discount=0,netFee=0,monthlyFee=0,months=0,startMonth='';
     if(selectedFeeType==='total'){
         totalFee=parseInt(document.getElementById('stuTotalFee').value)||0;
@@ -2190,8 +2509,40 @@ function addStudent(){
         if(months>0){totalFee=monthlyFee*months;netFee=Math.max(0,totalFee-discount);}
         else{totalFee=0;netFee=0;}
     }
+
+    // ═══════════════════════════════════════════════════════════════════
+    // *** SINGLE-ID RULE: Adding new batch to EXISTING student ***
+    // Push enrollment to existing record — NO new ID, NO new Firebase record
+    // ═══════════════════════════════════════════════════════════════════
+    if(stuMode==='old' && selectedOldStudent){
+        const existingKey=selectedOldStudent._firebaseKey||selectedOldStudent.id;
+        const enrollData={
+            classCode:cls.code,className:cls.name,
+            batchCode:batch.code,batchName:batch.name,
+            feeType:selectedFeeType,totalFee,monthlyFee,months,startMonth,discount,netFee,
+            paidAmount:0,dueAmount:netFee,
+            joinDate:new Date().toISOString().split('T')[0],
+            payments:{},
+            status:'active',
+            createdAt:new Date().toISOString()
+        };
+        db.ref(`students/${existingKey}/enrollments`).push(enrollData)
+            .then(()=>{
+                toast(`✅ New batch added to ${selectedOldStudent.name}! ID unchanged: ${selectedOldStudent.id}`);
+                closeModal('addStudentModal');
+            }).catch(err=>toast(err.message,'error'));
+        return;
+    }
+
+    // ═══════════════════════════════════════════════════════════════════
+    // *** NEW student — validate personal info and create record ***
+    // ═══════════════════════════════════════════════════════════════════
+    if(!name||!father||!dob||!gender||!mobile||!pmobile){toast('Fill all required fields','error');return;}
+    if(!/^\d{2}-\d{2}-\d{4}$/.test(dob)){toast('DOB format: DD-MM-YYYY','error');return;}
+
     const data={
-        id,name,fatherName:father,motherName:document.getElementById('stuMother').value.trim(),
+        id,name,fatherName:father,
+        motherName:document.getElementById('stuMother').value.trim(),
         dob,gender,mobile,parentMobile:pmobile,
         email:document.getElementById('stuEmail').value.trim(),
         address:document.getElementById('stuAddress').value.trim(),
@@ -2201,20 +2552,17 @@ function addStudent(){
         feeType:selectedFeeType,totalFee,monthlyFee,months,startMonth,discount,netFee,
         paidAmount:0,dueAmount:netFee,
         joinDate:new Date().toISOString().split('T')[0],
-        payments:{},createdAt:new Date().toISOString(),
-        isReEnroll:stuMode==='old',
-        previousId:selectedOldStudent?selectedOldStudent.id:null
+        payments:{},createdAt:new Date().toISOString()
     };
-    if(stuMode==='old'&&selectedOldStudent&&selectedOldStudent._photoRef)data.photo=selectedOldStudent._photoRef;
     db.ref('students/'+id).set(data).then(()=>{
         db.ref('credentials/students/'+id).set({id,dob,name,mobile,class:cls.name,batch:batch.name});
-        const msg=stuMode==='old'?`Re-enrolled ${name}! New ID: ${id}`:`${name} added! ID: ${id}`;
-        toast(msg);closeModal('addStudentModal');
+        toast(`${name} added! ID: ${id}`);
+        closeModal('addStudentModal');
     }).catch(err=>toast(err.message,'error'));
 }
 
 // ─── STUDENT CARD BUILDER ─────────────────────────────────────────────────────
-function buildStudentCard(k,s){
+function buildStudentCard(k,s,showUnpaidBadge){
     const due=getMonthlyDueByDate(s);
     const refFee=s.feeType==='monthly'?(s.months&&s.months>0?s.netFee:null):s.netFee;
     const pct=refFee&&refFee>0?Math.min(100,Math.round((s.paidAmount/refFee)*100)):0;
@@ -2223,141 +2571,437 @@ function buildStudentCard(k,s){
     const photoHtml=s.photo?`<img src="${s.photo}" alt="${s.name}">`:`${ini}`;
     const feeTag=s.feeType==='monthly'?'<span class="fee-type-tag monthly">📅 Monthly</span>':'<span class="fee-type-tag total">💵 Total</span>';
     const reTag=s.isReEnroll?'<span class="fee-type-tag" style="background:rgba(46,213,115,0.1);color:var(--success)">🔄 Re</span>':'';
-    return`<div class="student-card" onclick="openDetail('${k}')"><div class="student-card-top"><div class="stu-avatar">${photoHtml}</div><div><div class="stu-card-name">${s.name} ${feeTag}${reTag}</div><div class="stu-card-id">${s.id}</div></div></div><div class="stu-card-details"><span>📖 ${s.className}</span><span>📚 ${s.batchName}</span><span>📱 ${s.mobile}</span><span>${s.feeType==='monthly'?'₹'+s.monthlyFee+'/mo':'₹'+s.netFee+' total'}</span></div><div class="stu-fee-bar"><div class="stu-fee-fill" style="width:${pct}%;background:${bar}"></div></div><div class="stu-fee-info"><span>Paid: ₹${(s.paidAmount||0).toLocaleString()}</span><span>${pct}%</span><span>Due: ₹${Math.round(due).toLocaleString()}</span></div></div>`;
+    // Show UNPAID badge when viewing unpaid & closed batch
+    const unpaidBadge=(showUnpaidBadge&&due>0)?'<div class="unpaid-flash-badge">⚠ UNPAID</div>':'';
+    return`<div class="student-card" onclick="openDetail('${k}')">${unpaidBadge}<div class="student-card-top"><div class="stu-avatar">${photoHtml}</div><div><div class="stu-card-name">${s.name} ${feeTag}${reTag}</div><div class="stu-card-id">${s.id}</div></div></div><div class="stu-card-details"><span>📖 ${s.className}</span><span>📚 ${s.batchName}</span><span>📱 ${s.mobile}</span><span>${s.feeType==='monthly'?'₹'+s.monthlyFee+'/mo':'₹'+s.netFee+' total'}</span></div><div class="stu-fee-bar"><div class="stu-fee-fill" style="width:${pct}%;background:${bar}"></div></div><div class="stu-fee-info"><span>Paid: ₹${(s.paidAmount||0).toLocaleString()}</span><span>${pct}%</span><span>Due: ₹${Math.round(due).toLocaleString()}</span></div></div>`;
+}
+
+// ─── PERSON-CHAIN HELPERS ─────────────────────────────────────────────────────
+// Returns the "latest" student record key for a person (leaf in the previousId chain)
+// i.e. the record that no other record points to as previousId
+function getLatestEnrollmentId(startId){
+    // Build a forward map: previousId -> latest id
+    const forwardMap={};
+    Object.entries(allStudents).forEach(([k,s])=>{
+        if(s.previousId) forwardMap[s.previousId]=k;
+    });
+    let cur=startId;
+    const visited=new Set();
+    while(forwardMap[cur]&&!visited.has(cur)){visited.add(cur);cur=forwardMap[cur];}
+    return cur;
+}
+
+// Returns all keys in a person's chain (oldest to newest), given ANY key in the chain
+function getPersonChain(anyId){
+    // Walk backwards to root
+    const visited=new Set();
+    let cur=anyId;
+    const roots=[];
+    while(cur&&!visited.has(cur)){
+        visited.add(cur);
+        roots.unshift(cur);
+        const s=allStudents[cur];
+        if(s&&s.previousId&&allStudents[s.previousId]) cur=s.previousId;
+        else break;
+    }
+    // Walk forward from last known root
+    const forwardMap={};
+    Object.entries(allStudents).forEach(([k,s])=>{if(s.previousId) forwardMap[s.previousId]=k;});
+    // Build full chain forward from roots[0]
+    const chain=[roots[0]];
+    const chainVisited=new Set([roots[0]]);
+    let n=forwardMap[roots[0]];
+    while(n&&!chainVisited.has(n)){chainVisited.add(n);chain.push(n);n=forwardMap[n];}
+    return chain;
+}
+
+// Get unique root ids (one per physical person) — the OLDEST in each chain
+function getPersonRoots(){
+    const prevIds=new Set(Object.values(allStudents).filter(s=>s.previousId).map(s=>s.previousId));
+    // Root = has no previousId (or its previousId doesn't exist) AND isn't pointed to by anyone
+    // Actually: root = not a value in any previousId field
+    const roots=[];
+    Object.keys(allStudents).forEach(k=>{
+        const s=allStudents[k];
+        // A root is one that NO other record's previousId points to AND has no previousId itself
+        // OR is the oldest in the chain: just find all that have NO previousId
+        if(!s.previousId||!allStudents[s.previousId]) roots.push(k);
+    });
+    // Deduplicate by chain: keep only the root of each chain
+    const seen=new Set();
+    return roots.filter(k=>{
+        const chain=getPersonChain(k);
+        const chainKey=chain[0];
+        if(seen.has(chainKey)) return false;
+        seen.add(chainKey); return true;
+    });
+}
+
+// Sum up total outstanding due across ALL enrollments in a chain
+function getChainTotalDue(chain){
+    return chain.reduce((sum,k)=>{ const s=allStudents[k]; return sum+(s?Math.max(0,getMonthlyDueByDate(s)):0); },0);
 }
 
 function renderStudents(){
     const g=document.getElementById('stuGrid');
-    const cf=document.getElementById('filterClass').value,bf=document.getElementById('filterBatch').value,ftf=document.getElementById('filterFeeType').value,fsf=document.getElementById('filterFeeStatus').value,srch=(document.getElementById('stuSearch').value||'').toLowerCase();
-    let stu=Object.entries(allStudents);
-    if(cf)stu=stu.filter(([,s])=>s.classCode===cf);
-    if(bf)stu=stu.filter(([,s])=>s.batchCode===bf);
-    if(ftf)stu=stu.filter(([,s])=>s.feeType===ftf);
-    if(srch)stu=stu.filter(([,s])=>s.name.toLowerCase().includes(srch)||s.id.toLowerCase().includes(srch));
-    if(fsf==='paid')stu=stu.filter(([,s])=>getMonthlyDueByDate(s)<=0);
-    if(fsf==='partial')stu=stu.filter(([,s])=>s.paidAmount>0&&getMonthlyDueByDate(s)>0);
-    if(fsf==='unpaid')stu=stu.filter(([,s])=>s.paidAmount===0);
-    stu.sort((a,b)=>(b[1].createdAt||'').localeCompare(a[1].createdAt||''));
-    if(!stu.length){g.innerHTML='<div class="empty-state"><div class="empty-icon">🔍</div><p>No students found</p></div>';return;}
-    g.innerHTML=stu.map(([k,s])=>buildStudentCard(k,s)).join('');
+    const cf=document.getElementById('filterClass').value,
+          bf=document.getElementById('filterBatch').value,
+          ftf=document.getElementById('filterFeeType').value,
+          fsf=document.getElementById('filterFeeStatus').value,
+          srch=(document.getElementById('stuSearch').value||'').toLowerCase();
+
+    // One entry per Firebase record (one per unique student ID)
+    let students=Object.entries(allStudents);
+
+    // Filter: only show students who have at least ONE enrollment in a RUNNING batch
+    students=students.filter(([,s])=>hasAnyRunningEnrollment(s));
+
+    // Course filter: match any enrollment
+    if(cf) students=students.filter(([,s])=>
+        getStudentAllEnrollments(s).some(({data:e})=>e.classCode===cf)
+    );
+    // Batch filter: match any enrollment
+    if(bf) students=students.filter(([,s])=>
+        getStudentAllEnrollments(s).some(({data:e})=>e.batchCode===bf)
+    );
+    // Fee type filter: root enrollment only
+    if(ftf) students=students.filter(([,s])=>s.feeType===ftf);
+    // Search: name, ID, mobile
+    if(srch) students=students.filter(([,s])=>
+        s.name.toLowerCase().includes(srch)||
+        s.id.toLowerCase().includes(srch)||
+        (s.mobile||'').includes(srch)
+    );
+    // Fee status filter: across all enrollments
+    if(fsf==='paid')    students=students.filter(([,s])=>getStudentTotalDue(s)<=0);
+    if(fsf==='partial') students=students.filter(([,s])=>{const d=getStudentTotalDue(s);return getStudentTotalPaid(s)>0&&d>0;});
+    if(fsf==='unpaid')  students=students.filter(([,s])=>getStudentTotalPaid(s)===0);
+
+    students.sort((a,b)=>(b[1].createdAt||'').localeCompare(a[1].createdAt||''));
+    if(!students.length){g.innerHTML='<div class="empty-state"><div class="empty-icon">🔍</div><p>No students found</p></div>';return;}
+    g.innerHTML=students.map(([k,s])=>buildStudentCard(k,s)).join('');
+}
+
+// ─── STUDENT CARD ─────────────────────────────────────────────────────────────
+function buildStudentCard(k, s){
+    // Show total due/paid across ALL enrollments
+    const totalDue=getStudentTotalDue(s);
+    const totalPaid=getStudentTotalPaid(s);
+    const allE=getStudentAllEnrollments(s);
+    const activeE=allE.filter(({data:e})=>getBatchStatusByCode(e.classCode,e.batchCode)==='running'&&e.status!=='finished');
+
+    // Progress bar based on root enrollment (primary)
+    const refFee=s.feeType==='monthly'?(s.months&&s.months>0?s.netFee:null):s.netFee;
+    const pct=refFee&&refFee>0?Math.min(100,Math.round((totalPaid/(refFee*allE.length||1))*100)):
+              totalPaid>0?Math.min(100,Math.round(totalPaid/(totalPaid+totalDue)*100)):0;
+    const bar=pct>=100?'var(--success)':pct>0?'var(--warning)':'var(--danger)';
+    const ini=s.name.split(' ').map(w=>w[0]).join('').substring(0,2).toUpperCase();
+    const photoHtml=s.photo?`<img src="${s.photo}" alt="${s.name}">`:`${ini}`;
+    const copyBtn=`<button class="copy-id-btn" title="Copy ID" onclick="event.stopPropagation();copyStudentId('${s.id}')">⎘</button>`;
+
+    // Active enrollments summary
+    const enrollLines=activeE.map(({data:e})=>
+        `<span>📖 ${e.className} — 📚 ${e.batchName}</span>`
+    ).join('');
+    const multiTag=allE.length>1?`<span class="fee-type-tag" style="background:rgba(108,92,231,0.12);color:#a29bfe;font-size:10px">🔗 ${allE.length} Batches</span>`:'';
+
+    return`<div class="student-card" onclick="openDetail('${k}')">
+        <div class="student-card-top">
+            <div class="stu-avatar">${photoHtml}</div>
+            <div style="flex:1;min-width:0">
+                <div class="stu-card-name">${s.name} ${multiTag}</div>
+                <div class="stu-card-id" style="display:flex;align-items:center;gap:6px">${s.id} ${copyBtn}</div>
+            </div>
+        </div>
+        <div class="stu-card-details" style="flex-direction:column;gap:4px">
+            ${enrollLines||`<span>📖 ${s.className} — 📚 ${s.batchName}</span>`}
+            <span>📱 ${s.mobile}</span>
+        </div>
+        <div class="stu-fee-bar"><div class="stu-fee-fill" style="width:${pct}%;background:${bar}"></div></div>
+        <div class="stu-fee-info">
+            <span>Paid: ₹${totalPaid.toLocaleString()}</span>
+            <span>${pct}%</span>
+            <span style="color:${totalDue>0?'var(--danger)':'var(--success)'}">Due: ₹${Math.round(totalDue).toLocaleString()}</span>
+        </div>
+    </div>`;
 }
 
 // ─── STUDENT DETAIL ───────────────────────────────────────────────────────────
+function switchDetailTab(tab){
+    document.querySelectorAll('.detail-tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===tab));
+    document.querySelectorAll('.detail-panel').forEach(p=>p.classList.toggle('active',p.dataset.panel===tab));
+}
+
 function openDetail(id){
     const s=allStudents[id];if(!s)return;
-    const due=getMonthlyDueByDate(s);
-    const refFee=s.feeType==='monthly'?(s.months&&s.months>0?s.netFee:null):s.netFee;
-    const pct=refFee&&refFee>0?Math.min(100,Math.round((s.paidAmount/refFee)*100)):0;
-    const bar=pct>=100?'var(--success)':pct>0?'var(--warning)':'var(--danger)';
     const ini=s.name.split(' ').map(w=>w[0]).join('').substring(0,2).toUpperCase();
-    const pays=s.payments||{},pk=Object.keys(pays).sort((a,b)=>(pays[b].date||'').localeCompare(pays[a].date||''));
     const photoHtml=s.photo?`<img src="${s.photo}" alt="${s.name}" style="width:100%;height:100%;object-fit:cover;">`:`${ini}`;
-    const removeBtn=s.photo?`<label class="photo-upload-label" onclick="removeStudentPhoto('${id}')" style="cursor:pointer;color:var(--danger);border-color:rgba(255,71,87,0.3)">🗑 Remove</label>`:'';
+    const removeBtn=s.photo?`<button class="btn btn-sm" style="background:rgba(255,71,87,0.12);color:var(--danger);border:1px solid rgba(255,71,87,0.3);font-size:11px" onclick="removeStudentPhoto('${id}')">🗑 Remove Photo</button>`:'';
+    const allE=getStudentAllEnrollments(s);
+    const totalDue=getStudentTotalDue(s);
+    const totalPaid=getStudentTotalPaid(s);
+    // Count payment history entries across all enrollments
+    const totalPayCount=allE.reduce((n,{data:e})=>n+Object.keys(e.payments||{}).length,0);
 
-    // Monthly breakdown
-    let monthlySection='';
-    if(s.feeType==='monthly'&&s.startMonth){
-        const chips=[];
-        const [sy,sm]=s.startMonth.split('-').map(Number);
-        const now=new Date();const todayY=now.getFullYear(),todayM=now.getMonth()+1;
-        let endY,endM;
-        if(s.finishMonth){const[fy,fm]=s.finishMonth.split('-').map(Number);endY=fy;endM=fm;}
-        else if(s.months&&s.months>0){const d=new Date(sy,sm-1+s.months-1,1);endY=d.getFullYear();endM=d.getMonth()+1;}
-        else{endY=todayY;endM=todayM+6;if(endM>12){endY++;endM-=12;}}
-        const totalMonths=(endY-sy)*12+(endM-sm)+1;
-        let paidSoFar=s.paidAmount||0;
-        const mfNet=(s.months&&s.months>0&&s.netFee>0)?s.netFee/s.months:(s.monthlyFee||0);
-        for(let i=0;i<totalMonths;i++){
-            const d=new Date(sy,sm-1+i,1);const mLabel=d.toLocaleDateString('en-IN',{month:'short',year:'numeric'});
-            const dY=d.getFullYear(),dM=d.getMonth()+1;
-            const isPast=dY<todayY||(dY===todayY&&dM<=todayM);
-            if(!isPast&&!s.finishMonth&&!(s.months&&s.months>0)){chips.push(`<div class="month-chip future-m">${mLabel}<br>Future</div>`);continue;}
-            let cls2='due-m',label='Due';
-            if(paidSoFar>=mfNet){cls2='paid-m';label='Paid';paidSoFar-=mfNet;}
-            else if(paidSoFar>0){cls2='partial-m';label='Partial';paidSoFar=0;}
-            chips.push(`<div class="month-chip ${cls2}">${mLabel}<br>${label}</div>`);
-        }
-        const totalLabel=s.finishMonth?`₹${s.monthlyFee}/month • Finished ${s.finishMonth}`:s.months&&s.months>0?`₹${s.monthlyFee}/month × ${s.months} months`:`₹${s.monthlyFee}/month (open-ended)`;
-        monthlySection=`<div class="monthly-breakdown"><h5>📅 Monthly Breakdown — ${totalLabel}</h5><div class="month-grid">${chips.join('')}</div></div>`;
-    }
+    // ── Active batches summary for header ──
+    const activeBatches=allE.filter(({data:e})=>e.status!=='discontinued');
+    const subLine=activeBatches.map(({data:e})=>`${e.className||''} — ${e.batchName||''}`).join(' | ');
 
-    const isOpenEnded=s.feeType==='monthly'&&!(s.months&&s.months>0)&&!s.finishMonth;
-    const finishCourseBtn=isOpenEnded?`<div class="finish-course-box"><p>📌 Open-ended fee — student still active. Set finish date when course ends.</p><button class="btn btn-warning btn-sm" onclick="openFinishCourse('${id}')">🎓 Finish Course</button></div>`:'';
-    const finishedTag=s.finishMonth?`<div style="background:rgba(46,213,115,0.06);border:1px solid rgba(46,213,115,0.2);border-radius:10px;padding:12px 16px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
-        <div>
-            <div style="font-size:13px;color:var(--success);font-weight:700">&#10003; Course Finished</div>
-            <div style="font-size:12px;color:var(--text3);margin-top:2px">${s.finishMonth} &bull; ${s.months} month${s.months!==1?'s':''} &bull; &#8377;${(s.netFee||0).toLocaleString()} net fee</div>
+    // ══════════════════════════════════
+    // TAB: INFO
+    // ══════════════════════════════════
+    const infoTab=`
+        <div class="panel-section-title">Personal Information</div>
+        <div class="di-grid">
+            <div class="di-item"><label>DOB</label><p>${s.dob||'—'}</p></div>
+            <div class="di-item"><label>Gender</label><p>${s.gender||'—'}</p></div>
+            <div class="di-item"><label>Mobile</label><p>${s.mobile||'—'}</p></div>
+            <div class="di-item"><label>Parent Mobile</label><p>${s.parentMobile||'—'}</p></div>
+            <div class="di-item"><label>Father</label><p>${s.fatherName||'—'}</p></div>
+            <div class="di-item"><label>Mother</label><p>${s.motherName||'—'}</p></div>
+            <div class="di-item"><label>Blood Group</label><p>${s.bloodGroup||'—'}</p></div>
+            <div class="di-item"><label>Email</label><p>${s.email||'—'}</p></div>
+            <div class="di-item"><label>School / College</label><p>${s.school||'—'}</p></div>
+            <div class="di-item"><label>Join Date</label><p>${s.joinDate||'—'}</p></div>
+            <div class="di-item full"><label>Address</label><p>${s.address||'—'}</p></div>
         </div>
-        <button class="btn btn-sm btn-reopen" onclick="openReopenCourse('${id}')">&#128274; Reopen Course</button>
-    </div>`:'';
-    const feeTypeLabel=s.feeType==='monthly'?'<span class="fee-type-tag monthly" style="font-size:12px">📅 Monthly Fee</span>':'<span class="fee-type-tag total" style="font-size:12px">💵 Total Fee</span>';
-    const reTag=s.isReEnroll?`<span class="fee-type-tag" style="background:rgba(46,213,115,0.1);color:var(--success);font-size:12px">🔄 Re-enrolled${s.previousId?' from '+s.previousId:''}</span>`:'';
-    const netDisplay=s.feeType==='monthly'&&!(s.months&&s.months>0)&&!s.finishMonth?'Open-ended':'₹'+(s.netFee||0).toLocaleString();
-
-    // Remarks display
-    const remarksHtml=s.remarks?`<div class="remarks-box"><label>📝 Admin Remarks</label><p>${s.remarks}</p>${s.feeTypeChangedAt?`<div style="font-size:10px;color:var(--text3);margin-top:6px">Fee type changed ${s.feeTypeChangedFrom?'from '+s.feeTypeChangedFrom:''} on ${new Date(s.feeTypeChangedAt).toLocaleDateString('en-IN')} by ${s.feeTypeChangedBy||'Admin'}</div>`:''}
-    </div>`:'';
-
-    let h=`<div class="detail-top">
-        <div class="detail-avatar">${photoHtml}</div>
-        <div class="photo-upload-area">
+        <div class="panel-section-title" style="margin-top:18px">Photo</div>
+        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
             <label for="stuPhoto_${id}" class="photo-upload-label">📷 Upload Photo</label>
             <input type="file" id="stuPhoto_${id}" accept="image/*" style="display:none" onchange="uploadStudentPhoto(event,'${id}')">
             ${removeBtn}
-        </div>
-        <div class="detail-name" style="margin-top:8px">${s.name}</div>
-        <div class="detail-id">${s.id} ${feeTypeLabel} ${reTag}</div>
-        <div class="detail-actions">
-            <button class="btn btn-outline btn-sm" onclick="openEdit('${id}')">✏️ Edit</button>
-            <button class="btn btn-success btn-sm" onclick="openPayModal('${id}','${s.name}','${s.feeType}')">💰 Payment</button>
-            <button class="btn btn-warning btn-sm" onclick="openChangeFeeType('${id}')">🔄 Fee Type</button>
-            <button class="btn btn-sm" style="background:rgba(108,92,231,0.15);border:1px solid rgba(108,92,231,0.35);color:#a29bfe" onclick="openBatchTransfer('${id}')">🔀 Transfer</button>
+        </div>`;
+
+    // ══════════════════════════════════
+    // TAB: FEES  — one card per enrollment
+    // ══════════════════════════════════
+    const feeCards=allE.map(({data:e,key:enrollKey,isRoot})=>{
+        if(e.status==='discontinued'){
+            return `<div class="enroll-fee-card" style="opacity:0.6">
+                <div class="enroll-fee-header" style="background:rgba(255,71,87,0.06);border-bottom:1px solid rgba(255,71,87,0.2)">
+                    <div class="enroll-fee-title" style="color:var(--danger)">🚫 ${e.className} — ${e.batchName}</div>
+                    <span style="font-size:11px;color:var(--danger)">Discontinued</span>
+                </div>
+                <div class="enroll-fee-body" style="font-size:12px;color:var(--text3)">
+                    Paid: ₹${(e.paidAmount||0).toLocaleString()} &nbsp;|&nbsp; Due at discontinue: ₹${Math.round(getMonthlyDueByDate(e)).toLocaleString()}
+                    ${e.discontinueReason?`<br>Reason: ${e.discontinueReason}`:''}
+                </div>
+            </div>`;
+        }
+        const eDue=getMonthlyDueByDate(e);
+        const eRefFee=e.feeType==='monthly'?(e.months&&e.months>0?e.netFee:null):e.netFee;
+        const ePct=eRefFee&&eRefFee>0?Math.min(100,Math.round((e.paidAmount/eRefFee)*100)):totalPaid>0?Math.min(100,Math.round(totalPaid/(totalPaid+totalDue)*100)):0;
+        const eBar=ePct>=100?'var(--success)':ePct>0?'var(--warning)':'var(--danger)';
+        const eNetDisplay=e.feeType==='monthly'&&!(e.months&&e.months>0)&&!e.finishMonth?'Open-ended':'₹'+(e.netFee||0).toLocaleString();
+        const bStatus=getBatchStatusByCode(e.classCode,e.batchCode);
+        const bBadge=bStatus==='running'?'<span style="color:var(--success);font-size:11px">▶ Running</span>':bStatus==='closed_paid'?'<span style="color:var(--success);font-size:11px">✅ Closed-Paid</span>':'<span style="color:var(--danger);font-size:11px">⚠ Closed-Unpaid</span>';
+        const headerCol=isRoot?'rgba(0,210,255,0.06)':'rgba(108,92,231,0.06)';
+        const headerBrd=isRoot?'1px solid rgba(0,210,255,0.15)':'1px solid rgba(108,92,231,0.15)';
+
+        // Monthly chips
+        let monthChips='';
+        if(e.feeType==='monthly'&&e.startMonth){
+            const [sy,sm]=e.startMonth.split('-').map(Number);
+            const now2=new Date();const ty=now2.getFullYear(),tm=now2.getMonth()+1;
+            let ey,em;
+            if(e.finishMonth){[ey,em]=e.finishMonth.split('-').map(Number);}
+            else if(e.months&&e.months>0){const d=new Date(sy,sm-1+e.months-1,1);ey=d.getFullYear();em=d.getMonth()+1;}
+            else{ey=ty;em=tm+2;if(em>12){ey++;em-=12;}}
+            const total=(ey-sy)*12+(em-sm)+1;
+            const chips=[];let psf=e.paidAmount||0;
+            const mfn=(e.months&&e.months>0&&e.netFee>0)?e.netFee/e.months:(e.monthlyFee||0);
+            for(let i=0;i<Math.min(total,24);i++){
+                const d=new Date(sy,sm-1+i,1);const lbl=d.toLocaleDateString('en-IN',{month:'short',year:'numeric'});
+                const dy=d.getFullYear(),dm=d.getMonth()+1;
+                const isPast=dy<ty||(dy===ty&&dm<=tm);
+                if(!isPast&&!e.finishMonth&&!(e.months&&e.months>0)){chips.push(`<div class="month-chip future-m">${lbl}<br>Future</div>`);continue;}
+                let c2='due-m',lb='Due';
+                if(psf>=mfn){c2='paid-m';lb='Paid';psf-=mfn;}else if(psf>0){c2='partial-m';lb='Partial';psf=0;}
+                chips.push(`<div class="month-chip ${c2}">${lbl}<br>${lb}</div>`);
+            }
+            const tl=e.finishMonth?`₹${e.monthlyFee}/mo • Finished ${e.finishMonth}`:e.months>0?`₹${e.monthlyFee}/mo × ${e.months} months`:`₹${e.monthlyFee}/mo (open-ended)`;
+            monthChips=`<div class="monthly-breakdown"><h5>📅 ${tl}</h5><div class="month-grid">${chips.join('')}</div></div>`;
+        }
+
+        const isOpenEnded=e.feeType==='monthly'&&!(e.months&&e.months>0)&&!e.finishMonth;
+        const finishBtn=isOpenEnded&&isRoot?`<div class="finish-course-box" style="margin-bottom:12px"><p>📌 Open-ended — set finish date when course ends.</p><button class="btn btn-warning btn-sm" onclick="openFinishCourse('${id}')">🎓 Finish Course</button></div>`:'';
+        const finishedBadge=e.finishMonth?`<div style="background:rgba(46,213,115,0.06);border:1px solid rgba(46,213,115,0.2);border-radius:10px;padding:9px 13px;margin-bottom:12px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px"><div><div style="font-size:12px;color:var(--success);font-weight:700">✓ Finished ${e.finishMonth}</div><div style="font-size:11px;color:var(--text3)">${e.months} months • ₹${(e.netFee||0).toLocaleString()} net</div></div>${isRoot?`<button class="btn btn-sm btn-reopen" onclick="openReopenCourse('${id}')">🔓 Reopen</button>`:''}</div>`:'' ;
+
+        // Payments
+        const ePays=e.payments||{};
+        const ePk=Object.keys(ePays).sort((a,b)=>(ePays[b].date||'').localeCompare(ePays[a].date||''));
+        const editCall=(p)=>enrollKey?`openEditPayment('${id}','${p}','${enrollKey}')`:`openEditPayment('${id}','${p}')`;
+        const delCall=(p)=>enrollKey?`deletePayment('${id}','${p}','${enrollKey}')`:`deletePayment('${id}','${p}')`;
+        const payTable=ePk.length?
+            `<table class="pay-table"><thead><tr><th>#</th><th>Date</th>${e.feeType==='monthly'?'<th>Month</th>':''}<th>Amount</th><th>Method</th><th>Note</th><th style="width:54px"></th></tr></thead><tbody>
+            ${ePk.map((p,i)=>{const py=ePays[p];return`<tr><td>${i+1}</td><td>${py.date}</td>${e.feeType==='monthly'?`<td>${py.forMonth||'-'}</td>`:''}<td style="color:var(--success);font-weight:600">₹${(py.amount||0).toLocaleString()}</td><td>${py.method}</td><td>${py.note||'-'}</td><td style="white-space:nowrap"><button class="pay-action-btn pay-edit-btn" onclick="event.stopPropagation();${editCall(p)}">✏️</button> <button class="pay-action-btn pay-del-btn" onclick="event.stopPropagation();${delCall(p)}">🗑</button></td></tr>`;}).join('')}
+            </tbody></table>`:'<div class="no-data">No payments yet</div>';
+
+        return`<div class="enroll-fee-card">
+            <div class="enroll-fee-header" style="background:${headerCol};border-bottom:${headerBrd}">
+                <div class="enroll-fee-title">${isRoot?'📖':'📗'} ${e.className} — ${e.batchName}</div>
+                <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+                    ${bBadge}
+                    <button class="btn btn-success btn-sm" onclick="openPayModal('${id}','${s.name}','${e.feeType}','${enrollKey||''}')">💰 + Pay</button>
+                </div>
+            </div>
+            <div class="enroll-fee-body">
+                ${finishBtn}${finishedBadge}
+                <div class="fee-overview">
+                    <div class="fee-box f-total"><div class="fee-amount">${eNetDisplay}</div><div class="fee-lbl">Net Fee${e.discount?' (₹'+e.discount+' off)':''}</div></div>
+                    <div class="fee-box f-paid"><div class="fee-amount">₹${(e.paidAmount||0).toLocaleString()}</div><div class="fee-lbl">Paid</div></div>
+                    <div class="fee-box f-due"><div class="fee-amount" style="color:${eDue>0?'var(--danger)':'var(--success)'}">₹${Math.round(eDue).toLocaleString()}</div><div class="fee-lbl">${e.feeType==='monthly'?'Due (to date)':'Due'}</div></div>
+                </div>
+                ${eRefFee?`<div class="fee-progress"><div class="fee-progress-fill" style="width:${ePct}%;background:${eBar}"></div></div><p style="text-align:center;font-size:12px;color:var(--text2);margin-bottom:12px">${ePct}% Paid</p>`:''}
+                ${monthChips}
+                <div class="detail-section-title" style="margin-top:12px;margin-bottom:8px">📋 Payment History</div>
+                ${payTable}
+            </div>
+        </div>`;
+    }).join('');
+
+    const grandTotal=allE.length>1?`<div style="background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:10px;padding:12px 16px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:4px">
+        <span style="font-size:13px;color:var(--text2)">📊 Grand Total (${allE.filter(e=>e.data.status!=='discontinued').length} active batches):</span>
+        <span style="color:var(--success);font-weight:700">Paid ₹${totalPaid.toLocaleString()}</span>
+        <span style="color:${totalDue>0?'var(--danger)':'var(--success)'};font-weight:700">Due ₹${Math.round(totalDue).toLocaleString()}</span>
+    </div>`:'' ;
+
+    const feesTab=`${allE.length>1?grandTotal+`<div style="margin-bottom:16px"></div>`:''}${feeCards}`;
+
+    // ══════════════════════════════════
+    // TAB: HISTORY
+    // ══════════════════════════════════
+    const historyLog=(s.courseHistory||s.transferHistory)?[
+        ...Object.values(s.transferHistory||{}).map(h=>({...h,icon:'🔀',type:'Transfer'})),
+        ...Object.values(s.courseHistory||{}).map(h=>({...h,icon:'🎓',type:'Course'}))
+    ].sort((a,b)=>(b.date||'').localeCompare(a.date||''))
+    :[];
+    const historyTab=historyLog.length?
+        historyLog.map(h=>`<div style="display:flex;gap:12px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.05)">
+            <div style="font-size:20px;flex-shrink:0">${h.icon}</div>
+            <div>
+                <div style="font-size:13px;font-weight:600;color:var(--text1)">${h.type} — ${h.action||''}</div>
+                <div style="font-size:11px;color:var(--text3);margin-top:3px">${h.reason||h.closeMonth||''} &nbsp;${h.by?'by '+h.by:''}</div>
+                <div style="font-size:10px;color:var(--text3);margin-top:2px">${h.date?new Date(h.date).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'}):''}</div>
+            </div>
+        </div>`).join('')
+        :'<div class="no-data" style="padding:30px 0">No history recorded yet</div>';
+
+    // ══════════════════════════════════
+    // TAB: ACTIONS
+    // ══════════════════════════════════
+    // Build discontinue buttons for each enrollment
+    const discontinueBtns=allE.map(({data:e,key:enrollKey,isRoot})=>{
+        if(e.status==='discontinued') return `<div style="padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.05);font-size:13px;color:var(--text3)">🚫 ${e.className} — ${e.batchName} <span style="color:var(--danger)">(Already discontinued)</span></div>`;
+        const eKey=enrollKey||'__root__';
+        return`<div style="padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.05);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+            <div>
+                <div style="font-size:13px;font-weight:600;color:var(--text1)">${isRoot?'📖':'📗'} ${e.className} — ${e.batchName}</div>
+                <div style="font-size:11px;color:var(--text3)">Paid ₹${(e.paidAmount||0).toLocaleString()} | Due ₹${Math.round(getMonthlyDueByDate(e)).toLocaleString()}</div>
+            </div>
+            <button class="btn btn-sm" style="background:rgba(255,71,87,0.1);color:var(--danger);border:1px solid rgba(255,71,87,0.3)" onclick="openDiscontinueEnroll('${id}','${eKey}')">🚫 Discontinue</button>
+        </div>`;
+    }).join('');
+
+    const actionsTab=`
+        <div class="panel-section-title">Edit & Admin</div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px">
+            <button class="btn btn-outline btn-sm" onclick="openEdit('${id}')">✏️ Edit Info</button>
+            <button class="btn btn-warning btn-sm" onclick="openChangeFeeType('${id}')">🔄 Change Fee Type</button>
+            <button class="btn btn-sm" style="background:rgba(108,92,231,0.15);border:1px solid rgba(108,92,231,0.35);color:#a29bfe" onclick="openBatchTransfer('${id}')">🔀 Batch Transfer</button>
             <button class="btn btn-sm" style="background:rgba(0,210,255,0.1);border:1px solid rgba(0,210,255,0.25);color:var(--primary)" onclick="openIdCard('${id}')">🪪 ID Card</button>
             <button class="btn btn-sm" style="background:rgba(46,213,115,0.1);border:1px solid rgba(46,213,115,0.25);color:var(--success)" onclick="openExport('${id}')">⬇ Export</button>
-            <button class="btn btn-danger btn-sm" onclick="delStudent('${id}','${s.name}')">🗑 Delete</button>
         </div>
-    </div>
-    <div class="detail-section" style="margin-top:20px"><div class="detail-section-title">👤 Personal</div><div class="detail-grid">
-        <div class="detail-item"><label>Father</label><p>${s.fatherName||'-'}</p></div>
-        <div class="detail-item"><label>Mother</label><p>${s.motherName||'-'}</p></div>
-        <div class="detail-item"><label>DOB</label><p>${s.dob}</p></div>
-        <div class="detail-item"><label>Gender</label><p>${s.gender||'-'}</p></div>
-        <div class="detail-item"><label>Mobile</label><p>${s.mobile}</p></div>
-        <div class="detail-item"><label>Parent Mobile</label><p>${s.parentMobile||'-'}</p></div>
-        <div class="detail-item"><label>Email</label><p>${s.email||'-'}</p></div>
-        <div class="detail-item"><label>Blood</label><p>${s.bloodGroup||'-'}</p></div>
-        <div class="detail-item" style="grid-column:1/-1"><label>Address</label><p>${s.address||'-'}</p></div>
-        <div class="detail-item"><label>School</label><p>${s.school||'-'}</p></div>
-    </div></div>
-    <div class="detail-section"><div class="detail-section-title">🎓 Academic</div><div class="detail-grid">
-        <div class="detail-item"><label>Course</label><p>${s.className}</p></div>
-        <div class="detail-item"><label>Batch</label><p>${s.batchName}</p></div>
-        <div class="detail-item"><label>Student ID</label><p style="color:var(--primary);font-weight:600">${s.id}</p></div>
-        <div class="detail-item"><label>Join Date</label><p>${s.joinDate||'-'}</p></div>
-        <div class="detail-item"><label>Login Password</label><p style="color:var(--warning)">${s.dob} (DOB)</p></div>
-        <div class="detail-item"><label>Fee Type</label><p>${s.feeType==='monthly'?'📅 Monthly (₹'+s.monthlyFee+'/mo'+(s.months&&s.months>0?' × '+s.months+' months':' open-ended')+')':'💵 Total Fee'}</p></div>
-    </div></div>
-    <div class="detail-section"><div class="detail-section-title">💰 Fee Status</div>
-        ${finishCourseBtn}${finishedTag}${remarksHtml}
-        <div class="fee-overview">
-            <div class="fee-box f-total"><div class="fee-amount">${netDisplay}</div><div class="fee-lbl">Net Fee${s.discount?' (₹'+s.discount+' disc.)':''}</div></div>
-            <div class="fee-box f-paid"><div class="fee-amount">₹${(s.paidAmount||0).toLocaleString()}</div><div class="fee-lbl">Paid</div></div>
-            <div class="fee-box f-due"><div class="fee-amount">₹${Math.round(due).toLocaleString()}</div><div class="fee-lbl">${s.feeType==='monthly'?'Due (to date)':'Due'}</div></div>
+        <div class="panel-section-title">Discontinue a Batch</div>
+        <div style="background:rgba(255,165,2,0.05);border:1px solid rgba(255,165,2,0.15);border-radius:10px;padding:10px 14px;font-size:12px;color:var(--warning);margin-bottom:12px">
+            ⚠ Discontinuing removes the student from a specific batch only. Their ID and other batches remain unchanged. This action can be noted with a reason.
         </div>
-        ${refFee?`<div class="fee-progress"><div class="fee-progress-fill" style="width:${pct}%;background:${bar}"></div></div><p style="text-align:center;font-size:13px;color:var(--text2);margin-bottom:15px">${pct}% Paid</p>`:''}
-        ${monthlySection}
-        <div class="detail-section-title" style="margin-top:15px">📋 Payment History</div>
-        ${pk.length?`<table class="pay-table"><thead><tr><th>#</th><th>Date</th>${s.feeType==='monthly'?'<th>Month</th>':''}<th>Amount</th><th>Method</th><th>Note</th></tr></thead><tbody>${pk.map((p,i)=>{const py=pays[p];return`<tr><td>${i+1}</td><td>${py.date}</td>${s.feeType==='monthly'?'<td>'+(py.forMonth||'-')+'</td>':''}<td style="color:var(--success);font-weight:600">₹${(py.amount||0).toLocaleString()}</td><td>${py.method}</td><td>${py.note||'-'}</td></tr>`;}).join('')}</tbody></table>`:'<div class="no-data">No payments yet</div>'}
+        ${discontinueBtns}
+        <div class="panel-section-title" style="margin-top:20px">Danger Zone</div>
+        <button class="btn btn-danger btn-sm" onclick="delStudent('${id}','${s.name}')">🗑 Delete Student Permanently</button>`;
+
+    // ══════════════════════════════════
+    // ASSEMBLE FULL HTML
+    // ══════════════════════════════════
+    const h=`
+    <div class="detail-header">
+        <div class="detail-header-avatar">${photoHtml}</div>
+        <div class="detail-header-info">
+            <div class="detail-header-name">${s.name}</div>
+            <div class="detail-header-id">${s.id} <button class="copy-id-btn" onclick="copyStudentId('${s.id}',this)">⎘ Copy</button></div>
+            <div class="detail-header-sub">${subLine||s.className+' — '+s.batchName}</div>
+        </div>
+        <button class="detail-close-btn" onclick="closeModal('studentDetailModal')">✕</button>
     </div>
-    <div style="padding:0 25px 25px;text-align:center"><button class="btn btn-primary" onclick="openPayModal('${id}','${s.name}','${s.feeType}')">💰 Add Payment</button></div>`;
+    <div class="detail-tabs">
+        <div class="detail-tab active" data-tab="info" onclick="switchDetailTab('info')">👤 Info</div>
+        <div class="detail-tab" data-tab="fees" onclick="switchDetailTab('fees')">💰 Fees</div>
+        <div class="detail-tab" data-tab="history" onclick="switchDetailTab('history')">📋 History <span class="tab-badge">${historyLog.length}</span></div>
+        <div class="detail-tab" data-tab="actions" onclick="switchDetailTab('actions')">⚙ Actions</div>
+    </div>
+    <div class="detail-panels">
+        <div class="detail-panel active" data-panel="info">${infoTab}</div>
+        <div class="detail-panel" data-panel="fees">${feesTab}</div>
+        <div class="detail-panel" data-panel="history">${historyTab}</div>
+        <div class="detail-panel" data-panel="actions">${actionsTab}</div>
+    </div>`;
 
     document.getElementById('studentDetailContent').innerHTML=h;
     openModal('studentDetailModal');
 }
-
 // ─── PHOTO UPLOAD ─────────────────────────────────────────────────────────────
 function uploadStudentPhoto(e,id){const f=e.target.files[0];if(!f)return;if(f.size>1*1024*1024){toast('Max 1MB image!','error');e.target.value='';return;}toast('Uploading photo...','info');const r=new FileReader();r.onload=ev=>{compressImg(ev.target.result,300,0.8,c=>{db.ref('students/'+id+'/photo').set(c).then(()=>{toast('Photo saved!');openDetail(id);}).catch(()=>toast('Upload failed','error'));});};r.readAsDataURL(f);e.target.value='';}
 function removeStudentPhoto(id){dcConfirm('The student photo will be removed.',{title:'Remove Photo?',type:'warning',icon:'📷',okText:'Remove'}).then(ok=>{if(ok)db.ref('students/'+id+'/photo').remove().then(()=>{toast('Photo removed');openDetail(id);});});}
+
+// ─── DISCONTINUE ENROLLMENT ───────────────────────────────────────────────────
+function openDiscontinueEnroll(studentId, enrollKeyRaw){
+    document.getElementById('discStudentId').value=studentId;
+    document.getElementById('discEnrollKey').value=enrollKeyRaw; // '__root__' or actual key
+    const s=allStudents[studentId]; if(!s) return;
+    let e=s;
+    if(enrollKeyRaw!=='__root__'&&s.enrollments&&s.enrollments[enrollKeyRaw]) e=s.enrollments[enrollKeyRaw];
+    document.getElementById('discBatchName').textContent=`${e.className} — ${e.batchName}`;
+    document.getElementById('discReason').value='';
+    closeModal('studentDetailModal');
+    openModal('discontinueEnrollModal');
+}
+function confirmDiscontinueEnroll(){
+    const studentId=document.getElementById('discStudentId').value;
+    const enrollKeyRaw=document.getElementById('discEnrollKey').value;
+    const reason=document.getElementById('discReason').value.trim();
+    if(!reason){toast('Please enter a reason','error');return;}
+    const s=allStudents[studentId]; if(!s) return;
+
+    const now=new Date().toISOString();
+    const updates={};
+
+    if(enrollKeyRaw==='__root__'){
+        // Discontinue the root enrollment
+        updates[`students/${studentId}/status`]='discontinued';
+        updates[`students/${studentId}/discontinueReason`]=reason;
+        updates[`students/${studentId}/discontinuedAt`]=now;
+    } else {
+        updates[`students/${studentId}/enrollments/${enrollKeyRaw}/status`]='discontinued';
+        updates[`students/${studentId}/enrollments/${enrollKeyRaw}/discontinueReason`]=reason;
+        updates[`students/${studentId}/enrollments/${enrollKeyRaw}/discontinuedAt`]=now;
+    }
+    // Log to courseHistory
+    const logEntry={
+        action:'discontinued',
+        enrollKey:enrollKeyRaw,
+        reason,
+        date:now,
+        by:adminSession?.name||'Admin'
+    };
+
+    db.ref().update(updates)
+        .then(()=>db.ref(`students/${studentId}/courseHistory`).push(logEntry))
+        .then(()=>{
+            toast(`✅ Batch discontinued. Student ID unchanged.`);
+            closeModal('discontinueEnrollModal');
+            openDetail(studentId);
+        }).catch(()=>toast('Failed','error'));
+}
 
 // ─── DELETE / EDIT ────────────────────────────────────────────────────────────
 function delStudent(id,n){dcConfirm(`All data for "${n}" will be permanently deleted, including fees and attendance.`,{title:'Delete Student?',type:'danger',icon:'👤',okText:'Delete'}).then(ok=>{if(ok)Promise.all([db.ref('students/'+id).remove(),db.ref('credentials/students/'+id).remove()]).then(()=>{toast('Deleted');closeModal('studentDetailModal');});});}
@@ -2392,28 +3036,95 @@ function saveEdit(){
 }
 
 // ─── PAYMENTS ─────────────────────────────────────────────────────────────────
-function openPayModal(id,name,feeType){
+function openPayModal(id, name, feeType, enrollKey){
+    // enrollKey = null for root enrollment, or sub-enrollment key
+    const s=allStudents[id]; if(!s) return;
     document.getElementById('payStudentId').value=id;
+    document.getElementById('payEnrollKey').value=enrollKey||'';
     document.getElementById('payStudent').value=name+' ('+id+')';
-    document.getElementById('payAmount').value='';document.getElementById('payMethod').value='';
+    document.getElementById('payAmount').value='';
+    document.getElementById('payMethod').value='';
     document.getElementById('payDate').value=new Date().toISOString().split('T')[0];
     document.getElementById('payNote').value='';
-    const mg=document.getElementById('payMonthGroup');
-    if(feeType==='monthly'){mg.style.display='block';document.getElementById('payMonth').value='';}
-    else mg.style.display='none';
-    closeModal('studentDetailModal');openModal('addPaymentModal');
+
+    // Build enrollment selector if student has sub-enrollments
+    const allE=getStudentAllEnrollments(s);
+    const enrollGroup=document.getElementById('payEnrollGroup');
+    const enrollSel=document.getElementById('payEnrollSel');
+    if(allE.length>1){
+        enrollGroup.style.display='block';
+        enrollSel.innerHTML=allE.map(({data:e,key:k,isRoot})=>{
+            const bStatus=getBatchStatusByCode(e.classCode,e.batchCode);
+            const statusTag=bStatus!=='running'?` (${bStatus.replace('_',' ')})`:'';
+            const val=k||'__root__';
+            const selected=(enrollKey===k)?'selected':'';
+            return`<option value="${val}" ${selected}>${e.className||''}–${e.batchName||''} | ${e.feeType==='monthly'?'₹'+e.monthlyFee+'/mo':'₹'+(e.netFee||0)+' total'}${statusTag}</option>`;
+        }).join('');
+        // Set enrollKey from first option if not specified
+        if(!enrollKey){
+            const firstKey=allE[0].key;
+            document.getElementById('payEnrollKey').value=firstKey||'';
+            enrollSel.value='__root__';
+        } else {
+            enrollSel.value=enrollKey||'__root__';
+        }
+        onPayEnrollChange();
+    } else {
+        enrollGroup.style.display='none';
+        // Single enrollment — show month field based on feeType
+        const mg=document.getElementById('payMonthGroup');
+        if(feeType==='monthly'){mg.style.display='block';document.getElementById('payMonth').value='';}
+        else mg.style.display='none';
+    }
+
+    closeModal('studentDetailModal');
+    openModal('addPaymentModal');
 }
+
+// Called when enrollment selector changes in payment modal
+function onPayEnrollChange(){
+    const selVal=document.getElementById('payEnrollSel').value;
+    const realKey=selVal==='__root__'?null:selVal;
+    document.getElementById('payEnrollKey').value=realKey||'';
+    const id=document.getElementById('payStudentId').value;
+    const s=allStudents[id]; if(!s) return;
+    let e=s;
+    if(realKey&&s.enrollments&&s.enrollments[realKey]) e=s.enrollments[realKey];
+    const mg=document.getElementById('payMonthGroup');
+    if(e.feeType==='monthly'){mg.style.display='block';document.getElementById('payMonth').value='';}
+    else mg.style.display='none';
+}
+
 function recordPayment(){
     const id=document.getElementById('payStudentId').value;
+    const enrollKeyRaw=document.getElementById('payEnrollKey').value;
+    const enrollKey=enrollKeyRaw||null; // null = root
     const amount=parseInt(document.getElementById('payAmount').value);
     const method=document.getElementById('payMethod').value,date=document.getElementById('payDate').value;
     if(!amount||amount<=0||!method||!date){toast('Fill fields','error');return;}
     const s=allStudents[id];if(!s){toast('Not found','error');return;}
-    const newPaid=(s.paidAmount||0)+amount;
-    const newDue=Math.max(0,(s.netFee||0)-newPaid);
-    const payData={amount,method,date,note:document.getElementById('payNote').value.trim(),recordedAt:new Date().toISOString(),recordedBy:adminSession.name||'Admin'};
-    if(s.feeType==='monthly')payData.forMonth=document.getElementById('payMonth').value||'';
-    db.ref().update({[`students/${id}/paidAmount`]:newPaid,[`students/${id}/dueAmount`]:newDue}).then(()=>db.ref('students/'+id+'/payments').push(payData)).then(()=>{toast(`₹${amount.toLocaleString()} recorded!`);closeModal('addPaymentModal');}).catch(()=>toast('Failed','error'));
+
+    // Get the enrollment data to update
+    let enrollData;
+    let basePath;
+    if(enrollKey&&s.enrollments&&s.enrollments[enrollKey]){
+        enrollData=s.enrollments[enrollKey];
+        basePath=`students/${id}/enrollments/${enrollKey}`;
+    } else {
+        enrollData=s;
+        basePath=`students/${id}`;
+    }
+
+    const newPaid=(enrollData.paidAmount||0)+amount;
+    const newDue=Math.max(0,(enrollData.netFee||0)-newPaid);
+    const payData={amount,method,date,note:document.getElementById('payNote').value.trim(),
+        recordedAt:new Date().toISOString(),recordedBy:adminSession?.name||'Admin'};
+    if(enrollData.feeType==='monthly') payData.forMonth=document.getElementById('payMonth').value||'';
+
+    db.ref().update({[`${basePath}/paidAmount`]:newPaid,[`${basePath}/dueAmount`]:newDue})
+        .then(()=>db.ref(`${basePath}/payments`).push(payData))
+        .then(()=>{toast(`₹${amount.toLocaleString()} recorded!`);closeModal('addPaymentModal');})
+        .catch(()=>toast('Failed','error'));
 }
 
 // ─── BATCH CLOSED HELPER ──────────────────────────────────────────────────────
@@ -3311,7 +4022,53 @@ function confirmBatchTransfer(){
 }
 
 // ═══════════════════════════════════════════════════════════════════════════
-// ─── 3. EXPORT / PAYMENT HISTORY ───────────────────────────────────────────
+// ─── MULTI-ENROLLMENT HELPERS ──────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════════════════
+
+// Get all enrollment records for the same physical person (follows previousId chain + forward links)
+function getAllEnrollments(id){
+    // Walk backwards via previousId chain
+    const chain=[];
+    let curr=id;
+    const visited=new Set();
+    while(curr&&!visited.has(curr)){
+        visited.add(curr);
+        if(allStudents[curr]) chain.unshift(curr); // oldest first
+        const s=allStudents[curr];
+        if(s&&s.previousId) curr=s.previousId;
+        else break;
+    }
+    // Also find any record that has previousId pointing to any id in our chain (re-enrollments going forward)
+    const chainSet=new Set(chain);
+    let added=true;
+    while(added){
+        added=false;
+        Object.entries(allStudents).forEach(([k,s])=>{
+            if(!chainSet.has(k)&&s.previousId&&chainSet.has(s.previousId)){
+                chain.push(k); chainSet.add(k); added=true;
+            }
+        });
+    }
+    // Sort by joinDate/createdAt
+    chain.sort((a,b)=>((allStudents[a]?.createdAt||'')).localeCompare(allStudents[b]?.createdAt||''));
+    return chain.map(k=>({id:k, ...allStudents[k]}));
+}
+
+// Get batch status label for a student record
+function getBatchStatusForStudent(s){
+    for(const cKey of Object.keys(allClasses)){
+        const cls=allClasses[cKey];
+        if(cls.code!==s.classCode) continue;
+        for(const bKey of Object.keys(cls.batches||{})){
+            const b=cls.batches[bKey];
+            if(b.code===s.batchCode) return b.status||'running';
+        }
+    }
+    return 'running';
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// ─── EXPORT / PAYMENT HISTORY ──────────────────────────────────────────────
 // ═══════════════════════════════════════════════════════════════════════════
 function openExport(id){
     document.getElementById('exportStudentId').value = id;
@@ -3338,30 +4095,67 @@ function doExport(type){
 
 // ── CSV exports ──
 function exportAllCSV(){
-    const rows = [['Student ID','Name','Course','Batch','Fee Type','Net Fee','Paid','Due','Status','Join Date']];
+    const rows = [['Student ID','Name','Course','Batch','Batch Status','Course Status','Fee Type','Net Fee','Paid','Due','Payment Status','Join Date']];
     Object.values(allStudents).forEach(s=>{
         const due = getMonthlyDueByDate(s);
-        const status = due<=0?'Paid':s.paidAmount>0?'Partial':'Unpaid';
-        rows.push([s.id, s.name, s.className||'', s.batchName||'', s.feeType==='monthly'?'Monthly':'Total',
-            s.netFee||0, s.paidAmount||0, Math.round(due), status, s.joinDate||'']);
+        const bStatus = getBatchStatusForStudent(s);
+        const courseStatus = s.finishMonth ? 'Finished ('+s.finishMonth+')' : 'Continuing';
+        const payStatus = due<=0?'Paid':s.paidAmount>0?'Partial':'Unpaid';
+        rows.push([s.id, s.name, s.className||'', s.batchName||'',
+            bStatus==='closed_paid'?'Closed-Paid':bStatus==='closed_unpaid'?'Closed-Unpaid':'Running',
+            courseStatus,
+            s.feeType==='monthly'?'Monthly':'Total',
+            s.netFee||0, s.paidAmount||0, Math.round(due), payStatus, s.joinDate||'']);
     });
     downloadCSV(rows, 'DreamChem_Fee_Summary_' + new Date().toISOString().slice(0,10) + '.csv');
     toast('CSV exported!');
 }
 
 function exportStudentCSV(id){
-    const s = allStudents[id]; if(!s) return;
-    const rows = [['#','Date','Month','Amount (₹)','Method','Note']];
-    const pays = s.payments || {};
-    Object.values(pays).sort((a,b)=>(a.date||'').localeCompare(b.date||'')).forEach((p,i)=>{
-        rows.push([i+1, p.date||'', p.forMonth||'', p.amount||0, p.method||'', p.note||'']);
-    });
+    const enrollments = getAllEnrollments(id);
+    const instName = document.getElementById('sbBrand')?.textContent?.trim() || 'Dream Chem';
+    const firstName = enrollments[0]?.name || allStudents[id]?.name || 'Student';
+
+    let rows = [['=== '+instName+' — Complete Fee History: '+firstName+' ===']];
     rows.push([]);
-    rows.push(['Summary','','','','','']);
-    rows.push(['Net Fee','','', s.netFee||0,'','']);
-    rows.push(['Total Paid','','', s.paidAmount||0,'','']);
-    rows.push(['Due','','', Math.round(getMonthlyDueByDate(s)),'','']);
-    downloadCSV(rows, s.id + '_PaymentHistory_' + new Date().toISOString().slice(0,10) + '.csv');
+
+    let grandPaid=0, grandDue=0, grandNet=0;
+
+    enrollments.forEach((s, ei)=>{
+        const due = getMonthlyDueByDate(s);
+        const bStatus = getBatchStatusForStudent(s);
+        const courseStatus = s.finishMonth ? 'Finished ('+s.finishMonth+')' : 'Continuing';
+        const bStatusLabel = bStatus==='closed_paid'?'Closed-Paid':bStatus==='closed_unpaid'?'Closed-Unpaid':'Running';
+
+        grandPaid += s.paidAmount||0;
+        grandDue  += Math.round(due);
+        grandNet  += s.netFee||0;
+
+        rows.push(['--- Enrollment #'+(ei+1)+' ---']);
+        rows.push(['Student ID', s.id, 'Course', s.className||'', 'Batch', s.batchName||'']);
+        rows.push(['Fee Type', s.feeType==='monthly'?'Monthly (₹'+s.monthlyFee+'/mo)':'Total Fee',
+                   'Net Fee', '₹'+(s.netFee||0).toLocaleString(), 'Paid', '₹'+(s.paidAmount||0).toLocaleString()]);
+        rows.push(['Due (to date)', '₹'+Math.round(due).toLocaleString(), 'Course Status', courseStatus, 'Batch Status', bStatusLabel]);
+        rows.push(['Join Date', s.joinDate||'—', 'Start Month', s.startMonth||'—', 'Finish Month', s.finishMonth||'—']);
+        rows.push([]);
+        rows.push(['#','Date','Month','Amount (₹)','Method','Note']);
+
+        const pays = s.payments || {};
+        Object.values(pays).sort((a,b)=>(a.date||'').localeCompare(b.date||'')).forEach((p,i)=>{
+            rows.push([i+1, p.date||'', p.forMonth||'', p.amount||0, p.method||'', p.note||'']);
+        });
+        rows.push([]);
+    });
+
+    if(enrollments.length>1){
+        rows.push(['=== GRAND TOTAL ACROSS ALL ENROLLMENTS ===']);
+        rows.push(['Total Enrollments', enrollments.length]);
+        rows.push(['Grand Net Fee', '₹'+grandNet.toLocaleString()]);
+        rows.push(['Grand Paid', '₹'+grandPaid.toLocaleString()]);
+        rows.push(['Grand Due', '₹'+grandDue.toLocaleString()]);
+    }
+
+    downloadCSV(rows, (enrollments[0]?.id||id) + '_FullHistory_' + new Date().toISOString().slice(0,10) + '.csv');
     toast('CSV exported!');
 }
 
@@ -3374,49 +4168,120 @@ function downloadCSV(rows, filename){
 
 // ── Print exports ──
 function exportStudentPrint(id){
-    const s = allStudents[id]; if(!s) return;
-    const due = getMonthlyDueByDate(s);
-    const pays = s.payments || {};
-    const pk = Object.keys(pays).sort((a,b)=>(pays[b].date||'').localeCompare(pays[a].date||''));
+    const enrollments = getAllEnrollments(id);
     const instName = document.getElementById('sbBrand')?.textContent?.trim() || 'Dream Chem';
+    const person = enrollments[0] || allStudents[id]; if(!person) return;
 
-    let rows = pk.map((k,i)=>{
-        const p = pays[k];
-        return `<tr>
-            <td>${i+1}</td><td>${p.date||'—'}</td>
-            ${s.feeType==='monthly'?`<td>${p.forMonth||'—'}</td>`:''}
-            <td style="color:#27ae60;font-weight:600">₹${(p.amount||0).toLocaleString()}</td>
-            <td>${p.method||'—'}</td><td>${p.note||'—'}</td>
-        </tr>`;
-    }).join('');
+    let grandPaid=0, grandDue=0, grandNet=0;
+    let sectionsHtml='';
 
-    const w = window.open('','_blank','width=800,height=600');
-    w.document.write(`<!DOCTYPE html><html><head><title>${s.name} — Payment History</title>
+    enrollments.forEach((s, ei)=>{
+        const due = getMonthlyDueByDate(s);
+        const bStatus = getBatchStatusForStudent(s);
+        const courseStatus = s.finishMonth
+            ? `<span style="color:#e74c3c;font-weight:700">✗ Finished (${s.finishMonth})</span>`
+            : `<span style="color:#27ae60;font-weight:700">✓ Continuing</span>`;
+        const bStatusLabel = bStatus==='closed_paid'
+            ? `<span style="color:#27ae60;font-weight:700">✅ Batch Closed (Paid)</span>`
+            : bStatus==='closed_unpaid'
+            ? `<span style="color:#e74c3c;font-weight:700">⚠ Batch Closed (Unpaid)</span>`
+            : `<span style="color:#2980b9;font-weight:700">▶ Running</span>`;
+
+        grandPaid += s.paidAmount||0;
+        grandDue  += Math.round(due);
+        grandNet  += s.netFee||0;
+
+        const pays = s.payments || {};
+        const pk = Object.keys(pays).sort((a,b)=>(pays[b].date||'').localeCompare(pays[a].date||''));
+        const isMonthly = s.feeType==='monthly';
+        const netDisp = isMonthly&&!s.netFee?'Open-ended':'₹'+(s.netFee||0).toLocaleString();
+
+        let rows = pk.map((k,i)=>{
+            const p = pays[k];
+            return `<tr>
+                <td>${i+1}</td><td>${p.date||'—'}</td>
+                ${isMonthly?`<td>${p.forMonth||'—'}</td>`:''}
+                <td style="color:#27ae60;font-weight:600">₹${(p.amount||0).toLocaleString()}</td>
+                <td>${p.method||'—'}</td><td>${p.note||'—'}</td>
+            </tr>`;
+        }).join('');
+
+        sectionsHtml += `
+        <div class="enrollment-block">
+            <div class="enroll-header">
+                Enrollment #${ei+1} &nbsp;•&nbsp; ${s.id}
+                ${enrollments.length>1?`<span style="color:#888;font-size:12px;margin-left:8px">(of ${enrollments.length} enrollments)</span>`:''}
+            </div>
+            <div class="enroll-meta">
+                <div><strong>Course:</strong> ${s.className||'—'}</div>
+                <div><strong>Batch:</strong> ${s.batchName||'—'}</div>
+                <div><strong>Fee Type:</strong> ${isMonthly?'📅 Monthly (₹'+s.monthlyFee+'/mo)':'💵 Total Fee'}</div>
+                <div><strong>Join Date:</strong> ${s.joinDate||'—'}</div>
+                ${isMonthly?`<div><strong>Start Month:</strong> ${s.startMonth||'—'}</div>`:''}
+                ${s.finishMonth?`<div><strong>Finish Month:</strong> ${s.finishMonth} (${s.months||0} months)</div>`:''}
+                <div><strong>Course Status:</strong> ${courseStatus}</div>
+                <div><strong>Batch Status:</strong> ${bStatusLabel}</div>
+            </div>
+            <div class="summary">
+                <div class="sum-box"><div class="val">${netDisp}</div><div class="lbl">Net Fee${s.discount?' (disc ₹'+s.discount+')':''}</div></div>
+                <div class="sum-box paid"><div class="val">₹${(s.paidAmount||0).toLocaleString()}</div><div class="lbl">Paid</div></div>
+                <div class="sum-box due"><div class="val">₹${Math.round(due).toLocaleString()}</div><div class="lbl">${isMonthly?'Due (to date)':'Balance Due'}</div></div>
+            </div>
+            ${s.remarks?`<div class="remarks-note"><strong>Admin Note:</strong> ${s.remarks}</div>`:''}
+            <table><thead><tr>
+                <th>#</th><th>Date</th>${isMonthly?'<th>Month</th>':''}<th>Amount</th><th>Method</th><th>Note</th>
+            </tr></thead>
+            <tbody>${rows||'<tr><td colspan="6" style="text-align:center;color:#aaa;padding:16px">No payments recorded</td></tr>'}</tbody>
+            </table>
+        </div>`;
+    });
+
+    // Grand total section (only if multi-enrollment)
+    let grandTotalHtml='';
+    if(enrollments.length>1){
+        grandTotalHtml=`<div class="grand-total-block">
+            <div style="font-size:16px;font-weight:800;color:#333;margin-bottom:12px">📊 Grand Total — All Enrollments</div>
+            <div class="summary" style="max-width:500px">
+                <div class="sum-box"><div class="val">₹${grandNet.toLocaleString()}</div><div class="lbl">Total Net Fee</div></div>
+                <div class="sum-box paid"><div class="val">₹${grandPaid.toLocaleString()}</div><div class="lbl">Total Paid</div></div>
+                <div class="sum-box due"><div class="val">₹${grandDue.toLocaleString()}</div><div class="lbl">Total Due</div></div>
+            </div>
+        </div>`;
+    }
+
+    const w = window.open('','_blank','width=860,height=700');
+    w.document.write(`<!DOCTYPE html><html><head><title>${person.name} — Full Payment History</title>
     <style>
-        body{font-family:'Segoe UI',sans-serif;padding:30px;color:#333;background:#fff;}
-        h1{font-size:22px;margin:0 0 4px}.sub{color:#888;font-size:13px;margin-bottom:20px;}
-        .summary{display:flex;gap:20px;margin-bottom:24px;}
-        .sum-box{flex:1;padding:14px;background:#f8f9ff;border-radius:10px;border:1px solid #e0e3f0;text-align:center;}
-        .sum-box .val{font-size:20px;font-weight:800;color:#333;}.sum-box .lbl{font-size:11px;color:#888;margin-top:3px;}
+        body{font-family:'Segoe UI',sans-serif;padding:30px;color:#333;background:#fff;max-width:900px;margin:0 auto;}
+        h1{font-size:22px;margin:0 0 4px}
+        .sub{color:#888;font-size:13px;margin-bottom:24px;}
+        .summary{display:flex;gap:14px;margin-bottom:16px;}
+        .sum-box{flex:1;padding:12px;background:#f8f9ff;border-radius:10px;border:1px solid #e0e3f0;text-align:center;}
+        .sum-box .val{font-size:18px;font-weight:800;color:#333;}.sum-box .lbl{font-size:10px;color:#888;margin-top:3px;}
         .sum-box.due .val{color:#e74c3c;}.sum-box.paid .val{color:#27ae60;}
-        table{width:100%;border-collapse:collapse;font-size:13px;}
-        th{background:#f0f2ff;padding:10px 12px;text-align:left;font-weight:700;color:#555;border-bottom:2px solid #dde;}
-        td{padding:9px 12px;border-bottom:1px solid #eef;}
+        table{width:100%;border-collapse:collapse;font-size:12px;margin-bottom:0;}
+        th{background:#f0f2ff;padding:9px 10px;text-align:left;font-weight:700;color:#555;border-bottom:2px solid #dde;}
+        td{padding:8px 10px;border-bottom:1px solid #eef;}
         tr:last-child td{border:none;}
-        .footer{margin-top:30px;font-size:11px;color:#aaa;text-align:center;border-top:1px solid #eee;padding-top:12px;}
+        .enrollment-block{border:1px solid #dde3f0;border-radius:12px;padding:20px;margin-bottom:24px;background:#fafbff;}
+        .enroll-header{font-size:14px;font-weight:800;color:#6c5ce7;padding:8px 14px;background:rgba(108,92,231,0.08);border-radius:8px;margin-bottom:14px;}
+        .enroll-meta{display:grid;grid-template-columns:1fr 1fr;gap:6px 20px;font-size:12px;color:#555;margin-bottom:14px;padding:0 4px;}
+        .enroll-meta div{padding:3px 0;border-bottom:1px solid #f0f0f0;}
+        .remarks-note{background:#fff9e6;border:1px solid #ffd;border-radius:8px;padding:8px 12px;margin-bottom:12px;font-size:12px;color:#7a6000;}
+        .grand-total-block{border:2px solid #6c5ce7;border-radius:12px;padding:20px;margin-bottom:24px;background:rgba(108,92,231,0.04);}
+        .footer{margin-top:24px;font-size:11px;color:#aaa;text-align:center;border-top:1px solid #eee;padding-top:12px;}
         @media print{.no-print{display:none}}
     </style></head><body>
-    <button class="no-print" onclick="window.print()" style="float:right;padding:8px 18px;background:#6c5ce7;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:13px">🖨 Print</button>
-    <h1>${instName} — Payment Receipt</h1>
-    <div class="sub">${s.name} &nbsp;|&nbsp; ${s.id} &nbsp;|&nbsp; ${s.className} — ${s.batchName} &nbsp;|&nbsp; ${s.feeType==='monthly'?'Monthly Fee':'Total Fee'}</div>
-    <div class="summary">
-        <div class="sum-box"><div class="val">₹${(s.netFee||0).toLocaleString()}</div><div class="lbl">Net Fee</div></div>
-        <div class="sum-box paid"><div class="val">₹${(s.paidAmount||0).toLocaleString()}</div><div class="lbl">Paid</div></div>
-        <div class="sum-box due"><div class="val">₹${Math.round(due).toLocaleString()}</div><div class="lbl">Balance Due</div></div>
+    <button class="no-print" onclick="window.print()" style="float:right;padding:8px 18px;background:#6c5ce7;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:13px">🖨 Print / Save PDF</button>
+    <h1>${instName} — Complete Payment History</h1>
+    <div class="sub">
+        <strong>${person.name}</strong> &nbsp;|&nbsp; 📱 ${person.mobile||'—'} &nbsp;|&nbsp;
+        ${enrollments.length} Enrollment${enrollments.length>1?'s':''} &nbsp;|&nbsp;
+        Generated: ${new Date().toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'})}
     </div>
-    <table><thead><tr><th>#</th><th>Date</th>${s.feeType==='monthly'?'<th>Month</th>':''}<th>Amount</th><th>Method</th><th>Note</th></tr></thead>
-    <tbody>${rows||'<tr><td colspan="6" style="text-align:center;color:#aaa;padding:20px">No payments recorded</td></tr>'}</tbody></table>
-    <div class="footer">Generated on ${new Date().toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'})} &nbsp;•&nbsp; ${instName}</div>
+    ${grandTotalHtml}
+    ${sectionsHtml}
+    <div class="footer">Generated by ${instName} Admin Portal</div>
     </body></html>`);
     w.document.close();
 }
@@ -3429,10 +4294,13 @@ function exportAllPrint(){
 
     const rows = stus.map((s,i)=>{
         const due = getMonthlyDueByDate(s);
+        const bStatus = getBatchStatusForStudent(s);
+        const courseStatus = s.finishMonth?'Finished':'Continuing';
+        const bLabel = bStatus==='closed_paid'?'<span style="color:#27ae60;font-size:10px">✅ Closed-Paid</span>':bStatus==='closed_unpaid'?'<span style="color:#e74c3c;font-size:10px">⚠ Closed-Unpaid</span>':'<span style="color:#2980b9;font-size:10px">▶ Running</span>';
         const status = due<=0?'<span style="color:#27ae60;font-weight:700">Paid</span>':s.paidAmount>0?'<span style="color:#f39c12;font-weight:700">Partial</span>':'<span style="color:#e74c3c;font-weight:700">Unpaid</span>';
         return `<tr><td>${i+1}</td><td><strong>${s.name}</strong><br><small style="color:#999">${s.id}</small></td>
-        <td>${s.className||''}</td><td>${s.batchName||''}</td>
-        <td>${s.feeType==='monthly'?'Monthly':'Total'}</td>
+        <td>${s.className||''}</td><td>${s.batchName||''}<br>${bLabel}</td>
+        <td>${s.feeType==='monthly'?'Monthly':'Total'}<br><small>${courseStatus}</small></td>
         <td>₹${(s.netFee||0).toLocaleString()}</td>
         <td style="color:#27ae60;font-weight:600">₹${(s.paidAmount||0).toLocaleString()}</td>
         <td style="color:${due>0?'#e74c3c':'#27ae60'};font-weight:600">₹${Math.round(due).toLocaleString()}</td>
@@ -3470,10 +4338,202 @@ function exportAllPrint(){
     w.document.close();
 }
 
+// ═══════════════════════════════════════════════════════════════════════════
+// ─── PRINT UNPAID STUDENTS (Closed Unpaid Batch) ────────────────────────────
+// ═══════════════════════════════════════════════════════════════════════════
+function printUnpaidStudents(classKey, batchKey){
+    const cls=allClasses[classKey]; if(!cls) return;
+    const batch=cls.batches[batchKey]; if(!batch) return;
+    const instName = document.getElementById('sbBrand')?.textContent?.trim() || 'Dream Chem';
+    const allStu = getStudentsInBatch(cls.code, batch.code);
+    const unpaidStu = allStu.filter(([,s])=>getMonthlyDueByDate(s)>0);
+
+    if(!unpaidStu.length){ toast('No unpaid students in this batch!','info'); return; }
+
+    let totalDue=0;
+    const rows = unpaidStu.map(([k,s],i)=>{
+        const due=getMonthlyDueByDate(s); totalDue+=due;
+        const pays=s.payments||{};
+        const lastPay=Object.values(pays).sort((a,b)=>(b.date||'').localeCompare(a.date||''))[0];
+        const feeInfo=s.feeType==='monthly'
+            ?`₹${s.monthlyFee}/mo × ${s.months||'open'} months`
+            :`₹${s.netFee||0} total`;
+        return `<tr>
+            <td>${i+1}</td>
+            <td><strong>${s.name}</strong><br><small>${s.id}</small></td>
+            <td>${s.mobile||'—'}<br><small>${s.parentMobile||''}</small></td>
+            <td>${feeInfo}</td>
+            <td style="color:#27ae60;font-weight:600">₹${(s.paidAmount||0).toLocaleString()}</td>
+            <td style="color:#e74c3c;font-weight:800">₹${Math.round(due).toLocaleString()}</td>
+            <td>${lastPay?lastPay.date:'Never paid'}</td>
+            <td style="min-width:80px">&nbsp;</td>
+        </tr>`;
+    }).join('');
+
+    const w = window.open('','_blank','width=1000,height=700');
+    w.document.write(`<!DOCTYPE html><html><head><title>Unpaid Students — ${batch.name}</title>
+    <style>
+        body{font-family:'Segoe UI',sans-serif;padding:28px;color:#333;}
+        h1{font-size:20px;margin:0 0 3px;}
+        .sub{color:#888;font-size:12px;margin-bottom:18px;}
+        .badge-unpaid{display:inline-block;background:#e74c3c;color:#fff;font-size:11px;font-weight:800;padding:3px 12px;border-radius:20px;letter-spacing:1px;margin-left:10px;}
+        .summary-bar{display:flex;gap:14px;margin-bottom:20px;}
+        .s-box{padding:12px 18px;background:#fff5f5;border:1px solid #fdd;border-radius:10px;text-align:center;}
+        .s-box .v{font-size:18px;font-weight:800;color:#e74c3c;}.s-box .l{font-size:10px;color:#999;margin-top:2px;}
+        table{width:100%;border-collapse:collapse;font-size:12px;}
+        th{background:#fff0f0;padding:9px 10px;text-align:left;font-weight:700;color:#c0392b;border-bottom:2px solid #fcc;}
+        td{padding:9px 10px;border-bottom:1px solid #fee;vertical-align:top;}
+        tr:nth-child(even) td{background:#fff8f8;}
+        .footer{margin-top:20px;font-size:11px;color:#aaa;text-align:center;border-top:1px solid #eee;padding-top:10px;}
+        .sign-col{border-left:1px solid #ddd;}
+        @media print{.no-print{display:none}}
+    </style></head><body>
+    <button class="no-print" onclick="window.print()" style="float:right;padding:7px 16px;background:#e74c3c;color:#fff;border:none;border-radius:8px;cursor:pointer;font-size:13px">🖨 Print</button>
+    <h1>${instName} &nbsp;<span class="badge-unpaid">⚠ UNPAID</span></h1>
+    <div class="sub">${cls.name} — ${batch.name} &nbsp;|&nbsp; Batch Closed &nbsp;|&nbsp; ${unpaidStu.length} Unpaid Student${unpaidStu.length>1?'s':''} &nbsp;|&nbsp; Printed: ${new Date().toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})}</div>
+    <div class="summary-bar">
+        <div class="s-box"><div class="v">${unpaidStu.length}</div><div class="l">Unpaid Students</div></div>
+        <div class="s-box"><div class="v">₹${Math.round(totalDue).toLocaleString()}</div><div class="l">Total Outstanding</div></div>
+        <div class="s-box"><div class="v">${allStu.length - unpaidStu.length}</div><div class="l">Paid Students</div></div>
+    </div>
+    <table><thead><tr>
+        <th>#</th><th>Student Name</th><th>Contact</th><th>Fee Structure</th>
+        <th>Paid</th><th>Due Amount</th><th>Last Payment</th><th class="sign-col">Admin Signature</th>
+    </tr></thead>
+    <tbody>${rows}</tbody></table>
+    <div class="footer">Printed by ${instName} Admin Portal &nbsp;•&nbsp; ${new Date().toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'})}</div>
+    </body></html>`);
+    w.document.close();
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// ─── EDIT / DELETE PAYMENT ENTRY ───────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════════════════
+function openEditPayment(studentId, payKey, enrollKey){
+    const s=allStudents[studentId]; if(!s) return;
+    // Get enrollment data
+    let e=s, basePath=`students/${studentId}`;
+    if(enrollKey&&s.enrollments&&s.enrollments[enrollKey]){
+        e=s.enrollments[enrollKey];
+        basePath=`students/${studentId}/enrollments/${enrollKey}`;
+    }
+    const pays=e.payments||{};
+    const pay=pays[payKey]; if(!pay) return;
+
+    document.getElementById('epStudentId').value=studentId;
+    document.getElementById('epPayKey').value=payKey;
+    document.getElementById('epOrigAmount').value=pay.amount||0;
+    // Store enrollKey in hidden field — reuse epOrigAmount slot with a new hidden field
+    // We'll store it as data attribute on epStudentId
+    document.getElementById('epStudentId').dataset.enrollKey=enrollKey||'';
+    document.getElementById('epAmount').value=pay.amount||'';
+    document.getElementById('epMethod').value=pay.method||'';
+    document.getElementById('epDate').value=pay.date||'';
+    document.getElementById('epNote').value=pay.note||'';
+
+    const mg=document.getElementById('epMonthGroup');
+    if(e.feeType==='monthly'){
+        mg.style.display='block';
+        document.getElementById('epMonth').value=pay.forMonth||'';
+    } else {
+        mg.style.display='none';
+    }
+    closeModal('studentDetailModal');
+    openModal('editPaymentModal');
+}
+
+function saveEditPayment(){
+    const studentId=document.getElementById('epStudentId').value;
+    const enrollKey=document.getElementById('epStudentId').dataset.enrollKey||'';
+    const payKey=document.getElementById('epPayKey').value;
+    const origAmount=parseInt(document.getElementById('epOrigAmount').value)||0;
+    const s=allStudents[studentId]; if(!s) return;
+
+    let e=s, basePath=`students/${studentId}`;
+    if(enrollKey&&s.enrollments&&s.enrollments[enrollKey]){
+        e=s.enrollments[enrollKey];
+        basePath=`students/${studentId}/enrollments/${enrollKey}`;
+    }
+
+    const newAmount=parseInt(document.getElementById('epAmount').value);
+    const method=document.getElementById('epMethod').value;
+    const date=document.getElementById('epDate').value;
+    if(!newAmount||newAmount<=0||!method||!date){toast('Fill all required fields','error');return;}
+
+    const newPaidAmount=Math.max(0,(e.paidAmount||0)-origAmount+newAmount);
+    const newDue=Math.max(0,(e.netFee||0)-newPaidAmount);
+
+    const payUpdates={};
+    payUpdates[`${basePath}/payments/${payKey}/amount`]=newAmount;
+    payUpdates[`${basePath}/payments/${payKey}/method`]=method;
+    payUpdates[`${basePath}/payments/${payKey}/date`]=date;
+    payUpdates[`${basePath}/payments/${payKey}/note`]=document.getElementById('epNote').value.trim();
+    payUpdates[`${basePath}/payments/${payKey}/editedAt`]=new Date().toISOString();
+    payUpdates[`${basePath}/payments/${payKey}/editedBy`]=adminSession?.name||'Admin';
+    if(e.feeType==='monthly'){
+        payUpdates[`${basePath}/payments/${payKey}/forMonth`]=document.getElementById('epMonth').value||'';
+    }
+    payUpdates[`${basePath}/paidAmount`]=newPaidAmount;
+    payUpdates[`${basePath}/dueAmount`]=newDue;
+
+    db.ref().update(payUpdates).then(()=>{
+        toast(`✅ Payment updated! ₹${origAmount.toLocaleString()} → ₹${newAmount.toLocaleString()}`);
+        closeModal('editPaymentModal');
+        openDetail(studentId);
+    }).catch(()=>toast('Failed to update payment','error'));
+}
+
+function deletePayment(studentId, payKey, enrollKey){
+    const s=allStudents[studentId]; if(!s) return;
+    let e=s, basePath=`students/${studentId}`;
+    if(enrollKey&&s.enrollments&&s.enrollments[enrollKey]){
+        e=s.enrollments[enrollKey];
+        basePath=`students/${studentId}/enrollments/${enrollKey}`;
+    }
+    const pay=(e.payments||{})[payKey]; if(!pay) return;
+    dcConfirm(`Delete payment of ₹${(pay.amount||0).toLocaleString()} on ${pay.date}? This cannot be undone.`,
+        {title:'Delete Payment?',type:'danger',icon:'💸',okText:'Delete'}).then(ok=>{
+        if(!ok) return;
+        const amount=pay.amount||0;
+        const newPaid=Math.max(0,(e.paidAmount||0)-amount);
+        const newDue=Math.max(0,(e.netFee||0)-newPaid);
+        const updates={};
+        updates[`${basePath}/payments/${payKey}`]=null;
+        updates[`${basePath}/paidAmount`]=newPaid;
+        updates[`${basePath}/dueAmount`]=newDue;
+        db.ref().update(updates).then(()=>{
+            toast(`Payment of ₹${amount.toLocaleString()} deleted. Balance recalculated.`);
+            openDetail(studentId);
+        }).catch(()=>toast('Failed','error'));
+    });
+}
+
 
 // ═══════════════════════════════════════════════════════════════════════════
 // ─── BATCH DAY TOGGLE (Add Batch modal) ────────────────────────────────────
 // ═══════════════════════════════════════════════════════════════════════════
+// ═══════════════════════════════════════════════════════════════════════════
+// ─── COPY STUDENT ID ────────────────────────────────────────────────────────
+// ═══════════════════════════════════════════════════════════════════════════
+function copyStudentId(id, btnEl){
+    navigator.clipboard.writeText(id).then(()=>{
+        toast('Student ID copied: '+id);
+        // Visual feedback on the button if it's passed in
+        if(btnEl){
+            btnEl.textContent='✓';
+            btnEl.classList.add('copied');
+            setTimeout(()=>{btnEl.textContent='⎘';btnEl.classList.remove('copied');},1500);
+        }
+    }).catch(()=>{
+        // Fallback for older browsers
+        const el=document.createElement('input');
+        el.value=id; document.body.appendChild(el);
+        el.select(); document.execCommand('copy');
+        document.body.removeChild(el);
+        toast('Student ID copied: '+id);
+    });
+}
+
 function toggleDay(btn){ btn.classList.toggle('active'); }
 function getSelectedDays(containerId){
     return [...document.querySelectorAll(`#${containerId} .day-toggle-btn.active`)].map(b=>b.dataset.day);
