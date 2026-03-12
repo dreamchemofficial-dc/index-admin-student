@@ -10,7 +10,7 @@
         :root {
             --primary:#00d2ff; --secondary:#3a7bd5;
             --bg1:#0f0c29; --bg2:#302b63; --bg3:#24243e;
-            --card:rgba(255,255,255,0.05); --card-hover:rgba(255,255,255,0.08);
+            --card:rgba(255,255,255,0.05); --card2:rgba(255,255,255,0.03);
             --border:rgba(255,255,255,0.1); --text:#fff;
             --text2:rgba(255,255,255,0.6); --text3:rgba(255,255,255,0.3);
             --success:#2ed573; --warning:#ffa502; --danger:#ff4757;
@@ -38,16 +38,17 @@
         .nav-item:hover{background:var(--card);color:var(--text);}
         .nav-item.active{background:rgba(0,210,255,0.08);color:var(--primary);border-left-color:var(--primary);}
         .nav-icon{font-size:18px;width:24px;text-align:center;}
-        .sb-footer{padding:20px;border-top:1px solid var(--border);}
-        .stu-info{display:flex;align-items:center;gap:10px;}
+        .sb-footer{padding:16px;border-top:1px solid var(--border);}
+        .stu-info{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
         .stu-avatar-sb{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--primary),var(--secondary));display:flex;justify-content:center;align-items:center;font-weight:700;font-size:14px;overflow:hidden;flex-shrink:0;}
         .stu-avatar-sb img{width:100%;height:100%;object-fit:cover;}
-        .stu-sb-name{font-size:13px;font-weight:600;}
-        .stu-sb-role{font-size:11px;color:var(--text3);}
-        .logout-btn{width:100%;margin-top:12px;padding:10px;background:rgba(255,71,87,0.1);border:1px solid rgba(255,71,87,0.2);border-radius:8px;color:var(--danger);font-size:13px;font-weight:600;cursor:pointer;transition:all 0.3s;}
+        .stu-sb-name{font-size:13px;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:150px;}
+        .stu-sb-id{font-size:11px;color:var(--primary);font-weight:600;}
+        .stu-sb-batches{font-size:10px;color:var(--text3);margin-top:1px;max-width:150px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+        .logout-btn{width:100%;margin-top:8px;padding:10px;background:rgba(255,71,87,0.1);border:1px solid rgba(255,71,87,0.2);border-radius:8px;color:var(--danger);font-size:13px;font-weight:600;cursor:pointer;transition:all 0.3s;}
         .logout-btn:hover{background:rgba(255,71,87,0.2);}
-        .contact-btn{width:100%;margin-top:8px;padding:10px;background:linear-gradient(135deg,rgba(0,210,255,0.15),rgba(58,123,213,0.15));border:1px solid rgba(0,210,255,0.3);border-radius:8px;color:var(--primary);font-size:13px;font-weight:600;cursor:pointer;transition:all 0.3s;display:flex;align-items:center;justify-content:center;gap:6px;}
-        .contact-btn:hover{background:linear-gradient(135deg,rgba(0,210,255,0.25),rgba(58,123,213,0.25));box-shadow:0 0 15px rgba(0,210,255,0.15);}
+        .contact-btn{width:100%;padding:10px;background:linear-gradient(135deg,rgba(0,210,255,0.15),rgba(58,123,213,0.15));border:1px solid rgba(0,210,255,0.3);border-radius:8px;color:var(--primary);font-size:13px;font-weight:600;cursor:pointer;transition:all 0.3s;display:flex;align-items:center;justify-content:center;gap:6px;}
+        .contact-btn:hover{background:linear-gradient(135deg,rgba(0,210,255,0.25),rgba(58,123,213,0.25));}
 
         /* MAIN */
         .main{margin-left:var(--sidebar-w);flex:1;display:flex;flex-direction:column;min-height:100vh;}
@@ -76,6 +77,7 @@
         .btn-outline{background:transparent;border:1px solid var(--border);color:var(--text2);}
         .btn-outline:hover{border-color:var(--primary);color:var(--primary);}
         .btn-sm{padding:7px 14px;font-size:12px;}
+        .btn-xs{padding:4px 10px;font-size:11px;border-radius:7px;}
 
         /* SECTION HEADER */
         .section-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:25px;flex-wrap:wrap;gap:15px;}
@@ -111,45 +113,129 @@
         .id-row{display:flex;align-items:baseline;gap:6px;margin-bottom:4px;}
         .id-row label{font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:0.8px;font-weight:700;min-width:50px;flex-shrink:0;}
         .id-row span{font-size:12px;color:var(--text);font-weight:500;}
-        .id-card-footer-band{padding:10px 20px;background:rgba(0,210,255,0.04);border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+        .id-card-footer-band{padding:10px 20px;background:rgba(0,210,255,0.04);border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;}
         .batch-pill{font-size:11px;background:linear-gradient(90deg,var(--primary),var(--secondary));color:#fff;padding:4px 12px;border-radius:20px;font-weight:700;}
 
-        .timetable-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:20px;}
+        /* MULTI-BATCH TIMETABLE */
+        .batch-tt-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:20px;}
+        .batch-tt-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:18px;position:relative;overflow:hidden;}
+        .batch-tt-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+        .batch-tt-card.primary::before{background:linear-gradient(90deg,var(--primary),var(--secondary));}
+        .batch-tt-card.secondary::before{background:linear-gradient(90deg,#a29bfe,#6c5ce7);}
+        .batch-tt-card.tertiary::before{background:linear-gradient(90deg,#fd79a8,#e17055);}
+        .batch-tt-number{position:absolute;top:14px;right:14px;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;}
+        .batch-tt-card.primary .batch-tt-number{background:rgba(0,210,255,0.15);color:var(--primary);}
+        .batch-tt-card.secondary .batch-tt-number{background:rgba(162,155,254,0.15);color:#a29bfe;}
+        .batch-tt-card.tertiary .batch-tt-number{background:rgba(253,121,168,0.15);color:#fd79a8;}
+        .batch-tt-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+        .batch-tt-card.primary .batch-tt-label{color:var(--primary);}
+        .batch-tt-card.secondary .batch-tt-label{color:#a29bfe;}
+        .batch-tt-card.tertiary .batch-tt-label{color:#fd79a8;}
+        .batch-tt-name{font-size:14px;font-weight:700;margin-bottom:2px;}
+        .batch-tt-course{font-size:12px;color:var(--text3);margin-bottom:12px;}
         .tt-timing{font-size:20px;font-weight:800;color:var(--primary);margin-bottom:5px;}
         .tt-sub{font-size:12px;color:var(--text2);margin-bottom:14px;}
-        .days-row{display:flex;flex-wrap:wrap;gap:7px;}
-        .day-chip{padding:5px 13px;border-radius:20px;font-size:12px;font-weight:700;background:rgba(0,210,255,0.12);color:var(--primary);border:1px solid rgba(0,210,255,0.25);}
+        .days-row{display:flex;flex-wrap:wrap;gap:5px;}
+        .day-chip{padding:4px 10px;border-radius:14px;font-size:11px;font-weight:700;background:rgba(0,210,255,0.12);color:var(--primary);border:1px solid rgba(0,210,255,0.25);}
         .day-chip.off{background:rgba(255,255,255,0.04);color:var(--text3);border-color:var(--border);}
 
+        /* DETAIL GRID */
         .detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
         .detail-item label{font-size:11px;color:var(--text3);display:block;margin-bottom:2px;text-transform:uppercase;letter-spacing:0.5px;}
         .detail-item p{font-size:14px;color:var(--text);}
 
-        /* FEES */
-        .fee-overview{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:18px;}
-        .fee-box{text-align:center;padding:18px 14px;border-radius:var(--radius);}
+        /* ═══════════════════════════════════════
+           FEES SECTION — multi-enrollment
+        ═══════════════════════════════════════ */
+
+        /* Grand Summary card */
+        .fee-grand-card{border-radius:20px;padding:28px;margin-bottom:24px;background:linear-gradient(135deg,rgba(0,210,255,0.08),rgba(58,123,213,0.08));border:1px solid rgba(0,210,255,0.2);position:relative;overflow:hidden;}
+        .fee-grand-card::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(0,210,255,0.06),transparent 70%);}
+        .fee-grand-title{font-size:13px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:2px;margin-bottom:20px;display:flex;align-items:center;gap:8px;}
+        .fee-grand-boxes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+        .fgb{text-align:center;padding:18px 12px;border-radius:14px;}
+        .fgb.net{background:rgba(108,92,231,0.12);border:1px solid rgba(108,92,231,0.2);}
+        .fgb.paid{background:rgba(46,213,115,0.1);border:1px solid rgba(46,213,115,0.2);}
+        .fgb.due{background:rgba(255,71,87,0.1);border:1px solid rgba(255,71,87,0.2);}
+        .fgb-val{font-size:24px;font-weight:800;margin-bottom:4px;}
+        .fgb.net .fgb-val{color:#a29bfe;}
+        .fgb.paid .fgb-val{color:var(--success);}
+        .fgb.due .fgb-val{color:var(--danger);}
+        .fgb-lbl{font-size:11px;color:var(--text3);}
+        .fee-grand-progress{margin-top:20px;}
+        .fee-grand-prog-label{display:flex;justify-content:space-between;font-size:12px;color:var(--text2);margin-bottom:8px;}
+        .fee-grand-prog-bar{height:10px;background:rgba(255,255,255,0.08);border-radius:5px;overflow:hidden;}
+        .fee-grand-prog-fill{height:100%;border-radius:5px;transition:width 0.8s ease;}
+
+        /* Batch fee tabs */
+        .fee-batch-tabs{display:flex;gap:0;margin-bottom:20px;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:12px;padding:4px;overflow-x:auto;}
+        .fee-batch-tabs::-webkit-scrollbar{display:none;}
+        .fee-batch-tab{padding:10px 18px;font-size:13px;font-weight:600;color:var(--text3);cursor:pointer;border-radius:9px;transition:all 0.2s;white-space:nowrap;display:flex;align-items:center;gap:7px;flex-shrink:0;}
+        .fee-batch-tab:hover{color:var(--text2);}
+        .fee-batch-tab.active{color:#fff;}
+        .fee-batch-tab.t0.active{background:linear-gradient(135deg,rgba(0,210,255,0.25),rgba(58,123,213,0.25));}
+        .fee-batch-tab.t1.active{background:linear-gradient(135deg,rgba(162,155,254,0.25),rgba(108,92,231,0.25));}
+        .fee-batch-tab.t2.active{background:linear-gradient(135deg,rgba(253,121,168,0.25),rgba(225,112,85,0.25));}
+        .fee-batch-tab.t-all.active{background:linear-gradient(135deg,rgba(255,165,2,0.2),rgba(255,87,34,0.2));}
+        .fee-batch-panel{display:none;}
+        .fee-batch-panel.active{display:block;animation:fadeUp 0.3s ease;}
+
+        /* Per-batch fee card */
+        .batch-fee-card{border-radius:16px;overflow:hidden;margin-bottom:24px;border:1px solid var(--border);}
+        .bfc-header{padding:16px 20px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+        .bfc-header.c0{background:linear-gradient(135deg,rgba(0,210,255,0.1),rgba(58,123,213,0.08));}
+        .bfc-header.c1{background:linear-gradient(135deg,rgba(162,155,254,0.1),rgba(108,92,231,0.08));}
+        .bfc-header.c2{background:linear-gradient(135deg,rgba(253,121,168,0.1),rgba(225,112,85,0.08));}
+        .bfc-title{font-size:15px;font-weight:800;}
+        .bfc-sub{font-size:11px;color:var(--text3);margin-top:2px;}
+        .bfc-status{padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;}
+        .bfc-status.running{background:rgba(46,213,115,0.15);color:var(--success);}
+        .bfc-status.closed{background:rgba(255,71,87,0.12);color:var(--danger);}
+        .bfc-status.discontinued{background:rgba(255,255,255,0.06);color:var(--text3);}
+        .bfc-body{padding:20px;}
+        .fee-overview{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:15px;}
+        .fee-box{text-align:center;padding:14px;border-radius:12px;}
         .fee-box.f-total{background:rgba(108,92,231,0.1);border:1px solid rgba(108,92,231,0.2);}
         .fee-box.f-paid{background:rgba(46,213,115,0.1);border:1px solid rgba(46,213,115,0.2);}
         .fee-box.f-due{background:rgba(255,71,87,0.1);border:1px solid rgba(255,71,87,0.2);}
-        .fee-amount{font-size:22px;font-weight:700;}
-        .fee-box.f-total .fee-amount{color:#6c5ce7;}
+        .fee-amount{font-size:20px;font-weight:700;}
+        .fee-box.f-total .fee-amount{color:#a29bfe;}
         .fee-box.f-paid .fee-amount{color:var(--success);}
         .fee-box.f-due .fee-amount{color:var(--danger);}
         .fee-lbl{font-size:11px;color:var(--text3);margin-top:4px;}
-        .fee-progress{height:10px;background:rgba(255,255,255,0.08);border-radius:5px;margin-bottom:6px;}
-        .fee-progress-fill{height:100%;border-radius:5px;transition:width 0.6s;}
-        .monthly-breakdown{background:rgba(0,210,255,0.04);border:1px solid rgba(0,210,255,0.12);border-radius:var(--radius);padding:16px;margin-bottom:18px;}
+        .fee-progress{height:8px;background:rgba(255,255,255,0.08);border-radius:4px;margin:12px 0 6px;}
+        .fee-progress-fill{height:100%;border-radius:4px;transition:width 0.6s;}
+
+        /* Monthly breakdown */
+        .monthly-breakdown{background:rgba(0,210,255,0.04);border:1px solid rgba(0,210,255,0.12);border-radius:var(--radius);padding:16px;margin:14px 0;}
         .monthly-breakdown h5{font-size:12px;color:var(--primary);margin-bottom:12px;letter-spacing:1px;text-transform:uppercase;}
-        .month-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:8px;}
-        .month-chip{text-align:center;padding:8px;border-radius:8px;font-size:11px;font-weight:600;}
+        .month-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(90px,1fr));gap:7px;}
+        .month-chip{text-align:center;padding:8px 6px;border-radius:8px;font-size:11px;font-weight:600;}
         .month-chip.paid-m{background:rgba(46,213,115,0.15);color:var(--success);border:1px solid rgba(46,213,115,0.2);}
         .month-chip.due-m{background:rgba(255,71,87,0.1);color:var(--danger);border:1px solid rgba(255,71,87,0.15);}
         .month-chip.partial-m{background:rgba(255,165,2,0.1);color:var(--warning);border:1px solid rgba(255,165,2,0.15);}
         .month-chip.future-m{background:rgba(255,255,255,0.03);color:var(--text3);border:1px solid rgba(255,255,255,0.06);}
+
+        /* Payment history */
+        .pay-section-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:10px;}
+        .pay-section-title{font-size:13px;font-weight:700;color:var(--text2);}
         .pay-table{width:100%;border-collapse:collapse;}
         .pay-table th{text-align:left;padding:10px 12px;font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid var(--border);}
         .pay-table td{padding:10px 12px;font-size:13px;color:var(--text2);border-bottom:1px solid rgba(255,255,255,0.04);}
         .pay-table tr:last-child td{border-bottom:none;}
+        .pay-table tr:hover td{background:rgba(255,255,255,0.02);}
+
+        /* Fully paid / cleared banner */
+        .cleared-banner{display:flex;align-items:center;gap:12px;padding:14px 18px;background:linear-gradient(135deg,rgba(46,213,115,0.1),rgba(0,210,255,0.06));border:1px solid rgba(46,213,115,0.25);border-radius:12px;margin-bottom:14px;}
+        .cleared-icon{font-size:28px;}
+        .cleared-title{font-size:14px;font-weight:700;color:var(--success);}
+        .cleared-sub{font-size:12px;color:var(--text3);margin-top:2px;}
+
+        /* Due warning banner */
+        .due-banner{display:flex;align-items:center;gap:12px;padding:14px 18px;background:rgba(255,71,87,0.07);border:1px solid rgba(255,71,87,0.2);border-radius:12px;margin-bottom:14px;}
+        .due-banner-icon{font-size:24px;}
+        .due-banner-title{font-size:14px;font-weight:700;color:var(--danger);}
+        .due-banner-sub{font-size:12px;color:var(--text3);margin-top:2px;}
 
         /* NOTICES */
         .notice-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:12px;}
@@ -193,12 +279,12 @@
         .footer-text{font-size:12px;color:var(--text3);}
         .footer-text a{color:var(--primary);text-decoration:none;}
 
-        /* MODAL */
+        /* MODALS */
         .mobile-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.5);z-index:90;display:none;}
         .mobile-overlay.active{display:block;}
         .modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.75);backdrop-filter:blur(5px);z-index:500;display:none;justify-content:center;align-items:flex-start;padding:30px 20px;overflow-y:auto;}
         .modal-overlay.active{display:flex;}
-        .modal{background:rgba(18,15,45,0.98);backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:20px;width:100%;max-width:660px;animation:modalIn 0.3s ease;max-height:calc(100vh - 60px);overflow-y:auto;}
+        .modal{background:rgba(18,15,45,0.98);backdrop-filter:blur(20px);border:1px solid var(--border);border-radius:20px;width:100%;max-width:680px;animation:modalIn 0.3s ease;max-height:calc(100vh - 60px);overflow-y:auto;}
         @keyframes modalIn{from{opacity:0;transform:translateY(20px) scale(0.97);}to{opacity:1;transform:translateY(0) scale(1);}}
         .modal-header{padding:20px 24px 0;display:flex;justify-content:space-between;align-items:center;}
         .modal-header h3{font-size:17px;display:flex;align-items:center;gap:8px;}
@@ -224,6 +310,11 @@
         .receipt-stu-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px 14px;}
         .receipt-stu-grid span{font-size:11px;color:#666;}
         .receipt-stu-grid span b{color:#333;}
+        .receipt-section-divider{border:none;border-top:2px solid #e0e3f0;margin:14px 0;}
+        .receipt-batch-header{background:#f5f6ff;border:1px solid #e0e3f0;border-radius:8px;padding:10px 14px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;}
+        .receipt-batch-header .rb-name{font-size:13px;font-weight:800;color:#1a1a2e;}
+        .receipt-batch-header .rb-sub{font-size:11px;color:#666;margin-top:1px;}
+        .receipt-batch-header .rb-status{font-size:10px;font-weight:700;padding:3px 9px;border-radius:10px;}
         .receipt-fee-boxes{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px;}
         .rfb{text-align:center;padding:11px 8px;border-radius:9px;}
         .rfb.net{background:#f0f2ff;border:1px solid #dde4ff;}
@@ -247,47 +338,42 @@
         .receipt-footer-band{padding:11px 22px;background:#f9faff;border-top:1px solid #eee;display:flex;justify-content:space-between;font-size:10px;color:#888;}
         .receipt-disclaimer{padding:8px 22px;background:#fffde7;border-top:1px solid #fff176;font-size:10px;color:#888;text-align:center;}
 
-        /* ── CONTACT SUPPORT MODAL (compact) ── */
+        /* GRAND TOTAL receipt section */
+        .receipt-grand-box{background:#1a1a2e;border:2px solid #00d2ff;border-radius:12px;padding:14px 18px;margin:16px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+        .rgb-item{text-align:center;flex:1;}
+        .rgb-val{font-size:18px;font-weight:800;margin-bottom:2px;}
+        .rgb-lbl{font-size:10px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:1px;}
+
+        /* SUPPORT MODAL */
         .support-modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.75);backdrop-filter:blur(6px);z-index:700;display:none;justify-content:center;align-items:center;padding:16px;}
-        .support-modal-overlay.active{display:flex;animation:fadeInBg 0.25s ease;}
-        @keyframes fadeInBg{from{opacity:0;}to{opacity:1;}}
-        .support-modal{background:rgba(12,10,35,0.98);border:1px solid rgba(0,210,255,0.2);border-radius:18px;width:100%;max-width:400px;overflow:hidden;animation:supportModalIn 0.3s cubic-bezier(0.34,1.4,0.64,1);}
-        @keyframes supportModalIn{from{opacity:0;transform:scale(0.9);}to{opacity:1;transform:scale(1);}}
-        /* top strip */
+        .support-modal-overlay.active{display:flex;}
+        .support-modal{background:rgba(12,10,35,0.98);border:1px solid rgba(0,210,255,0.2);border-radius:18px;width:100%;max-width:400px;overflow:hidden;animation:modalIn 0.3s ease;}
         .support-modal-top{background:linear-gradient(135deg,rgba(0,210,255,0.12),rgba(58,123,213,0.12));border-bottom:1px solid rgba(0,210,255,0.12);padding:16px 18px 14px;position:relative;display:flex;align-items:center;gap:12px;}
         .support-modal-top::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--primary),var(--secondary));}
         .support-icon-sm{width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,rgba(0,210,255,0.2),rgba(58,123,213,0.2));border:1.5px solid rgba(0,210,255,0.3);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
-        .support-modal-title{font-size:15px;font-weight:800;color:#fff;line-height:1.2;}
+        .support-modal-title{font-size:15px;font-weight:800;color:#fff;}
         .support-modal-subtitle{font-size:11px;color:rgba(255,255,255,0.45);margin-top:2px;}
-        .support-modal-close-x{margin-left:auto;background:none;border:none;color:rgba(255,255,255,0.3);font-size:18px;cursor:pointer;padding:2px 6px;line-height:1;}
+        .support-modal-close-x{margin-left:auto;background:none;border:none;color:rgba(255,255,255,0.3);font-size:18px;cursor:pointer;padding:2px 6px;}
         .support-modal-close-x:hover{color:var(--danger);}
-        /* body */
         .support-modal-body{padding:14px 18px 16px;}
-        /* phone row */
         .support-phone-row{display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,rgba(46,213,115,0.08),rgba(0,210,255,0.06));border:1px solid rgba(46,213,115,0.2);border-radius:10px;padding:11px 14px;margin-bottom:10px;}
-        .support-phone-emoji{font-size:20px;animation:phoneWiggle 3s ease-in-out infinite;flex-shrink:0;}
-        @keyframes phoneWiggle{0%,88%,100%{transform:rotate(0);}91%{transform:rotate(-10deg);}95%{transform:rotate(10deg);}98%{transform:rotate(-5deg);}}
-        .support-phone-number{font-size:19px;font-weight:800;color:var(--success);letter-spacing:.5px;}
+        .support-phone-number{font-size:19px;font-weight:800;color:var(--success);}
         .support-phone-label{font-size:10px;color:rgba(255,255,255,0.35);margin-top:1px;}
-        /* details grid */
         .support-details{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:10px;}
         .support-detail-chip{background:rgba(0,210,255,0.06);border:1px solid rgba(0,210,255,0.12);border-radius:8px;padding:7px 10px;}
         .support-detail-chip .sdl{font-size:9px;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:.8px;font-weight:700;margin-bottom:2px;}
-        .support-detail-chip .sdv{font-size:12px;font-weight:700;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-        /* note */
+        .support-detail-chip .sdv{font-size:12px;font-weight:700;color:#fff;}
         .support-note-row{display:flex;gap:7px;align-items:flex-start;background:rgba(255,165,2,0.05);border:1px solid rgba(255,165,2,0.15);border-radius:8px;padding:8px 10px;margin-bottom:12px;font-size:11px;color:rgba(255,255,255,0.45);line-height:1.5;}
-        .support-note-row b{color:rgba(255,165,2,0.85);}
-        /* actions */
         .support-actions{display:flex;gap:8px;}
-        .support-call-btn{flex:1;padding:10px 14px;background:linear-gradient(135deg,var(--success),#27ae60);border:none;border-radius:10px;color:#fff;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.25s;display:flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;}
+        .support-call-btn{flex:1;padding:10px 14px;background:linear-gradient(135deg,#25d366,#128c7e);border:none;border-radius:10px;color:#fff;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.25s;display:flex;align-items:center;justify-content:center;gap:6px;text-decoration:none;}
         .support-call-btn:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(46,213,115,0.3);}
-        .support-close-btn{padding:10px 14px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:10px;color:rgba(255,255,255,0.5);font-size:12px;font-weight:600;cursor:pointer;transition:all 0.25s;}
+        .support-close-btn{padding:10px 14px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:10px;color:rgba(255,255,255,0.5);font-size:12px;font-weight:600;cursor:pointer;}
         .support-close-btn:hover{background:rgba(255,255,255,0.09);color:#fff;}
 
-        /* ── LOGOUT MODAL ── */
+        /* LOGOUT MODAL */
         .logout-modal-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.75);backdrop-filter:blur(6px);z-index:800;display:none;justify-content:center;align-items:center;padding:16px;}
-        .logout-modal-overlay.active{display:flex;animation:fadeInBg 0.25s ease;}
-        .logout-modal{background:rgba(12,10,35,0.98);border:1px solid rgba(255,71,87,0.25);border-radius:18px;width:100%;max-width:340px;overflow:hidden;animation:supportModalIn 0.3s cubic-bezier(0.34,1.4,0.64,1);}
+        .logout-modal-overlay.active{display:flex;}
+        .logout-modal{background:rgba(12,10,35,0.98);border:1px solid rgba(255,71,87,0.25);border-radius:18px;width:100%;max-width:340px;overflow:hidden;animation:modalIn 0.3s ease;}
         .logout-modal-top{background:linear-gradient(135deg,rgba(255,71,87,0.1),rgba(255,71,87,0.05));border-bottom:1px solid rgba(255,71,87,0.15);padding:20px 20px 16px;position:relative;display:flex;align-items:center;gap:12px;}
         .logout-modal-top::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--danger),#ff6b81);}
         .logout-icon{width:40px;height:40px;border-radius:50%;background:rgba(255,71,87,0.15);border:1.5px solid rgba(255,71,87,0.3);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
@@ -296,14 +382,11 @@
         .logout-modal-body{padding:16px 20px 18px;}
         .logout-modal-msg{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6;margin-bottom:16px;padding:10px 12px;background:rgba(255,71,87,0.06);border:1px solid rgba(255,71,87,0.12);border-radius:9px;}
         .logout-actions{display:flex;gap:8px;}
-        .logout-confirm-btn{flex:1;padding:10px 14px;background:linear-gradient(135deg,var(--danger),#c0392b);border:none;border-radius:10px;color:#fff;font-size:13px;font-weight:700;cursor:pointer;transition:all 0.25s;}
-        .logout-confirm-btn:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(255,71,87,0.35);}
-        .logout-cancel-btn{padding:10px 16px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:10px;color:rgba(255,255,255,0.6);font-size:12px;font-weight:600;cursor:pointer;transition:all 0.25s;}
-        .logout-cancel-btn:hover{background:rgba(255,255,255,0.09);color:#fff;}
+        .logout-confirm-btn{flex:1;padding:10px 14px;background:linear-gradient(135deg,var(--danger),#c0392b);border:none;border-radius:10px;color:#fff;font-size:13px;font-weight:700;cursor:pointer;}
+        .logout-cancel-btn{padding:10px 16px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:10px;color:rgba(255,255,255,0.6);font-size:12px;font-weight:600;cursor:pointer;}
 
-        /* Floating support button (bottom right of content) */
         .floating-support-btn{position:fixed;bottom:30px;left:calc(var(--sidebar-w) + 20px);z-index:200;display:flex;align-items:center;gap:8px;padding:11px 18px;background:linear-gradient(135deg,rgba(0,210,255,0.2),rgba(58,123,213,0.2));backdrop-filter:blur(10px);border:1px solid rgba(0,210,255,0.3);border-radius:50px;color:var(--primary);font-size:13px;font-weight:600;cursor:pointer;transition:all 0.3s;box-shadow:0 4px 20px rgba(0,0,0,0.3);}
-        .floating-support-btn:hover{background:linear-gradient(135deg,rgba(0,210,255,0.3),rgba(58,123,213,0.3));box-shadow:0 6px 25px rgba(0,210,255,0.2);transform:translateY(-2px);}
+        .floating-support-btn:hover{background:linear-gradient(135deg,rgba(0,210,255,0.3),rgba(58,123,213,0.3));transform:translateY(-2px);}
         .floating-support-pulse{width:8px;height:8px;border-radius:50%;background:var(--success);flex-shrink:0;animation:dotPulse 1.8s ease-in-out infinite;}
         @keyframes dotPulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(0.7);}}
 
@@ -312,11 +395,12 @@
             .main{margin-left:0;}.hamburger{display:block;}
             .content{padding:20px 15px;}
             .profile-grid{grid-template-columns:1fr;}
+            .fee-grand-boxes{grid-template-columns:1fr 1fr;}
             .fee-overview{grid-template-columns:1fr;}
             .att-summary{grid-template-columns:1fr 1fr;}
             .detail-grid{grid-template-columns:1fr;}
             .floating-support-btn{left:15px;bottom:20px;}
-            .support-phone-number{font-size:18px;}
+            .batch-tt-grid{grid-template-columns:1fr;}
         }
     </style>
 </head>
@@ -351,7 +435,7 @@
     </div>
 </div>
 
-<!-- ── CONTACT SUPPORT MODAL (compact) ── -->
+<!-- Support Modal -->
 <div class="support-modal-overlay" id="supportModal">
     <div class="support-modal">
         <div class="support-modal-top">
@@ -363,28 +447,24 @@
             <button class="support-modal-close-x" onclick="closeSupportModal()">✕</button>
         </div>
         <div class="support-modal-body">
-            <!-- Phone -->
             <div class="support-phone-row">
-                <div class="support-phone-emoji">📞</div>
+                <span style="font-size:20px">📞</span>
                 <div>
                     <div class="support-phone-number">+91 97331 45787</div>
-                    <div class="support-phone-label">Dream Chem IT Support · Available 24×7</div>
+                    <div class="support-phone-label">Dream Chem Support · Available 24×7</div>
                 </div>
             </div>
-            <!-- Student details 2×2 grid -->
             <div class="support-details">
                 <div class="support-detail-chip"><div class="sdl">Student ID</div><div class="sdv" id="sp-id">—</div></div>
                 <div class="support-detail-chip"><div class="sdl">Username</div><div class="sdv" id="sp-user">—</div></div>
                 <div class="support-detail-chip"><div class="sdl">Course</div><div class="sdv" id="sp-course">—</div></div>
                 <div class="support-detail-chip"><div class="sdl">Batch</div><div class="sdv" id="sp-batch">—</div></div>
             </div>
-            <!-- Note -->
-            <div class="support-note-row">⚠️ <span>Share the details above when you call. <b>Never share your password</b> — we only need your Student ID to verify you.</span></div>
-            <!-- Actions -->
+            <div class="support-note-row">⚠️ <span>Share the details above when you call. <b>Never share your password</b>.</span></div>
             <div class="support-actions">
-                <a class="support-call-btn" href="https://wa.me/919733145787" target="_blank" style="background:linear-gradient(135deg,#25d366,#128c7e);">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="white" style="flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.533 5.856L.057 23.522a.75.75 0 00.921.921l5.666-1.476A11.938 11.938 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.74 9.74 0 01-4.964-1.355l-.355-.212-3.683.958.975-3.567-.231-.368A9.714 9.714 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
-                    Message on WhatsApp
+                <a class="support-call-btn" href="https://wa.me/919733145787" target="_blank">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.533 5.856L.057 23.522a.75.75 0 00.921.921l5.666-1.476A11.938 11.938 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.74 9.74 0 01-4.964-1.355l-.355-.212-3.683.958.975-3.567-.231-.368A9.714 9.714 0 012.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/></svg>
+                    WhatsApp
                 </a>
                 <button class="support-close-btn" onclick="closeSupportModal()">Close</button>
             </div>
@@ -392,7 +472,7 @@
     </div>
 </div>
 
-<!-- ── LOGOUT MODAL ── -->
+<!-- Logout Modal -->
 <div class="logout-modal-overlay" id="logoutModal">
     <div class="logout-modal">
         <div class="logout-modal-top">
@@ -403,7 +483,7 @@
             </div>
         </div>
         <div class="logout-modal-body">
-            <div class="logout-modal-msg">Are you sure you want to logout? You'll need to enter your credentials again to access your portal.</div>
+            <div class="logout-modal-msg">Are you sure you want to logout? You'll need to enter your credentials again.</div>
             <div class="logout-actions">
                 <button class="logout-confirm-btn" onclick="confirmLogout()">🚪 Yes, Logout</button>
                 <button class="logout-cancel-btn" onclick="closeLogoutModal()">Cancel</button>
@@ -411,9 +491,9 @@
         </div>
     </div>
 </div>
+
 <button class="floating-support-btn" onclick="openSupportModal()">
-    <span class="floating-support-pulse"></span>
-    Need Help?
+    <span class="floating-support-pulse"></span>Need Help?
 </button>
 
 <div class="app">
@@ -438,10 +518,11 @@
                 <div class="stu-avatar-sb" id="stuAvatarSb">S</div>
                 <div>
                     <div class="stu-sb-name" id="stuSbName">Student</div>
-                    <div class="stu-sb-role" id="stuSbBatch">Loading...</div>
+                    <div class="stu-sb-id" id="stuSbId"></div>
+                    <div class="stu-sb-batches" id="stuSbBatches">Loading...</div>
                 </div>
             </div>
-            <button class="contact-btn" onclick="openSupportModal()">🎧 Contact Admin / Support</button>
+            <button class="contact-btn" onclick="openSupportModal()">🎧 Contact Support</button>
             <button class="logout-btn" onclick="logout()">🚪 Logout</button>
         </div>
     </aside>
@@ -451,12 +532,12 @@
             <button class="hamburger" onclick="toggleSidebar()">☰</button>
             <div class="page-title" id="pageTitle">👤 My Profile</div>
             <div style="margin-left:auto">
-                <button class="btn btn-outline btn-sm" onclick="openSupportModal()" style="font-size:12px;padding:7px 14px;border-color:rgba(0,210,255,0.3);color:var(--primary);">🎧 Help</button>
+                <button class="btn btn-outline btn-sm" onclick="openSupportModal()" style="border-color:rgba(0,210,255,0.3);color:var(--primary)">🎧 Help</button>
             </div>
         </header>
         <main class="content">
             <section class="content-section active" id="profileSection"><div id="profileContent"><div class="no-data">Loading...</div></div></section>
-            <section class="content-section" id="feesSection"><div class="section-header"><h2>💰 Fee Status</h2></div><div id="feeContent"><div class="no-data">Loading...</div></div></section>
+            <section class="content-section" id="feesSection"><div id="feeContent"><div class="no-data">Loading...</div></div></section>
             <section class="content-section" id="noticesSection"><div class="section-header"><h2>📢 Notices</h2></div><div id="noticesList"><div class="no-data">Loading...</div></div></section>
             <section class="content-section" id="attendanceSection"><div class="section-header"><h2>✅ Attendance</h2></div><div id="attendanceContent"><div class="no-data">Loading...</div></div></section>
             <section class="content-section" id="performanceSection"><div class="section-header"><h2>📝 Performance</h2></div><div id="performanceContent"><div class="no-data">Loading...</div></div></section>
@@ -472,20 +553,79 @@ const firebaseConfig={apiKey:"AIzaSyCVCuSvXVGQxVredV9k62wCbJ5a6HxVkU4",authDomai
 firebase.initializeApp(firebaseConfig);
 const db=firebase.database();
 
-let stuSession=null,stuData=null,allClasses={},allNotices={},allAttendance={},allExams={};
-let currentReceiptPayKey=null;
+let stuSession=null, stuData=null, allClasses={}, allNotices={}, allAttendance={}, allExams={};
+let currentReceiptInfo=null; // {enrollKey, payKey, mode:'single'|'batch'|'full'}
 
+// ─── ENROLLMENT HELPERS ───────────────────────────────────────────────────────
+// Returns ALL enrollments as [{data, key, isRoot}]
+function getAllEnrollments(s){
+    if(!s) return [];
+    const list=[{data:s, key:null, isRoot:true}];
+    if(s.enrollments){
+        Object.entries(s.enrollments).forEach(([k,e])=>{
+            if(e.status!=='discontinued') list.push({data:e, key:k, isRoot:false});
+        });
+    }
+    return list;
+}
+
+function getTotalPaid(s){ return getAllEnrollments(s).reduce((n,{data:e})=>n+(e.paidAmount||0),0); }
+function getTotalNetFee(s){ return getAllEnrollments(s).reduce((n,{data:e})=>n+(e.netFee||0),0); }
+function getTotalDue(s){ return getAllEnrollments(s).reduce((n,{data:e})=>n+Math.max(0,getMonthlyDue(e)),0); }
+
+function getMonthlyDue(e){
+    if(!e) return 0;
+    if(e.feeType!=='monthly'||!e.startMonth) return e.dueAmount||0;
+    const now=new Date();
+    const[sy,sm]=e.startMonth.split('-').map(Number);
+    let eY=now.getFullYear(),eM=now.getMonth()+1;
+    if(e.finishMonth){const[fy,fm]=e.finishMonth.split('-').map(Number);eY=fy;eM=fm;}
+    else if(e.months&&e.months>0){const d=new Date(sy,sm-1+e.months-1,1);eY=d.getFullYear();eM=d.getMonth()+1;}
+    const tY=now.getFullYear(),tM=now.getMonth()+1;
+    if(eY>tY||(eY===tY&&eM>tM)){eY=tY;eM=tM;}
+    const el=Math.max(0,(eY-sy)*12+(eM-sm)+1);
+    const perM=(e.months&&e.months>0&&e.netFee>0)?e.netFee/e.months:(e.monthlyFee||0);
+    return Math.max(0,el*perM-(e.paidAmount||0));
+}
+
+function getBatchInfoFromClasses(classCode, batchCode){
+    for(const ck of Object.keys(allClasses)){
+        const cls=allClasses[ck];
+        if(cls.code!==classCode) continue;
+        for(const bk of Object.keys(cls.batches||{})){
+            const b=cls.batches[bk];
+            if(b.code===batchCode) return b;
+        }
+    }
+    return null;
+}
+
+// Colors for batches 0,1,2…
+const BATCH_COLORS=['primary','secondary','tertiary'];
+const BATCH_CARD_COLORS=['c0','c1','c2'];
+const BATCH_GRADIENTS=[
+    'linear-gradient(135deg,rgba(0,210,255,0.12),rgba(58,123,213,0.08))',
+    'linear-gradient(135deg,rgba(162,155,254,0.12),rgba(108,92,231,0.08))',
+    'linear-gradient(135deg,rgba(253,121,168,0.12),rgba(225,112,85,0.08))'
+];
+const BATCH_ACCENT=['var(--primary)','#a29bfe','#fd79a8'];
+
+function getInstName(){return document.getElementById('sbBrand')?.textContent?.trim()||'Dream Chem';}
+function getLogoSrc(){const img=document.getElementById('sidebarLogo');return(img&&img.src&&img.classList.contains('active'))?img.src:null;}
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
 function init(){
     stuSession=JSON.parse(sessionStorage.getItem('dreamchem_session')||'null');
     if(!stuSession||stuSession.role!=='student'){window.location.href='index.html';return;}
     loadCust();
     const sid=stuSession.studentData?.id||stuSession.username;
-    db.ref('students/'+sid).on('value',s=>{
-        stuData=s.val();
+    db.ref('students/'+sid).on('value',snap=>{
+        stuData=snap.val();
         if(!stuData) return;
         updateSidebar();
-        if(document.getElementById('profileSection').classList.contains('active')) renderProfile();
-        if(document.getElementById('feesSection').classList.contains('active')) renderFees();
+        const active=document.querySelector('.content-section.active');
+        if(active?.id==='profileSection') renderProfile();
+        if(active?.id==='feesSection') renderFees();
     });
     db.ref('classes').on('value',s=>{allClasses=s.val()||{};});
     db.ref('notices').on('value',s=>{allNotices=s.val()||{};if(document.getElementById('noticesSection').classList.contains('active'))renderNotices();});
@@ -520,12 +660,15 @@ function loadCust(){
 }
 
 function updateSidebar(){
-    if(!stuData)return;
+    if(!stuData) return;
     const ini=stuData.name.split(' ').map(w=>w[0]).join('').substring(0,2).toUpperCase();
     document.getElementById('stuSbName').textContent=stuData.name;
-    document.getElementById('stuSbBatch').textContent=(stuData.batchName||stuData.className||'Student');
+    document.getElementById('stuSbId').textContent=stuData.id;
+    const allE=getAllEnrollments(stuData);
+    const batchLines=allE.map(({data:e})=>`${e.className||''} — ${e.batchName||''}`).join(' | ');
+    document.getElementById('stuSbBatches').textContent=batchLines;
     document.getElementById('welcomeName').textContent=stuData.name;
-    document.getElementById('welcomeBatch').textContent=(stuData.className||'')+' — '+(stuData.batchName||'');
+    document.getElementById('welcomeBatch').textContent=batchLines;
     const av=document.getElementById('stuAvatarSb');
     if(stuData.photo)av.innerHTML=`<img src="${stuData.photo}" alt="">`;else av.textContent=ini;
 }
@@ -548,42 +691,19 @@ function closeLogoutModal(){document.getElementById('logoutModal').classList.rem
 function confirmLogout(){sessionStorage.removeItem('dreamchem_session');window.location.href='index.html';}
 document.getElementById('logoutModal').addEventListener('click',function(e){if(e.target===this)closeLogoutModal();});
 
-// ── SUPPORT MODAL ──
 function openSupportModal(){
     if(stuData){
         document.getElementById('sp-id').textContent=stuData.id||'—';
         document.getElementById('sp-course').textContent=stuData.className||'—';
         document.getElementById('sp-batch').textContent=stuData.batchName||'—';
     }
-    if(stuSession){
-        document.getElementById('sp-user').textContent=stuSession.username||stuSession.studentData?.id||'—';
-    }
-    document.getElementById('supportModal').classList.add('active');
-    document.body.style.overflow='hidden';
+    if(stuSession) document.getElementById('sp-user').textContent=stuSession.username||stuSession.studentData?.id||'—';
+    document.getElementById('supportModal').classList.add('active');document.body.style.overflow='hidden';
 }
-function closeSupportModal(){
-    document.getElementById('supportModal').classList.remove('active');
-    document.body.style.overflow='';
-}
+function closeSupportModal(){document.getElementById('supportModal').classList.remove('active');document.body.style.overflow='';}
 document.getElementById('supportModal').addEventListener('click',function(e){if(e.target===this)closeSupportModal();});
 
-function getMonthlyDue(s){
-    if(s.feeType!=='monthly'||!s.startMonth)return s.dueAmount||0;
-    const now=new Date();
-    const[sy,sm]=s.startMonth.split('-').map(Number);
-    let eY=now.getFullYear(),eM=now.getMonth()+1;
-    if(s.finishMonth){const[fy,fm]=s.finishMonth.split('-').map(Number);eY=fy;eM=fm;}
-    else if(s.months&&s.months>0){const d=new Date(sy,sm-1+s.months-1,1);eY=d.getFullYear();eM=d.getMonth()+1;}
-    const tY=now.getFullYear(),tM=now.getMonth()+1;
-    if(eY>tY||(eY===tY&&eM>tM)){eY=tY;eM=tM;}
-    let el=Math.max(0,(eY-sy)*12+(eM-sm)+1);
-    const perM=(s.months&&s.months>0&&s.netFee>0)?s.netFee/s.months:(s.monthlyFee||0);
-    return Math.max(0,el*perM-(s.paidAmount||0));
-}
-function getInstName(){return document.getElementById('sbBrand')?.textContent?.trim()||'Dream Chem';}
-function getLogoSrc(){const img=document.getElementById('sidebarLogo');return(img&&img.src&&img.classList.contains('active'))?img.src:null;}
-
-// ── PROFILE ──
+// ─── PROFILE ──────────────────────────────────────────────────────────────────
 function renderProfile(){
     if(!stuData){document.getElementById('profileContent').innerHTML='<div class="no-data">Loading...</div>';return;}
     const s=stuData;
@@ -591,50 +711,101 @@ function renderProfile(){
     const ph=s.photo?`<img src="${s.photo}" alt="">`:`${ini}`;
     const lSrc=getLogoSrc();
     const lHtml=lSrc?`<img src="${lSrc}" alt="">`:'<span style="font-size:20px">🏫</span>';
-    let timing='No timing set',days=[];
-    for(const ck of Object.keys(allClasses)){const cls=allClasses[ck];if(cls.code!==s.classCode)continue;for(const bk of Object.keys(cls.batches||{})){const b=cls.batches[bk];if(b.code===s.batchCode){timing=b.timing||'No timing set';days=b.days||[];break;}}}
-    const allD=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
-    const dHtml=allD.map(d=>`<span class="day-chip ${days.includes(d)?'':'off'}">${d}</span>`).join('');
-    const due=getMonthlyDue(s);
+    const allE=getAllEnrollments(s);
+    const totalPaid=getTotalPaid(s);
+    const totalDue=getTotalDue(s);
+
+    // Multi-batch timetable cards
+    const ttCards=allE.map(({data:e},i)=>{
+        const bInfo=getBatchInfoFromClasses(e.classCode,e.batchCode)||{};
+        const timing=bInfo.timing||'No timing set';
+        const days=bInfo.days||[];
+        const allD=['Mon','Tue','Wed','Thu','Fri','Sat','Sun'];
+        const dHtml=allD.map(d=>`<span class="day-chip ${days.includes(d)?'':'off'}">${d}</span>`).join('');
+        const col=BATCH_COLORS[i%3];
+        const accent=BATCH_ACCENT[i%3];
+        return`<div class="batch-tt-card ${col}">
+            <div class="batch-tt-number">${i+1}</div>
+            <div class="batch-tt-label">${i===0?'Primary Batch':'Additional Batch'}</div>
+            <div class="batch-tt-name" style="color:${accent}">${e.batchName||'—'}</div>
+            <div class="batch-tt-course">${e.className||'—'}</div>
+            <div class="tt-timing" style="color:${accent}">${timing}</div>
+            <div class="days-row">${dHtml||'<span style="font-size:12px;color:var(--text3)">No schedule</span>'}</div>
+        </div>`;
+    }).join('');
+
+    // ID card — first batch
+    const primary=allE[0].data;
+    const footerBatches=allE.length>1
+        ? allE.map(({data:e},i)=>`<span class="batch-pill" style="background:linear-gradient(90deg,${BATCH_ACCENT[i%3]},${BATCH_ACCENT[(i+1)%3]})">${e.batchName||'—'}</span>`).join('')
+        : `<span class="batch-pill">${primary.batchName||'—'}</span>`;
+
     document.getElementById('profileContent').innerHTML=`
     <div class="profile-grid">
         <div class="id-card-wrap">
-            <div class="id-card-header-band"><div class="id-card-logo-box">${lHtml}</div><div><div class="id-card-inst-name">${getInstName()}</div><div class="id-card-inst-sub">Student Identity Card</div></div></div>
+            <div class="id-card-header-band">
+                <div class="id-card-logo-box">${lHtml}</div>
+                <div><div class="id-card-inst-name">${getInstName()}</div><div class="id-card-inst-sub">Student Identity Card</div></div>
+            </div>
             <div class="id-card-body">
                 <div class="id-photo">${ph}</div>
                 <div class="id-info">
                     <div class="id-name">${s.name}</div>
                     <div class="id-badge">${s.id}</div>
-                    <div class="id-row"><label>Course</label><span>${s.className||'—'}</span></div>
-                    <div class="id-row"><label>Batch</label><span>${s.batchName||'—'}</span></div>
+                    ${allE.length>1?`<div style="font-size:9px;background:rgba(162,155,254,0.15);color:#a29bfe;padding:2px 8px;border-radius:10px;display:inline-block;margin-bottom:6px;font-weight:700">${allE.length} Active Batches</div>`:''}
+                    <div class="id-row"><label>Course</label><span>${primary.className||'—'}</span></div>
+                    <div class="id-row"><label>Batch</label><span>${primary.batchName||'—'}</span></div>
                     <div class="id-row"><label>Father</label><span>${s.fatherName||'—'}</span></div>
                     <div class="id-row"><label>Mobile</label><span>${s.mobile||'—'}</span></div>
                 </div>
             </div>
-            <div class="id-card-footer-band"><span style="font-size:11px;color:var(--text3)">Joined: ${s.joinDate||'—'}</span><span class="batch-pill">${s.batchName||'—'}</span></div>
+            <div class="id-card-footer-band">
+                <span style="font-size:11px;color:var(--text3)">Joined: ${s.joinDate||'—'}</span>
+                <div style="display:flex;gap:5px;flex-wrap:wrap;justify-content:flex-end">${footerBatches}</div>
+            </div>
         </div>
         <div style="display:flex;flex-direction:column;gap:16px">
-            <div class="timetable-card">
-                <div class="dash-card-title">⏰ My Timetable</div>
-                <div class="tt-timing">${timing}</div>
-                <div class="tt-sub">${s.className||''} — ${s.batchName||''}</div>
-                <div class="days-row">${dHtml||'<span style="font-size:12px;color:var(--text3)">No schedule set</span>'}</div>
-            </div>
             <div class="dash-card">
                 <div class="dash-card-title">📊 Quick Overview</div>
                 <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
                     <div style="background:rgba(46,213,115,0.08);border:1px solid rgba(46,213,115,0.2);border-radius:10px;padding:14px;text-align:center">
-                        <div style="font-size:20px;font-weight:800;color:var(--success)">₹${(s.paidAmount||0).toLocaleString()}</div>
+                        <div style="font-size:22px;font-weight:800;color:var(--success)">₹${totalPaid.toLocaleString()}</div>
                         <div style="font-size:11px;color:var(--text3);margin-top:3px">Total Paid</div>
+                        ${allE.length>1?`<div style="font-size:10px;color:rgba(46,213,115,0.5);margin-top:2px">All batches</div>`:''}
                     </div>
                     <div style="background:rgba(255,71,87,0.08);border:1px solid rgba(255,71,87,0.2);border-radius:10px;padding:14px;text-align:center">
-                        <div style="font-size:20px;font-weight:800;color:var(--danger)">₹${Math.round(due).toLocaleString()}</div>
-                        <div style="font-size:11px;color:var(--text3);margin-top:3px">Balance Due</div>
+                        <div style="font-size:22px;font-weight:800;color:var(--danger)">₹${Math.round(totalDue).toLocaleString()}</div>
+                        <div style="font-size:11px;color:var(--text3);margin-top:3px">Total Due</div>
+                        ${allE.length>1?`<div style="font-size:10px;color:rgba(255,71,87,0.5);margin-top:2px">All batches</div>`:''}
+                    </div>
+                </div>
+            </div>
+            <div class="dash-card">
+                <div class="dash-card-title">🔐 Login Details</div>
+                <div style="display:flex;gap:10px;align-items:center;background:rgba(0,210,255,0.05);border:1px solid rgba(0,210,255,0.15);border-radius:10px;padding:12px 14px;">
+                    <div style="font-size:22px">🪪</div>
+                    <div>
+                        <div style="font-size:13px;font-weight:700;color:var(--primary)">${s.id}</div>
+                        <div style="font-size:11px;color:var(--text3)">Student ID (same for all batches)</div>
+                    </div>
+                </div>
+                <div style="display:flex;gap:10px;align-items:center;background:rgba(255,165,2,0.05);border:1px solid rgba(255,165,2,0.15);border-radius:10px;padding:12px 14px;margin-top:8px;">
+                    <div style="font-size:22px">🔑</div>
+                    <div>
+                        <div style="font-size:13px;font-weight:700;color:var(--warning)">${s.dob}</div>
+                        <div style="font-size:11px;color:var(--text3)">Password (Date of Birth)</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    ${allE.length>0?`
+    <div class="dash-card" style="margin-bottom:20px">
+        <div class="dash-card-title">⏰ My Timetable${allE.length>1?' — All Batches':''}</div>
+        <div class="batch-tt-grid">${ttCards}</div>
+    </div>`:''}
+
     <div class="dash-card">
         <div class="dash-card-title">👤 Personal Details</div>
         <div class="detail-grid">
@@ -653,159 +824,396 @@ function renderProfile(){
     </div>`;
 }
 
-// ── FEES ──
+// ─── FEES ─────────────────────────────────────────────────────────────────────
 function renderFees(){
     if(!stuData){document.getElementById('feeContent').innerHTML='<div class="no-data">Loading...</div>';return;}
     const s=stuData;
-    const due=getMonthlyDue(s);
-    const refFee=s.feeType==='monthly'?(s.months&&s.months>0?s.netFee:null):s.netFee;
-    const pct=refFee&&refFee>0?Math.min(100,Math.round((s.paidAmount/refFee)*100)):0;
+    const allE=getAllEnrollments(s);
+    const totalPaid=getTotalPaid(s);
+    const totalDue=Math.round(getTotalDue(s));
+    const totalNet=getTotalNetFee(s);
+    const grandPct=totalNet>0?Math.min(100,Math.round(totalPaid/totalNet*100)):0;
+    const grandBarClr=grandPct>=100?'var(--success)':grandPct>=50?'var(--warning)':'var(--danger)';
+
+    // Grand summary
+    const grandHTML=`
+    <div class="fee-grand-card">
+        <div class="fee-grand-title">📊 Overall Fee Summary — All Batches</div>
+        <div class="fee-grand-boxes">
+            <div class="fgb net">
+                <div class="fgb-val">₹${totalNet>0?totalNet.toLocaleString():'—'}</div>
+                <div class="fgb-lbl">Total Net Fee</div>
+            </div>
+            <div class="fgb paid">
+                <div class="fgb-val">₹${totalPaid.toLocaleString()}</div>
+                <div class="fgb-lbl">Total Paid</div>
+            </div>
+            <div class="fgb due">
+                <div class="fgb-val">₹${totalDue.toLocaleString()}</div>
+                <div class="fgb-lbl">Total Due</div>
+            </div>
+        </div>
+        ${totalNet>0?`
+        <div class="fee-grand-progress">
+            <div class="fee-grand-prog-label">
+                <span style="font-weight:600;color:${grandBarClr}">${grandPct}% Paid</span>
+                <span>${100-grandPct}% Remaining</span>
+            </div>
+            <div class="fee-grand-prog-bar"><div class="fee-grand-prog-fill" style="width:${grandPct}%;background:${grandBarClr}"></div></div>
+        </div>`:''}
+        ${totalDue<=0&&totalNet>0?`<div class="cleared-banner" style="margin-top:18px;margin-bottom:0"><div class="cleared-icon">🎉</div><div><div class="cleared-title">All Fees Cleared!</div><div class="cleared-sub">You have no outstanding dues across all batches</div></div></div>`:''}
+        ${allE.length>1?`<div style="margin-top:14px;display:flex;flex-wrap:wrap;gap:8px">${allE.map(({data:e},i)=>{const d=Math.round(getMonthlyDue(e));return`<div style="padding:7px 12px;border-radius:10px;background:rgba(255,255,255,0.04);border:1px solid var(--border);font-size:12px"><span style="color:${BATCH_ACCENT[i%3]};font-weight:700">${e.batchName||'Batch '+(i+1)}</span> <span style="color:var(--text3)">·</span> <span style="color:${d>0?'var(--danger)':'var(--success)'};font-weight:700">${d>0?'₹'+d.toLocaleString()+' due':'Cleared'}</span></div>`;}).join('')}</div>`:''}
+    </div>`;
+
+    // Batch tabs — show if multiple, otherwise show direct
+    let tabsHTML='', panelsHTML='';
+
+    if(allE.length>1){
+        // "All Payments" tab + per-batch tabs
+        const allTabLabel=`<div class="fee-batch-tab t-all active" data-ftab="all" onclick="switchFeeBatchTab('all')">📋 All Payments</div>`;
+        const batchTabs=allE.map(({data:e},i)=>
+            `<div class="fee-batch-tab t${i}" data-ftab="b${i}" onclick="switchFeeBatchTab('b${i}')">${['📖','📗','📘'][i%3]} ${e.batchName||'Batch '+(i+1)}</div>`
+        ).join('');
+        tabsHTML=`<div class="fee-batch-tabs">${allTabLabel}${batchTabs}</div>`;
+
+        // All-payments panel
+        const allPayPanel=buildAllPaymentsPanel(s, allE);
+        // Per-batch panels
+        const batchPanels=allE.map(({data:e,key:ek},i)=>
+            `<div class="fee-batch-panel" data-fpanel="b${i}">${buildBatchFeeCard(s,e,ek,i,true)}</div>`
+        ).join('');
+        panelsHTML=`<div class="fee-batch-panel active" data-fpanel="all">${allPayPanel}</div>${batchPanels}`;
+    } else {
+        // Single batch — no tabs needed
+        const {data:e,key:ek}=allE[0];
+        panelsHTML=`<div class="fee-batch-panel active">${buildBatchFeeCard(s,e,ek,0,false)}</div>`;
+    }
+
+    document.getElementById('feeContent').innerHTML=`
+    <div class="section-header"><h2>💰 Fee Status</h2>${allE.length>1?`<span style="font-size:13px;color:var(--text3)">${allE.length} Active Batches</span>`:''}</div>
+    ${grandHTML}
+    ${tabsHTML}
+    ${panelsHTML}`;
+}
+
+function switchFeeBatchTab(tabId){
+    document.querySelectorAll('.fee-batch-tab').forEach(t=>{
+        t.classList.toggle('active', t.dataset.ftab===tabId);
+    });
+    document.querySelectorAll('.fee-batch-panel').forEach(p=>{
+        p.classList.toggle('active', p.dataset.fpanel===tabId);
+    });
+}
+
+function buildBatchFeeCard(s, e, enrollKey, idx, isMulti){
+    const due=Math.round(getMonthlyDue(e));
+    const refFee=e.feeType==='monthly'?(e.months&&e.months>0?e.netFee:null):e.netFee;
+    const pct=refFee&&refFee>0?Math.min(100,Math.round((e.paidAmount||0)/refFee*100)):0;
     const barClr=pct>=100?'var(--success)':pct>=50?'var(--warning)':'var(--danger)';
-    const netDisp=s.feeType==='monthly'&&!(s.months&&s.months>0)&&!s.finishMonth?'Open-ended':'₹'+(s.netFee||0).toLocaleString();
+    const netDisp=e.feeType==='monthly'&&!(e.months&&e.months>0)&&!e.finishMonth?'Open-ended':'₹'+(e.netFee||0).toLocaleString();
+    const accent=BATCH_ACCENT[idx%3];
+    const cardCol=BATCH_CARD_COLORS[idx%3];
+
+    // Monthly chips
     let monthSec='';
-    if(s.feeType==='monthly'&&s.startMonth){
+    if(e.feeType==='monthly'&&e.startMonth){
         const chips=[];
-        const[sy,sm]=s.startMonth.split('-').map(Number);
+        const[sy,sm]=e.startMonth.split('-').map(Number);
         const now=new Date();const tY=now.getFullYear(),tM=now.getMonth()+1;
         let eY,eM;
-        if(s.finishMonth){const[fy,fm]=s.finishMonth.split('-').map(Number);eY=fy;eM=fm;}
-        else if(s.months&&s.months>0){const d=new Date(sy,sm-1+s.months-1,1);eY=d.getFullYear();eM=d.getMonth()+1;}
+        if(e.finishMonth){const[fy,fm]=e.finishMonth.split('-').map(Number);eY=fy;eM=fm;}
+        else if(e.months&&e.months>0){const d=new Date(sy,sm-1+e.months-1,1);eY=d.getFullYear();eM=d.getMonth()+1;}
         else{eY=tY;eM=tM+2;if(eM>12){eY++;eM-=12;}}
         const tot=(eY-sy)*12+(eM-sm)+1;
-        let paid=s.paidAmount||0;
-        const perM=(s.months&&s.months>0&&s.netFee>0)?s.netFee/s.months:(s.monthlyFee||0);
-        for(let i=0;i<tot;i++){
-            const dt=new Date(sy,sm-1+i,1);const lbl=dt.toLocaleDateString('en-IN',{month:'short',year:'numeric'});
-            const dY=dt.getFullYear(),dM=dt.getMonth()+1;
-            const isPast=dY<tY||(dY===tY&&dM<=tM);
-            if(!isPast&&!s.finishMonth&&!(s.months&&s.months>0)){chips.push(`<div class="month-chip future-m">${lbl}<br>Future</div>`);continue;}
+        let paid=e.paidAmount||0;
+        const perM=(e.months&&e.months>0&&e.netFee>0)?e.netFee/e.months:(e.monthlyFee||0);
+        for(let i2=0;i2<tot;i2++){
+            const dt=new Date(sy,sm-1+i2,1);const lbl=dt.toLocaleDateString('en-IN',{month:'short',year:'numeric'});
+            const dy=dt.getFullYear(),dm=dt.getMonth()+1;
+            const isPast=dy<tY||(dy===tY&&dm<=tM);
+            if(!isPast&&!e.finishMonth&&!(e.months&&e.months>0)){chips.push(`<div class="month-chip future-m">${lbl}<br>Future</div>`);continue;}
             let c='due-m',lb='Due';
-            if(paid>=perM){c='paid-m';lb='Paid';paid-=perM;}
-            else if(paid>0){c='partial-m';lb='Partial';paid=0;}
+            if(paid>=perM){c='paid-m';lb='Paid';paid-=perM;}else if(paid>0){c='partial-m';lb='Partial';paid=0;}
             chips.push(`<div class="month-chip ${c}">${lbl}<br>${lb}</div>`);
         }
-        const ttl=s.finishMonth?`₹${s.monthlyFee}/month • Finished ${s.finishMonth}`:s.months&&s.months>0?`₹${s.monthlyFee}/month × ${s.months} months`:`₹${s.monthlyFee}/month (open-ended)`;
+        const ttl=e.finishMonth?`₹${e.monthlyFee}/month • Finished ${e.finishMonth}`:e.months&&e.months>0?`₹${e.monthlyFee}/month × ${e.months} months`:`₹${e.monthlyFee}/month (open-ended)`;
         monthSec=`<div class="monthly-breakdown"><h5>📅 Monthly Breakdown — ${ttl}</h5><div class="month-grid">${chips.join('')}</div></div>`;
     }
-    const pays=s.payments||{};
+
+    // Due/cleared banner
+    const banner=due<=0
+        ?`<div class="cleared-banner"><div class="cleared-icon">✅</div><div><div class="cleared-title">Fees Cleared</div><div class="cleared-sub">No outstanding dues for this batch</div></div></div>`
+        :`<div class="due-banner"><div class="due-banner-icon">⚠️</div><div><div class="due-banner-title">₹${due.toLocaleString()} Due</div><div class="due-banner-sub">${e.feeType==='monthly'?'Outstanding as of today':'Outstanding balance'}</div></div></div>`;
+
+    // Payment history
+    const pays=e.payments||{};
     const pk=Object.keys(pays).sort((a,b)=>(pays[b].date||'').localeCompare(pays[a].date||''));
-    const mCol=s.feeType==='monthly'?'<th>Month</th>':'';
-    const payRows=pk.map((p,i)=>{const py=pays[p];return`<tr>
-        <td>${i+1}</td><td>${py.date||'—'}</td>
-        ${s.feeType==='monthly'?'<td>'+(py.forMonth||'—')+'</td>':''}
-        <td style="color:var(--success);font-weight:600">₹${(py.amount||0).toLocaleString()}</td>
-        <td>${py.method||'—'}</td><td>${py.note||'—'}</td>
-        <td><button class="btn btn-sm" style="background:rgba(0,210,255,0.1);border:1px solid rgba(0,210,255,0.2);color:var(--primary);padding:4px 10px;font-size:11px" onclick="openPaymentReceipt('${p}')">🧾</button></td>
-    </tr>`;}).join('');
-    document.getElementById('feeContent').innerHTML=`
-    <div class="fee-overview">
-        <div class="fee-box f-total"><div class="fee-amount">${netDisp}</div><div class="fee-lbl">Net Fee${s.discount?' (₹'+s.discount+' disc.)':''}</div></div>
-        <div class="fee-box f-paid"><div class="fee-amount">₹${(s.paidAmount||0).toLocaleString()}</div><div class="fee-lbl">Total Paid</div></div>
-        <div class="fee-box f-due"><div class="fee-amount">₹${Math.round(due).toLocaleString()}</div><div class="fee-lbl">${s.feeType==='monthly'?'Due (to date)':'Balance Due'}</div></div>
-    </div>
-    ${refFee?`<div style="margin-bottom:18px"><div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text2);margin-bottom:6px"><span>${pct}% Paid</span><span>${100-pct}% Remaining</span></div><div class="fee-progress"><div class="fee-progress-fill" style="width:${pct}%;background:${barClr}"></div></div></div>`:''}
-    ${monthSec}
-    <div class="dash-card">
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px">
-            <div class="dash-card-title" style="margin-bottom:0">📋 Payment History</div>
-            <button class="btn btn-primary btn-sm" onclick="openTotalReceipt()">🧾 Full Receipt</button>
+    const mCol=e.feeType==='monthly'?'<th>Month</th>':'';
+    const ekStr=enrollKey||'';
+    const payRows=pk.map((p,i2)=>{
+        const py=pays[p];
+        return`<tr>
+            <td style="color:var(--text3)">${i2+1}</td>
+            <td style="font-weight:600">${py.date||'—'}</td>
+            ${e.feeType==='monthly'?`<td style="color:var(--text2)">${py.forMonth||'—'}</td>`:''}
+            <td style="color:var(--success);font-weight:700">₹${(py.amount||0).toLocaleString()}</td>
+            <td>${py.method||'—'}</td>
+            <td style="color:var(--text3)">${py.note||'—'}</td>
+            <td><button class="btn btn-xs btn-outline" style="border-color:rgba(0,210,255,0.25);color:var(--primary)" onclick="openPaymentReceipt('${p}','${ekStr}')">🧾</button></td>
+        </tr>`;
+    }).join('');
+
+    const joinDate=e.joinDate||s.joinDate||'—';
+
+    return`<div class="batch-fee-card">
+        <div class="bfc-header ${cardCol}">
+            <div>
+                <div class="bfc-title" style="color:${accent}">${isMulti?(['📖','📗','📘'][idx%3]+' '):''}${e.className||'—'} — ${e.batchName||'—'}</div>
+                <div class="bfc-sub">Joined: ${joinDate} &nbsp;·&nbsp; ${e.feeType==='monthly'?'Monthly':'Total'} Fee</div>
+            </div>
+            <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+                <span class="bfc-status running">▶ Running</span>
+                <button class="btn btn-primary btn-xs" onclick="openBatchReceipt('${ekStr}')">🧾 Receipt</button>
+            </div>
         </div>
-        ${pk.length?`<table class="pay-table"><thead><tr><th>#</th><th>Date</th>${mCol}<th>Amount</th><th>Method</th><th>Note</th><th>Receipt</th></tr></thead><tbody>${payRows}</tbody></table>`:'<div class="no-data">No payments recorded yet</div>'}
+        <div class="bfc-body">
+            ${banner}
+            <div class="fee-overview">
+                <div class="fee-box f-total"><div class="fee-amount">${netDisp}</div><div class="fee-lbl">Net Fee${e.discount?' (₹'+e.discount+' off)':''}</div></div>
+                <div class="fee-box f-paid"><div class="fee-amount">₹${(e.paidAmount||0).toLocaleString()}</div><div class="fee-lbl">Total Paid</div></div>
+                <div class="fee-box f-due"><div class="fee-amount" style="color:${due>0?'var(--danger)':'var(--success)'}">₹${due.toLocaleString()}</div><div class="fee-lbl">${e.feeType==='monthly'?'Due (to date)':'Balance Due'}</div></div>
+            </div>
+            ${refFee?`<div style="display:flex;justify-content:space-between;font-size:12px;color:var(--text2);margin-bottom:6px"><span>${pct}% Paid</span><span>${100-pct}% Remaining</span></div><div class="fee-progress"><div class="fee-progress-fill" style="width:${pct}%;background:${barClr}"></div></div>`:''}
+            ${monthSec}
+            <div class="pay-section-header" style="margin-top:18px">
+                <div class="pay-section-title">📋 Payment History</div>
+                ${pk.length?`<button class="btn btn-outline btn-sm" onclick="openBatchReceipt('${ekStr}')">🧾 Full Batch Receipt</button>`:''}
+            </div>
+            ${pk.length
+                ?`<div style="overflow-x:auto"><table class="pay-table"><thead><tr><th>#</th><th>Date</th>${mCol}<th>Amount</th><th>Method</th><th>Note</th><th>Receipt</th></tr></thead><tbody>${payRows}</tbody></table></div>`
+                :'<div class="no-data">No payments recorded yet for this batch</div>'
+            }
+        </div>
     </div>`;
 }
 
-// ── RECEIPT ENGINE ──
-function buildReceipt(s,payKey){
-    const pays=s.payments||{};
-    const allKeys=Object.keys(pays).sort((a,b)=>(pays[a].date||'').localeCompare(pays[b].date||''));
-    const showKeys=payKey?[payKey]:allKeys;
-    const due=getMonthlyDue(s);
-    const refFee=s.feeType==='monthly'?(s.months&&s.months>0?s.netFee:null):s.netFee;
-    const pct=refFee&&refFee>0?Math.min(100,Math.round((s.paidAmount/refFee)*100)):0;
-    const barClr=pct>=100?'#27ae60':pct>=50?'#f39c12':'#e74c3c';
+function buildAllPaymentsPanel(s, allE){
+    // Collect all payments across all batches, sorted by date desc
+    let allPays=[];
+    allE.forEach(({data:e,key:ek},idx)=>{
+        Object.entries(e.payments||{}).forEach(([pk,py])=>{
+            allPays.push({...py, _enrollKey:ek||null, _batchName:e.batchName||'—', _className:e.className||'—', _payKey:pk, _idx:idx, _feeType:e.feeType});
+        });
+    });
+    allPays.sort((a,b)=>(b.date||'').localeCompare(a.date||''));
+
+    const rows=allPays.map((py,i)=>{
+        const accent=BATCH_ACCENT[py._idx%3];
+        const ekStr=py._enrollKey||'';
+        return`<tr>
+            <td style="color:var(--text3)">${i+1}</td>
+            <td style="font-weight:600">${py.date||'—'}</td>
+            <td><span style="color:${accent};font-size:11px;font-weight:700">${py._batchName}</span><br><span style="color:var(--text3);font-size:10px">${py._className}</span></td>
+            ${py._feeType==='monthly'?`<td style="color:var(--text2)">${py.forMonth||'—'}</td>`:'<td>—</td>'}
+            <td style="color:var(--success);font-weight:700">₹${(py.amount||0).toLocaleString()}</td>
+            <td>${py.method||'—'}</td>
+            <td style="color:var(--text3)">${py.note||'—'}</td>
+            <td><button class="btn btn-xs btn-outline" style="border-color:rgba(0,210,255,0.25);color:var(--primary)" onclick="openPaymentReceipt('${py._payKey}','${ekStr}')">🧾</button></td>
+        </tr>`;
+    }).join('');
+
+    const totalAllPaid=allPays.reduce((n,p)=>n+(p.amount||0),0);
+
+    return`<div class="dash-card">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:10px">
+            <div class="dash-card-title" style="margin-bottom:0">📋 All Payments — Combined History</div>
+            <div style="display:flex;gap:8px">
+                <button class="btn btn-primary btn-sm" onclick="openFullReceipt()">🧾 Full Receipt</button>
+            </div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px">
+            ${allE.map(({data:e},i)=>{
+                const bPays=Object.values(e.payments||{});
+                const bTotal=bPays.reduce((n,p)=>n+(p.amount||0),0);
+                return`<div style="flex:1;min-width:150px;padding:12px 14px;border-radius:10px;background:rgba(255,255,255,0.04);border:1px solid var(--border)">
+                    <div style="color:${BATCH_ACCENT[i%3]};font-size:12px;font-weight:700;margin-bottom:4px">${e.batchName||'Batch '+(i+1)}</div>
+                    <div style="font-size:17px;font-weight:800;color:var(--success)">₹${bTotal.toLocaleString()}</div>
+                    <div style="font-size:10px;color:var(--text3);margin-top:2px">${bPays.length} payment${bPays.length!==1?'s':''}</div>
+                </div>`;
+            }).join('')}
+        </div>
+        ${allPays.length
+            ?`<div style="overflow-x:auto"><table class="pay-table"><thead><tr><th>#</th><th>Date</th><th>Batch</th><th>Month</th><th>Amount</th><th>Method</th><th>Note</th><th>Receipt</th></tr></thead><tbody>${rows}</tbody></table></div>
+            <div style="padding:12px 14px;background:rgba(0,210,255,0.05);border:1px solid rgba(0,210,255,0.15);border-radius:10px;margin-top:12px;display:flex;justify-content:space-between;align-items:center">
+                <span style="font-size:13px;font-weight:600">Total across ${allPays.length} payments</span>
+                <span style="font-size:18px;font-weight:800;color:var(--success)">₹${totalAllPaid.toLocaleString()}</span>
+            </div>`
+            :'<div class="no-data">No payments recorded yet</div>'
+        }
+    </div>`;
+}
+
+// ─── RECEIPT ENGINE ────────────────────────────────────────────────────────────
+function openPaymentReceipt(payKey, enrollKeyRaw){
+    if(!stuData) return;
+    currentReceiptInfo={mode:'single', payKey, enrollKey:enrollKeyRaw||null};
+    document.getElementById('receiptContent').innerHTML=buildReceipt();
+    document.getElementById('receiptModal').classList.add('active');
+}
+function openBatchReceipt(enrollKeyRaw){
+    if(!stuData) return;
+    currentReceiptInfo={mode:'batch', enrollKey:enrollKeyRaw||null};
+    document.getElementById('receiptContent').innerHTML=buildReceipt();
+    document.getElementById('receiptModal').classList.add('active');
+}
+function openFullReceipt(){
+    if(!stuData) return;
+    currentReceiptInfo={mode:'full'};
+    document.getElementById('receiptContent').innerHTML=buildReceipt();
+    document.getElementById('receiptModal').classList.add('active');
+}
+function closeReceiptModal(){document.getElementById('receiptModal').classList.remove('active');}
+
+function buildReceipt(){
+    const s=stuData;
+    const {mode,payKey,enrollKey}=currentReceiptInfo||{mode:'full'};
     const ini=s.name.split(' ').map(w=>w[0]).join('').substring(0,2).toUpperCase();
     const ph=s.photo?`<img src="${s.photo}" alt="">`:`${ini}`;
     const lSrc=getLogoSrc();
     const lHtml=lSrc?`<img src="${lSrc}" alt="">`:'<span style="font-size:18px;opacity:0.8">🏫</span>';
     const inst=getInstName();
-    const rNum=s.id+'-'+(payKey||'FULL');
-    const netDisp=s.feeType==='monthly'&&!(s.months&&s.months>0)&&!s.finishMonth?'Open-ended':'₹'+(s.netFee||0).toLocaleString();
-    const isFullPaid=due<=0;
-    let singleHighlight='';
-    if(payKey&&pays[payKey]){
-        const py=pays[payKey];
-        singleHighlight=`<div class="single-pay-highlight">
-            <div>
-                <div style="font-size:10px;color:#888;text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-bottom:2px">Payment Detail</div>
-                <div style="font-size:13px;font-weight:800;color:#1a1a2e">₹${(py.amount||0).toLocaleString()} via ${py.method||'—'}</div>
-                <div style="font-size:11px;color:#666;margin-top:2px">${py.date||'—'}${py.forMonth?' • Month: '+py.forMonth:''}${py.note?' • '+py.note:''}</div>
-            </div>
-            <div style="text-align:right"><div style="font-size:10px;color:#888;text-transform:uppercase;letter-spacing:1px;font-weight:700">Status</div><div style="font-size:13px;font-weight:800;color:#27ae60;margin-top:2px">✓ Paid</div></div>
-        </div>`;
-    }
-    const mCol=s.feeType==='monthly'?'<th>Month</th>':'';
-    const rows=showKeys.map((k,i)=>{const py=pays[k];return`<tr class="${payKey?'hl':''}"><td style="color:#999">${i+1}</td><td style="font-weight:600;color:#333">${py.date||'—'}</td>${s.feeType==='monthly'?'<td style="color:#666">'+(py.forMonth||'—')+'</td>':''}<td style="color:#27ae60;font-weight:700">₹${(py.amount||0).toLocaleString()}</td><td>${py.method||'—'}</td><td style="color:#888">${py.note||'—'}</td></tr>`;}).join('');
-    return`<div class="receipt-wrap" id="receiptPrintArea">
-        <div class="receipt-header-band"><div class="receipt-logo">${lHtml}</div><div><div class="receipt-inst-name">${inst}</div><div class="receipt-inst-sub">Official Fee Receipt</div></div></div>
-        <div class="receipt-title-row"><span>${payKey?'Payment Receipt':'Complete Fee Statement'}</span><span style="font-size:10px;opacity:0.8">Receipt # ${rNum}</span></div>
-        <div class="receipt-body">
-            <div class="receipt-stu-row">
-                <div class="receipt-photo">${ph}</div>
-                <div style="flex:1">
-                    <div class="receipt-stu-name">${s.name}</div>
-                    <div class="receipt-stu-badge">${s.id}</div>
-                    <div class="receipt-stu-grid">
-                        <span><b>Course:</b> ${s.className||'—'}</span>
-                        <span><b>Batch:</b> ${s.batchName||'—'}</span>
-                        <span><b>Mobile:</b> ${s.mobile||'—'}</span>
-                        <span><b>DOB:</b> ${s.dob||'—'}</span>
-                        <span><b>Fee Type:</b> ${s.feeType==='monthly'?'Monthly':'Total Fee'}</span>
-                        <span><b>Joined:</b> ${s.joinDate||'—'}</span>
-                    </div>
-                </div>
-            </div>
-            ${singleHighlight}
-            <div class="receipt-fee-boxes">
-                <div class="rfb net"><div class="rv">${netDisp}</div><div class="rl">Net Fee</div></div>
-                <div class="rfb paid"><div class="rv">₹${(s.paidAmount||0).toLocaleString()}</div><div class="rl">Total Paid</div></div>
-                <div class="rfb due"><div class="rv">₹${Math.round(due).toLocaleString()}</div><div class="rl">Balance Due</div></div>
-            </div>
-            ${refFee?`<div class="r-progress"><div class="r-progress-fill" style="width:${pct}%;background:${barClr}"></div></div><div style="font-size:10px;color:#999;text-align:right;margin-bottom:14px">${pct}% Paid</div>`:''}
-            <div class="r-section-title">${payKey?'Payment Record':'Payment History'}</div>
-            <div class="r-stamp-wrap">
-                ${isFullPaid?'<div class="r-stamp">PAID</div>':''}
-                <table class="rtable"><thead><tr><th>#</th><th>Date</th>${mCol}<th>Amount</th><th>Method</th><th>Note</th></tr></thead>
-                <tbody>${rows||'<tr><td colspan="6" style="text-align:center;color:#aaa;padding:15px">No payments recorded</td></tr>'}</tbody></table>
+    const allE=getAllEnrollments(s);
+    const now=new Date().toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'});
+    const rNum=s.id+'-'+(mode==='single'?payKey:mode==='batch'?(enrollKey||'ROOT'):'FULL');
+
+    // Get enrollment data
+    const getEnroll=(ek)=>{
+        if(!ek) return {data:s,key:null};
+        if(s.enrollments&&s.enrollments[ek]) return {data:s.enrollments[ek],key:ek};
+        return {data:s,key:null};
+    };
+
+    // Build student header (common to all modes)
+    const stuRow=`<div class="receipt-stu-row">
+        <div class="receipt-photo">${ph}</div>
+        <div style="flex:1">
+            <div class="receipt-stu-name">${s.name}</div>
+            <div class="receipt-stu-badge">${s.id}</div>
+            <div class="receipt-stu-grid">
+                <span><b>Mobile:</b> ${s.mobile||'—'}</span>
+                <span><b>DOB:</b> ${s.dob||'—'}</span>
+                <span><b>Father:</b> ${s.fatherName||'—'}</span>
+                <span><b>Joined:</b> ${s.joinDate||'—'}</span>
             </div>
         </div>
-        <div class="receipt-footer-band"><span>Generated: ${new Date().toLocaleDateString('en-IN',{day:'numeric',month:'long',year:'numeric'})}</span><span>${inst}</span></div>
-        <div class="receipt-disclaimer">⚙ This is a computer-generated receipt and does not require a physical signature.</div>
+    </div>`;
+
+    function buildBatchReceiptSection(e, idx, singlePayKey){
+        const due=Math.round(getMonthlyDue(e));
+        const refFee=e.feeType==='monthly'?(e.months&&e.months>0?e.netFee:null):e.netFee;
+        const pct=refFee&&refFee>0?Math.min(100,Math.round((e.paidAmount||0)/refFee*100)):0;
+        const barClr=pct>=100?'#27ae60':pct>=50?'#f39c12':'#e74c3c';
+        const netDisp=e.feeType==='monthly'&&!(e.months&&e.months>0)&&!e.finishMonth?'Open-ended':'₹'+(e.netFee||0).toLocaleString();
+        const pays=e.payments||{};
+        const allKeys=Object.keys(pays).sort((a,b)=>(pays[a].date||'').localeCompare(pays[b].date||''));
+        const showKeys=singlePayKey?[singlePayKey]:allKeys;
+        const isFullPaid=due<=0;
+        const statusText=isFullPaid?'CLEARED':'RUNNING';
+        const statusColor=isFullPaid?'#27ae60':'#3a7bd5';
+
+        const mCol=e.feeType==='monthly'?'<th>Month</th>':'';
+        const rows=showKeys.map((k,i2)=>{const py=pays[k];return`<tr class="${singlePayKey?'hl':''}"><td style="color:#999">${i2+1}</td><td style="font-weight:600;color:#333">${py.date||'—'}</td>${e.feeType==='monthly'?'<td style="color:#666">'+(py.forMonth||'—')+'</td>':''}<td style="color:#27ae60;font-weight:700">₹${(py.amount||0).toLocaleString()}</td><td>${py.method||'—'}</td><td style="color:#888">${py.note||'—'}</td></tr>`;}).join('');
+
+        let singleHighlight='';
+        if(singlePayKey&&pays[singlePayKey]){
+            const py=pays[singlePayKey];
+            singleHighlight=`<div class="single-pay-highlight"><div><div style="font-size:10px;color:#888;text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-bottom:2px">This Payment</div><div style="font-size:13px;font-weight:800;color:#1a1a2e">₹${(py.amount||0).toLocaleString()} via ${py.method||'—'}</div><div style="font-size:11px;color:#666;margin-top:2px">${py.date||'—'}${py.forMonth?' • Month: '+py.forMonth:''}${py.note?' • '+py.note:''}</div></div><div style="text-align:right"><div style="font-size:13px;font-weight:800;color:#27ae60;margin-top:2px">✓ Paid</div></div></div>`;
+        }
+
+        return`<div class="receipt-batch-header">
+            <div>
+                <div class="rb-name">${e.className||'—'} — ${e.batchName||'—'}</div>
+                <div class="rb-sub">${e.feeType==='monthly'?'Monthly Fee':'Total Fee'} &nbsp;·&nbsp; Joined: ${e.joinDate||s.joinDate||'—'}</div>
+            </div>
+            <div class="rb-status" style="background:${statusColor}22;color:${statusColor}">${statusText}</div>
+        </div>
+        ${singleHighlight}
+        <div class="receipt-fee-boxes">
+            <div class="rfb net"><div class="rv">${netDisp}</div><div class="rl">Net Fee</div></div>
+            <div class="rfb paid"><div class="rv">₹${(e.paidAmount||0).toLocaleString()}</div><div class="rl">Paid</div></div>
+            <div class="rfb due"><div class="rv">₹${due.toLocaleString()}</div><div class="rl">Balance</div></div>
+        </div>
+        ${refFee?`<div class="r-progress"><div class="r-progress-fill" style="width:${pct}%;background:${barClr}"></div></div><div style="font-size:10px;color:#999;text-align:right;margin-bottom:12px">${pct}% Paid</div>`:''}
+        <div class="r-section-title">${singlePayKey?'Payment Detail':'Payment History'}</div>
+        <div class="r-stamp-wrap">
+            ${isFullPaid&&!singlePayKey?'<div class="r-stamp">PAID</div>':''}
+            <table class="rtable"><thead><tr><th>#</th><th>Date</th>${mCol}<th>Amount</th><th>Method</th><th>Note</th></tr></thead>
+            <tbody>${rows||'<tr><td colspan="6" style="text-align:center;color:#aaa;padding:15px">No payments recorded</td></tr>'}</tbody></table>
+        </div>`;
+    }
+
+    let bodyContent='';
+    let titleText='';
+
+    if(mode==='single'){
+        const {data:e}=getEnroll(enrollKey);
+        titleText='Payment Receipt';
+        bodyContent=buildBatchReceiptSection(e,0,payKey);
+    } else if(mode==='batch'){
+        const {data:e,key:ek}=getEnroll(enrollKey);
+        const idx=allE.findIndex(x=>x.key===ek);
+        titleText=`Batch Receipt — ${e.batchName||'—'}`;
+        bodyContent=buildBatchReceiptSection(e,idx<0?0:idx,null);
+    } else {
+        // Full receipt — all batches
+        titleText='Complete Fee Statement — All Batches';
+        const totalPaid=getTotalPaid(s);
+        const totalDue=Math.round(getTotalDue(s));
+        const totalNet=getTotalNetFee(s);
+        const sections=allE.map(({data:e,key:ek},i)=>
+            `${i>0?'<hr class="receipt-section-divider">':''}${buildBatchReceiptSection(e,i,null)}`
+        ).join('');
+        // Grand total box
+        const grandBox=allE.length>1?`<div class="receipt-grand-box">
+            <div class="rgb-item"><div class="rgb-val" style="color:#a29bfe">₹${totalNet>0?totalNet.toLocaleString():'—'}</div><div class="rgb-lbl">Total Net Fee</div></div>
+            <div class="rgb-item" style="border-left:1px solid rgba(255,255,255,0.1)"><div class="rgb-val" style="color:#2ed573">₹${totalPaid.toLocaleString()}</div><div class="rgb-lbl">Total Paid</div></div>
+            <div class="rgb-item" style="border-left:1px solid rgba(255,255,255,0.1)"><div class="rgb-val" style="color:${totalDue>0?'#ff4757':'#2ed573'}">₹${totalDue.toLocaleString()}</div><div class="rgb-lbl">Total Due</div></div>
+        </div>`:'';
+        bodyContent=sections+grandBox;
+    }
+
+    return`<div class="receipt-wrap" id="receiptPrintArea">
+        <div class="receipt-header-band"><div class="receipt-logo">${lHtml}</div><div><div class="receipt-inst-name">${inst}</div><div class="receipt-inst-sub">Official Fee Receipt</div></div></div>
+        <div class="receipt-title-row"><span>${titleText}</span><span style="font-size:10px;opacity:0.8">Ref: ${rNum}</span></div>
+        <div class="receipt-body">${stuRow}${bodyContent}</div>
+        <div class="receipt-footer-band"><span>Generated: ${now}</span><span>${inst}</span></div>
+        <div class="receipt-disclaimer">⚙ Computer-generated receipt. Does not require a physical signature.</div>
     </div>`;
 }
 
-function openPaymentReceipt(payKey){if(!stuData)return;currentReceiptPayKey=payKey;document.getElementById('receiptContent').innerHTML=buildReceipt(stuData,payKey);document.getElementById('receiptModal').classList.add('active');}
-function openTotalReceipt(){if(!stuData)return;currentReceiptPayKey=null;document.getElementById('receiptContent').innerHTML=buildReceipt(stuData,null);document.getElementById('receiptModal').classList.add('active');}
-function closeReceiptModal(){document.getElementById('receiptModal').classList.remove('active');}
+const receiptCSS=`*{margin:0;padding:0;box-sizing:border-box;}body{font-family:'Segoe UI',sans-serif;background:#fff;}.receipt-wrap{max-width:680px;margin:0 auto;}.receipt-header-band{background:linear-gradient(135deg,#00d2ff,#3a7bd5);padding:18px 22px;display:flex;align-items:center;gap:12px;}.receipt-logo{width:44px;height:44px;border-radius:9px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;overflow:hidden;border:2px solid rgba(255,255,255,0.4);flex-shrink:0;}.receipt-logo img{width:100%;height:100%;object-fit:contain;}.receipt-inst-name{font-size:15px;font-weight:800;color:#fff;}.receipt-inst-sub{font-size:10px;color:rgba(255,255,255,0.85);margin-top:2px;}.receipt-title-row{background:rgba(0,0,0,0.5);color:#fff;padding:9px 22px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;display:flex;justify-content:space-between;}.receipt-body{padding:18px 22px;}.receipt-stu-row{display:flex;gap:14px;align-items:flex-start;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid #eee;}.receipt-photo{width:60px;height:72px;border-radius:8px;border:2px solid #eee;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;color:#00d2ff;background:#f0f4ff;flex-shrink:0;}.receipt-photo img{width:100%;height:100%;object-fit:cover;}.receipt-stu-name{font-size:15px;font-weight:800;color:#1a1a2e;margin-bottom:3px;}.receipt-stu-badge{display:inline-block;background:linear-gradient(90deg,#00d2ff,#3a7bd5);color:#fff;font-size:9px;font-weight:800;padding:2px 9px;border-radius:20px;margin-bottom:7px;letter-spacing:1px;}.receipt-stu-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px 14px;}.receipt-stu-grid span{font-size:11px;color:#666;}.receipt-stu-grid span b{color:#333;}.receipt-section-divider{border:none;border-top:2px dashed #e0e3f0;margin:16px 0;}.receipt-batch-header{background:#f5f6ff;border:1px solid #e0e3f0;border-radius:8px;padding:10px 14px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:6px;}.rb-name{font-size:13px;font-weight:800;color:#1a1a2e;}.rb-sub{font-size:11px;color:#666;margin-top:1px;}.rb-status{font-size:10px;font-weight:700;padding:3px 9px;border-radius:10px;}.receipt-fee-boxes{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:12px;}.rfb{text-align:center;padding:11px 8px;border-radius:9px;}.rfb.net{background:#f0f2ff;border:1px solid #dde4ff;}.rfb.paid{background:#f0fff4;border:1px solid #b7e4c7;}.rfb.due{background:#fff0f0;border:1px solid #ffcdd2;}.rv{font-size:16px;font-weight:800;}.rfb.net .rv{color:#6c5ce7;}.rfb.paid .rv{color:#27ae60;}.rfb.due .rv{color:#e74c3c;}.rl{font-size:10px;color:#888;margin-top:2px;}.r-progress{height:7px;background:#eee;border-radius:4px;margin-bottom:6px;}.r-progress-fill{height:100%;border-radius:4px;}.r-section-title{font-size:11px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}.single-pay-highlight{background:#f0f4ff;border:1px solid #dde4ff;border-radius:9px;padding:11px 14px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}.r-stamp-wrap{position:relative;}.r-stamp{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-22deg);font-size:46px;font-weight:900;color:rgba(46,213,115,0.1);text-transform:uppercase;letter-spacing:4px;pointer-events:none;white-space:nowrap;}.rtable{width:100%;border-collapse:collapse;font-size:12px;}.rtable th{background:#f5f6ff;padding:8px 10px;text-align:left;font-weight:700;color:#555;border-bottom:2px solid #e0e3f0;}.rtable td{padding:7px 10px;border-bottom:1px solid #f0f0f0;color:#555;}.rtable tr:last-child td{border-bottom:none;}.rtable tr.hl td{background:#f0fff4;}.rtable tr.hl td:nth-child(4){color:#27ae60;font-weight:700;}.receipt-grand-box{background:#1a1a2e;border:2px solid #00d2ff;border-radius:12px;padding:14px 18px;margin:16px 0;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}.rgb-item{text-align:center;flex:1;}.rgb-val{font-size:18px;font-weight:800;margin-bottom:2px;}.rgb-lbl{font-size:10px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:1px;}.receipt-footer-band{padding:11px 22px;background:#f9faff;border-top:1px solid #eee;display:flex;justify-content:space-between;font-size:10px;color:#888;}.receipt-disclaimer{padding:8px 22px;background:#fffde7;border-top:1px solid #fff176;font-size:10px;color:#888;text-align:center;}@media print{body{margin:0;}}`;
 
-const receiptCSS=`*{margin:0;padding:0;box-sizing:border-box;}body{font-family:'Segoe UI',sans-serif;background:#fff;}.receipt-wrap{max-width:660px;margin:0 auto;}.receipt-header-band{background:linear-gradient(135deg,#00d2ff,#3a7bd5);padding:18px 22px;display:flex;align-items:center;gap:12px;}.receipt-logo{width:44px;height:44px;border-radius:9px;background:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;overflow:hidden;border:2px solid rgba(255,255,255,0.4);flex-shrink:0;}.receipt-logo img{width:100%;height:100%;object-fit:contain;}.receipt-inst-name{font-size:15px;font-weight:800;color:#fff;}.receipt-inst-sub{font-size:10px;color:rgba(255,255,255,0.85);margin-top:2px;}.receipt-title-row{background:rgba(0,0,0,0.5);color:#fff;padding:9px 22px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;display:flex;justify-content:space-between;}.receipt-body{padding:18px 22px;}.receipt-stu-row{display:flex;gap:14px;align-items:flex-start;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid #eee;}.receipt-photo{width:60px;height:72px;border-radius:8px;border:2px solid #eee;overflow:hidden;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:800;color:#00d2ff;background:#f0f4ff;flex-shrink:0;}.receipt-photo img{width:100%;height:100%;object-fit:cover;}.receipt-stu-name{font-size:15px;font-weight:800;color:#1a1a2e;margin-bottom:3px;}.receipt-stu-badge{display:inline-block;background:linear-gradient(90deg,#00d2ff,#3a7bd5);color:#fff;font-size:9px;font-weight:800;padding:2px 9px;border-radius:20px;margin-bottom:7px;letter-spacing:1px;}.receipt-stu-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px 14px;}.receipt-stu-grid span{font-size:11px;color:#666;}.receipt-stu-grid span b{color:#333;}.receipt-fee-boxes{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:14px;}.rfb{text-align:center;padding:11px 8px;border-radius:9px;}.rfb.net{background:#f0f2ff;border:1px solid #dde4ff;}.rfb.paid{background:#f0fff4;border:1px solid #b7e4c7;}.rfb.due{background:#fff0f0;border:1px solid #ffcdd2;}.rv{font-size:16px;font-weight:800;}.rfb.net .rv{color:#6c5ce7;}.rfb.paid .rv{color:#27ae60;}.rfb.due .rv{color:#e74c3c;}.rl{font-size:10px;color:#888;margin-top:2px;}.r-progress{height:7px;background:#eee;border-radius:4px;margin-bottom:14px;}.r-progress-fill{height:100%;border-radius:4px;}.r-section-title{font-size:11px;font-weight:700;color:#555;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;}.single-pay-highlight{background:#f0f4ff;border:1px solid #dde4ff;border-radius:9px;padding:11px 14px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}.r-stamp-wrap{position:relative;}.r-stamp{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(-22deg);font-size:46px;font-weight:900;color:rgba(46,213,115,0.1);text-transform:uppercase;letter-spacing:4px;pointer-events:none;white-space:nowrap;}.rtable{width:100%;border-collapse:collapse;font-size:12px;}.rtable th{background:#f5f6ff;padding:8px 10px;text-align:left;font-weight:700;color:#555;border-bottom:2px solid #e0e3f0;}.rtable td{padding:7px 10px;border-bottom:1px solid #f0f0f0;color:#555;}.rtable tr:last-child td{border-bottom:none;}.rtable tr.hl td{background:#f0fff4;}.rtable tr.hl td:nth-child(4){color:#27ae60;font-weight:700;}.receipt-footer-band{padding:11px 22px;background:#f9faff;border-top:1px solid #eee;display:flex;justify-content:space-between;font-size:10px;color:#888;}.receipt-disclaimer{padding:8px 22px;background:#fffde7;border-top:1px solid #fff176;font-size:10px;color:#888;text-align:center;}`;
+function printReceipt(){const el=document.getElementById('receiptPrintArea');if(!el)return;const w=window.open('','_blank','width=720,height=660');w.document.write(`<!DOCTYPE html><html><head><title>Receipt</title><style>${receiptCSS}</style></head><body>${el.outerHTML}<script>window.onload=()=>window.print();<\/script></body></html>`);w.document.close();}
+function downloadReceipt(){const el=document.getElementById('receiptPrintArea');if(!el||!stuData)return;const mode=currentReceiptInfo?.mode||'full';const html=`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Receipt - ${stuData.id}</title><style>${receiptCSS}</style></head><body>${el.outerHTML}</body></html>`;const blob=new Blob([html],{type:'text/html;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=stuData.id+'_Receipt_'+mode+'_'+Date.now()+'.html';a.click();URL.revokeObjectURL(a.href);toast('Receipt downloaded!');}
 
-function printReceipt(){const el=document.getElementById('receiptPrintArea');if(!el)return;const w=window.open('','_blank','width=700,height=650');w.document.write(`<!DOCTYPE html><html><head><title>Receipt</title><style>${receiptCSS}@media print{body{margin:0;}}</style></head><body>${el.outerHTML}<script>window.onload=()=>window.print();<\/script></body></html>`);w.document.close();}
-function downloadReceipt(){const el=document.getElementById('receiptPrintArea');if(!el||!stuData)return;const html=`<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Receipt - ${stuData.id}</title><style>${receiptCSS}</style></head><body>${el.outerHTML}</body></html>`;const blob=new Blob([html],{type:'text/html;charset=utf-8'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=stuData.id+'_Receipt_'+(currentReceiptPayKey||'Full')+'.html';a.click();URL.revokeObjectURL(a.href);toast('Receipt downloaded!');}
-
-// ── NOTICES ──
+// ─── NOTICES ──────────────────────────────────────────────────────────────────
 function renderNotices(){
-    if(!stuData)return;
+    if(!stuData) return;
     const s=stuData;
+    const allE=getAllEnrollments(s);
     const entries=Object.entries(allNotices).sort((a,b)=>(b[1].createdAt||'').localeCompare(a[1].createdAt||''));
     const rel=entries.filter(([,n])=>{
         const t=n.target||{};
-        if(t.type==='all')return true;
-        if(t.type==='course')return t.courseName===s.className;
-        if(t.type==='allbatches')return t.courseName===s.className;
-        if(t.type==='batch')return t.courseName===s.className&&t.batchName===s.batchName;
-        if(t.type==='student')return t.studentId===s.id;
-        if(t.type==='multi')return t.studentIds&&t.studentIds.includes(s.id);
-        return false;
+        if(t.type==='all') return true;
+        if(t.type==='student') return t.studentId===s.id;
+        if(t.type==='multi') return t.studentIds&&t.studentIds.includes(s.id);
+        // Check against all enrollments
+        return allE.some(({data:e})=>{
+            if(t.type==='course') return t.courseName===e.className;
+            if(t.type==='allbatches') return t.courseName===e.className;
+            if(t.type==='batch') return t.courseName===e.className&&t.batchName===e.batchName;
+            return false;
+        });
     });
     const el=document.getElementById('noticesList');
     if(!rel.length){el.innerHTML='<div class="no-data">No notices for you right now</div>';return;}
@@ -821,38 +1229,47 @@ function renderNotices(){
         else if(t.type==='batch')tInfo=t.courseName+' — '+t.batchName;
         else if(t.type==='student')tInfo='Personal notice';
         else if(t.type==='multi')tInfo='Selected students';
-        return`<div class="notice-card" style="border-left:3px solid ${pc}${isPersonal?';background:rgba(108,92,231,0.04);border-color:rgba(108,92,231,0.5)':''}">
+        return`<div class="notice-card" style="border-left:3px solid ${pc}${isPersonal?';background:rgba(108,92,231,0.04)':''}">
             <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;flex-wrap:wrap">
                 <span class="priority-tag" style="background:${pc}22;color:${pc}">${pL[n.priority]||'NOTICE'}</span>
                 ${isPersonal?'<span class="priority-tag" style="background:rgba(108,92,231,0.15);color:#a29bfe">👤 Personal</span>':''}
                 <div class="notice-card-title">${n.title}</div>
             </div>
-            <div class="notice-card-meta">By ${n.createdBy||'Admin'} • ${new Date(n.createdAt).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})} ${new Date(n.createdAt).toLocaleTimeString('en-IN',{hour:'2-digit',minute:'2-digit'})} • ${tInfo}</div>
+            <div class="notice-card-meta">By ${n.createdBy||'Admin'} • ${new Date(n.createdAt).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'})} • ${tInfo}</div>
             <div class="notice-card-body">${n.body}</div>
         </div>`;
     }).join('');
 }
 
-// ── ATTENDANCE ──
+// ─── ATTENDANCE ───────────────────────────────────────────────────────────────
 function renderAttendance(){
-    if(!stuData)return;
+    if(!stuData) return;
     const s=stuData;
-    const bKey=s.classCode+'_'+s.batchCode;
-    const bAtt=allAttendance[bKey]||{};
-    const dates=Object.keys(bAtt).sort().reverse();
-    let p=0,a=0,l=0;const recs=[];
-    dates.forEach(d=>{
-        const rec=bAtt[d];if(!rec||!rec.records||!rec.records[s.id])return;
-        const st=rec.records[s.id];
-        if(st==='P')p++;else if(st==='A')a++;else if(st==='L')l++;
-        const ds=d.length===8?d.slice(6)+'/'+d.slice(4,6)+'/'+d.slice(0,4):(rec.date?new Date(rec.date).toLocaleDateString('en-IN',{day:'2-digit',month:'2-digit',year:'numeric'}):d);
-        recs.push({date:ds,status:st,type:rec.type||'regular'});
+    const allE=getAllEnrollments(s);
+
+    // Build attendance for all batches
+    let allRecs=[];
+    allE.forEach(({data:e},idx)=>{
+        const bKey=e.classCode+'_'+e.batchCode;
+        const bAtt=allAttendance[bKey]||{};
+        Object.keys(bAtt).sort().reverse().forEach(d=>{
+            const rec=bAtt[d];if(!rec||!rec.records||!rec.records[s.id])return;
+            const st=rec.records[s.id];
+            const ds=d.length===8?d.slice(6)+'/'+d.slice(4,6)+'/'+d.slice(0,4):(rec.date?new Date(rec.date).toLocaleDateString('en-IN',{day:'2-digit',month:'2-digit',year:'numeric'}):d);
+            allRecs.push({date:ds,status:st,type:rec.type||'regular',batchName:e.batchName,batchIdx:idx,rawDate:d});
+        });
     });
+    allRecs.sort((a,b)=>b.rawDate.localeCompare(a.rawDate));
+
+    const p=allRecs.filter(r=>r.status==='P').length;
+    const a=allRecs.filter(r=>r.status==='A').length;
+    const l=allRecs.filter(r=>r.status==='L').length;
     const tot=p+a+l;
     const pct=tot>0?Math.round(((p+l)/tot)*100):0;
     const rc=pct>=75?'#2ed573':pct>=50?'#ffa502':'#ff4757';
     const msg=pct>=75?'Good Standing 👍':pct>=50?'Below Average ⚠️':'Critical ⛔';
     const C=2*Math.PI*54,dash=C*(pct/100);
+
     document.getElementById('attendanceContent').innerHTML=`
     <div class="att-summary">
         <div class="att-stat"><div class="att-val" style="color:var(--success)">${p}</div><div class="att-lbl">Present</div></div>
@@ -868,26 +1285,34 @@ function renderAttendance(){
             <text x="65" y="78" text-anchor="middle" fill="rgba(255,255,255,0.5)" font-size="11" font-family="Segoe UI">Attendance</text>
         </svg>
         <div style="font-size:14px;font-weight:600;color:${rc};margin-top:10px">${msg}</div>
+        ${allE.length>1?`<div style="font-size:12px;color:var(--text3);margin-top:6px">Combined across ${allE.length} batches</div>`:''}
     </div>
     <div class="dash-card">
-        <div class="dash-card-title">📅 Date-wise Records</div>
-        ${recs.length?recs.map(r=>`<div class="att-record">
-            <div style="display:flex;align-items:center;gap:8px"><span style="font-weight:600">${r.date}</span>${r.type==='extra'?'<span class="extra-tag">Extra</span>':''}</div>
+        <div class="dash-card-title">📅 Date-wise Records${allE.length>1?' (All Batches)':''}</div>
+        ${allRecs.length?allRecs.map(r=>`<div class="att-record">
+            <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+                <span style="font-weight:600">${r.date}</span>
+                ${r.type==='extra'?'<span class="extra-tag">Extra</span>':''}
+                ${allE.length>1?`<span style="font-size:10px;color:${BATCH_ACCENT[r.batchIdx%3]};font-weight:700">${r.batchName}</span>`:''}
+            </div>
             <span class="att-status ${r.status}">${r.status==='P'?'Present':r.status==='A'?'Absent':'Late'}</span>
         </div>`).join(''):'<div class="no-data">No attendance records found</div>'}
     </div>`;
 }
 
-// ── PERFORMANCE ──
+// ─── PERFORMANCE ──────────────────────────────────────────────────────────────
 function renderPerformance(){
-    if(!stuData)return;
+    if(!stuData) return;
     const s=stuData;
+    const allE=getAllEnrollments(s);
     const exams=[];
     Object.values(allExams).forEach(e=>{
-        if(!e.marks||!e.marks[s.id])return;
-        if(!(e.batches||[]).some(b=>b.classCode===s.classCode&&b.batchCode===s.batchCode))return;
+        if(!e.marks||!e.marks[s.id]) return;
+        // Match against any of student's enrollments
+        const matchedE=allE.find(({data:en})=>(e.batches||[]).some(b=>b.classCode===en.classCode&&b.batchCode===en.batchCode));
+        if(!matchedE) return;
         const m=e.marks[s.id];
-        exams.push({name:e.name,date:e.date,subject:e.subject,totalMarks:e.totalMarks,passMarks:e.passMarks,obtained:m.obtained,remarks:m.remarks,examRem:e.remarks});
+        exams.push({name:e.name,date:e.date,subject:e.subject,totalMarks:e.totalMarks,passMarks:e.passMarks,obtained:m.obtained,remarks:m.remarks,examRem:e.remarks,batchName:matchedE.data.batchName});
     });
     exams.sort((a,b)=>(b.date||'').localeCompare(a.date||''));
     if(!exams.length){document.getElementById('performanceContent').innerHTML='<div class="no-data">No exam records found</div>';return;}
@@ -913,7 +1338,7 @@ function renderPerformance(){
             <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px">
                 <div>
                     <div style="font-size:15px;font-weight:700">${e.name}</div>
-                    <div style="font-size:12px;color:var(--text3);margin-top:2px">${ds}${e.subject?' • '+e.subject:''} • Total: ${e.totalMarks}${e.passMarks?' • Pass: '+e.passMarks:''}</div>
+                    <div style="font-size:12px;color:var(--text3);margin-top:2px">${ds}${e.subject?' • '+e.subject:''} • Total: ${e.totalMarks}${e.passMarks?' • Pass: '+e.passMarks:''}${allE.length>1?' • '+e.batchName:''}</div>
                 </div>
                 <div style="text-align:right">
                     ${g.l!=='—'?`<span class="grade-pill ${g.c}">${g.l}</span>`:''}
@@ -927,7 +1352,6 @@ function renderPerformance(){
             </div>
             ${pct!=null?`<div class="fee-progress" style="margin-bottom:8px"><div class="fee-progress-fill" style="width:${pct}%;background:${bc}"></div></div>`:''}
             ${e.remarks?`<div style="font-size:12px;color:var(--text2);padding:8px 10px;background:rgba(0,210,255,0.05);border-radius:8px;border-left:2px solid var(--primary);margin-top:6px">📝 ${e.remarks}</div>`:''}
-            ${e.examRem?`<div style="font-size:11px;color:var(--text3);margin-top:4px">${e.examRem}</div>`:''}
         </div>`;
     }).join('')}`;
 }
