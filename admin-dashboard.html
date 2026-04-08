@@ -919,7 +919,7 @@
             <div id="personalFields">
                 <div class="form-row">
                     <div class="form-group"><label>Full Name *</label><input type="text" id="stuName" placeholder="Student name"></div>
-                    <div class="form-group"><label>Father's Name *</label><input type="text" id="stuFather" placeholder="Father's name"></div>
+                    <div class="form-group"><label>Father's Name</label><input type="text" id="stuFather" placeholder="Father's name"></div>
                 </div>
                 <div class="form-row">
                     <div class="form-group"><label>Mother's Name</label><input type="text" id="stuMother" placeholder="Mother's name"></div>
@@ -2537,7 +2537,7 @@ function addStudent(){
     // ═══════════════════════════════════════════════════════════════════
     // *** NEW student — validate personal info and create record ***
     // ═══════════════════════════════════════════════════════════════════
-    if(!name||!father||!dob||!gender||!mobile||!pmobile){toast('Fill all required fields','error');return;}
+    if(!name||!dob||!gender||!mobile||!pmobile){toast('Fill all required fields','error');return;}
     if(!/^\d{2}-\d{2}-\d{4}$/.test(dob)){toast('DOB format: DD-MM-YYYY','error');return;}
 
     const data={
